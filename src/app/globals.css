@@ -1,26 +1,718 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------
+   Theme bridge (Tailwind v4 CSS-first). Variable NAMES are the shadcn +
+   Bklit ones; VALUES are the Hospital Santa Izabel tokens (limão · verde da marca · verde-água) (dark-only).
+   ------------------------------------------------------------------ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* brand tokens as Tailwind colors: bg-ink, text-amber, border-line, text-text-2 … */
+  --color-ink: var(--ink);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-amber: var(--amber);
+  --color-amber-2: var(--amber-2);
+  --color-copper: var(--copper);
+  --color-copper-2: var(--copper-2);
+  --color-dusk: var(--dusk);
+  --color-dusk-2: var(--dusk-2);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --color-warn: var(--warn);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-6: var(--chart-6);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Bklit chart + legend tokens (single "--" — the registry's "----" was a bug) */
+  --color-chart-scale-pattern-color: var(--chart-scale-pattern-color);
+  --color-chart-scale-05: var(--chart-scale-05);
+  --color-chart-scale-04: var(--chart-scale-04);
+  --color-chart-scale-03: var(--chart-scale-03);
+  --color-chart-scale-02: var(--chart-scale-02);
+  --color-chart-scale-01: var(--chart-scale-01);
+  --color-chart-label: var(--chart-label);
+  --color-chart-marker-foreground: var(--chart-marker-foreground);
+  --color-chart-marker-border: var(--chart-marker-border);
+  --color-chart-marker-background: var(--chart-marker-background);
+  --color-chart-tooltip-muted: var(--chart-tooltip-muted);
+  --color-chart-tooltip-foreground: var(--chart-tooltip-foreground);
+  --color-chart-tooltip-background: var(--chart-tooltip-background);
+  --chart-brush-border: var(--chart-brush-border);
+  --color-chart-grid: var(--chart-grid);
+  --color-chart-crosshair: var(--chart-crosshair);
+  --chart-line-secondary: var(--chart-line-secondary);
+  --chart-line-primary: var(--chart-line-primary);
+  --color-chart-foreground-muted: var(--chart-foreground-muted);
+  --color-chart-foreground: var(--chart-foreground);
+  --color-chart-background: var(--chart-background);
+  --color-legend-track: var(--legend-track);
+  --color-legend-muted-foreground: var(--legend-muted-foreground);
+  --color-legend-muted: var(--legend-muted);
+  --color-legend-foreground: var(--legend-foreground);
+  --color-legend: var(--legend);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ------------------------------------------------------------------
+   Tokens. Dark-only: :root and .dark carry identical values.
+   ------------------------------------------------------------------ */
+:root,
+.dark {
+  /* brand */
+  --ink: #0b1610;
+  --surface-1: #0f1d15;
+  --surface-2: #13241a;
+  --surface-3: #1a2e22;
+  --surface-4: #22392b;
+  --line: rgba(232, 240, 220, 0.1);
+  --line-strong: rgba(232, 240, 220, 0.18);
+  --text: #eef3e6;
+  --text-2: #b3bfa8;
+  --text-3: #7a8872;
+  --amber: #c8dc4c; /* limão HSI = cor principal, série Meta */
+  --amber-2: #a9be2e;
+  --amber-glow: rgba(200, 220, 76, 0.35);
+  --copper: #6ba84f; /* verde da marca */
+  --copper-2: #4f8a3a;
+  --copper-glow: rgba(107, 168, 79, 0.35);
+  --dusk: #2f8f7e; /* verde-água = série Google */
+  --dusk-2: #5fc2ae;
+  --dusk-glow: rgba(95, 194, 174, 0.35);
+  --good: #199e70;
+  --bad: #e66767;
+  --warn: #d99a1c;
+
+  /* z-index scale */
+  --z-grain: 40;
+  --z-nav: 130;
+  --z-menu: 120;
+  --z-curtain: 150;
+  --z-preloader: 200;
+  --z-cursor: 300;
+
+  /* easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* shadcn semantic → brand */
+  --background: var(--ink);
+  --foreground: var(--text);
+  --card: var(--surface-2);
+  --card-foreground: var(--text);
+  --popover: var(--surface-3);
+  --popover-foreground: var(--text);
+  --primary: var(--amber);
+  --primary-foreground: var(--ink);
+  --secondary: var(--surface-3);
+  --secondary-foreground: var(--text);
+  --muted: var(--surface-3);
+  --muted-foreground: var(--text-2);
+  --accent: var(--surface-4);
+  --accent-foreground: var(--text);
+  --destructive: var(--bad);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--amber);
+  --radius: 1.25rem;
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--amber);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--surface-3);
+  --sidebar-accent-foreground: var(--text);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--amber);
+
+  /* chart palette — fixed order, do not reorder */
+  --chart-1: #c8dc4c;
+  --chart-2: #5fc2ae;
+  --chart-3: #6ba84f;
+  --chart-4: #199e70;
+  --chart-5: #9085e9;
+  --chart-6: #d55181;
+  --chart-line-primary: var(--chart-1);
+  --chart-line-secondary: var(--chart-2);
+  --chart-grid: rgba(232, 240, 220, 0.08);
+  --chart-crosshair: var(--amber);
+  --chart-brush-border: var(--line-strong);
+  --chart-background: var(--surface-2);
+  --chart-foreground: var(--text-3);
+  --chart-foreground-muted: var(--text-3);
+  --chart-label: var(--text-2);
+  --chart-indicator-color: var(--amber);
+  --chart-indicator-secondary-color: var(--dusk-2);
+  --chart-tooltip-background: rgba(26, 46, 34, 0.92);
+  --chart-tooltip-foreground: var(--text);
+  --chart-tooltip-muted: var(--text-3);
+  --chart-marker-background: var(--surface-4);
+  --chart-marker-border: var(--line-strong);
+  --chart-marker-foreground: var(--text);
+  --chart-marker-badge-background: var(--amber);
+  --chart-marker-badge-foreground: var(--ink);
+  --chart-segment-background: var(--surface-3);
+  --chart-segment-line: var(--line-strong);
+  --chart-scale-01: #16261b;
+  --chart-scale-02: #2f4a25;
+  --chart-scale-03: #557530;
+  --chart-scale-04: #8fae3d;
+  --chart-scale-05: #c8dc4c;
+  --chart-scale-pattern-color: var(--surface-3);
+
+  /* legend */
+  --legend: var(--surface-2);
+  --legend-foreground: var(--text);
+  --legend-muted: var(--surface-3);
+  --legend-muted-foreground: var(--text-2);
+  --legend-track: var(--surface-4);
+}
+
+/* ------------------------------------------------------------------
+   Lenis (copied from lenis/dist/lenis.css)
+   ------------------------------------------------------------------ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  a, button, [role="button"], summary, label[for] {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: var(--ink);
+    scrollbar-color: var(--surface-4) var(--ink);
+    scrollbar-width: thin;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    min-height: 100svh;
+    overflow-x: clip;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11", "liga";
+  }
+
+  ::selection {
+    background: var(--amber);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  /* accent words inside headlines */
+  .display em,
+  h1 em,
+  h2 em,
+  h3 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-size: 1.04em;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------
+   Utilities required by the contract (§1)
+   ------------------------------------------------------------------ */
+@utility container-hub {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+@utility section-pad {
+  padding-top: clamp(96px, 12vw, 200px);
+  padding-bottom: clamp(96px, 12vw, 200px);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.2;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--amber);
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* type-scale helpers */
+@utility display-hero {
+  font-size: clamp(3.5rem, 9vw, 9.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+@utility display-2 {
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--surface-2) 72%, transparent);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility noise {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+
+@utility line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--line-strong) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+@utility outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  transition:
+    color 0.8s var(--ease-out-expo),
+    -webkit-text-stroke-color 0.8s var(--ease-out-expo);
+}
+
+@utility shimmer {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--surface-3) 80%, transparent);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(232, 240, 220, 0.06), transparent);
+    animation: hub-shimmer 1.9s var(--ease-in-out-quart) infinite;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Component styles (owned by Agent A; consumed by core/nav components)
+   ------------------------------------------------------------------ */
+@layer components {
+  /* cards (KpiTile, ChartFrame) */
+  .hub-card {
+    --card-accent: var(--amber);
+    --card-glow: var(--amber-glow);
+    position: relative;
+    isolation: isolate;
+    background: color-mix(in oklab, var(--surface-2) 88%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    transition:
+      border-color 0.6s var(--ease-out-expo),
+      box-shadow 0.6s var(--ease-out-expo),
+      transform 0.6s var(--ease-out-expo);
+  }
+  .hub-card::before {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: -1px;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--card-accent) 70%, transparent), transparent);
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-out-expo);
+  }
+  .hub-card[data-tone="copper"] {
+    --card-accent: var(--copper);
+    --card-glow: var(--copper-glow);
+  }
+  .hub-card[data-tone="dusk"] {
+    --card-accent: var(--dusk-2);
+    --card-glow: var(--dusk-glow);
+  }
+  @media (hover: hover) {
+    .hub-card:hover {
+      border-color: color-mix(in oklab, var(--card-accent) 40%, var(--line));
+      box-shadow:
+        0 0 0 1px color-mix(in oklab, var(--card-glow) 60%, transparent),
+        0 30px 80px -40px var(--card-glow);
+    }
+    .hub-card:hover::before {
+      opacity: 1;
+    }
+  }
+
+  /* nav */
+  .hub-nav {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+  }
+  .hub-nav--glass {
+    background: color-mix(in oklab, var(--ink) 72%, transparent);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    border-bottom-color: var(--line);
+  }
+  .burger-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition:
+      transform 0.55s var(--ease-out-expo),
+      top 0.55s var(--ease-out-expo),
+      bottom 0.55s var(--ease-out-expo),
+      opacity 0.3s;
+  }
+  .burger-line:first-child {
+    top: 0;
+  }
+  .burger-line:last-child {
+    bottom: 0;
+  }
+  [data-open="true"] .burger-line:first-child {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  [data-open="true"] .burger-line:last-child {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+
+  /* menu overlay dimming of siblings */
+  @media (hover: hover) {
+    .menu-list:hover .menu-link:not(:hover) .menu-link-label {
+      opacity: 0.3;
+    }
+  }
+  .menu-link-label {
+    transition: opacity 0.5s var(--ease-out-expo), color 0.5s var(--ease-out-expo);
+  }
+
+  /* grain layers */
+  .hub-grain__noise {
+    position: fixed;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+    animation: hub-grain 9s steps(10) infinite;
+  }
+  .hub-grain__vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  .hub-grain__gradient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+      radial-gradient(60% 45% at 8% 0%, rgba(200, 220, 76, 0.07), transparent 70%),
+      radial-gradient(55% 45% at 100% 100%, rgba(107, 168, 79, 0.08), transparent 70%),
+      radial-gradient(40% 35% at 90% 10%, rgba(95, 194, 174, 0.05), transparent 70%);
+  }
+
+  /* preloader & curtain */
+  .hub-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-preloader);
+    background: var(--ink);
+    clip-path: inset(0 0 0 0);
+    will-change: clip-path;
+  }
+  .hub-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-curtain);
+    pointer-events: none;
+  }
+  html[data-transition] .hub-curtain {
+    pointer-events: auto;
+  }
+  .hub-curtain__panel {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(100% 0 0 0);
+    will-change: clip-path;
+  }
+
+  /* SplitText pieces */
+  .split-line,
+  .split-word,
+  .split-char {
+    will-change: transform;
+  }
+  /* Máscara de linha (SplitText): respiro para os descendentes da Plus Jakarta (g, p, ç) sem mudar o entrelinha. */
+  .split-line-mask {
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+}
+
+@keyframes hub-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes hub-grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes hub-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-grain__noise {
+    animation: none;
+  }
+}
+
+/* Mês parcial (outubro, até 06/out) — hachura na cor da série */
+.hatch-amber {
+  background: repeating-linear-gradient(135deg, rgba(200, 220, 76, 0.85) 0 3px, rgba(200, 220, 76, 0.25) 3px 6px);
+}
+.hatch-dusk {
+  background: repeating-linear-gradient(135deg, rgba(95, 194, 174, 0.85) 0 3px, rgba(95, 194, 174, 0.25) 3px 6px);
+}
+
+/* ---------------------------------------------------------- exportar PDF */
+/* /api/pdf abre /relatorio num Chrome headless, rola, liga .exportando e imprime
+   em páginas de 1440×1018px (largura do layout, proporção A4 deitada). */
+html.exportando main *,
+html.exportando .relatorio * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+@media print {
+  @page {
+    size: 1440px 1018px;
+    margin: 0;
+  }
+  html,
+  body {
+    background: var(--ink) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .hub-nav,
+  .no-print,
+  [data-preloader],
+  #menu-overlay,
+  footer {
+    display: none !important;
+  }
+
+  /* Hero = uma página inteira, conteúdo ao pé da página. */
+  [data-hero] {
+    min-height: 1018px !important;
+    height: 1018px;
+    padding-top: 64px !important;
+    padding-bottom: 56px !important;
+    break-after: page;
+    overflow: hidden;
+  }
+  [data-page-hero-parallax],
+  [data-page-hero-content] {
+    transform: none !important;
+  }
+
+  /* Cada seção = uma página (o /api/pdf reduz por zoom as que não cabem). */
+  section.section-pad {
+    break-before: page;
+    break-inside: avoid;
+    padding-top: 56px !important;
+    padding-bottom: 40px !important;
+  }
+  section.section-pad > .container-hub > header + div {
+    margin-top: 32px !important;
+  }
+  .quebra-pagina {
+    break-before: page;
+  }
+
+  /* Nada se parte entre páginas. */
+  .hub-card,
+  figure,
+  li,
+  svg {
+    break-inside: avoid;
+  }
+
+  /* Efeitos rasterizados em cada página (incham o PDF): só na tela. */
+  .hub-grain__noise,
+  .hub-grain__vignette,
+  .hub-grain__gradient,
+  .hub-mesh-a,
+  .hub-mesh-b,
+  .hub-mesh-c,
+  .noise,
+  [data-page-hero-glow] {
+    display: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

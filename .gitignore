@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dados brutos (27 MB) — ver scripts/build-snapshot.py
+/data/
