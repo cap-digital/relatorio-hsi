@@ -13,9 +13,9 @@ Uso:
       fbcdn expiram em dias, então o relatório usa as cópias locais)
 
 Regras (nada estimado além do indicado):
-  - Mesmo pipeline do dashboard em produção: descarta Estratégia em branco e os uploads
-    errados de agosto, e trava o investimento no contratado a partir de 01/07/2026
-    (ver aplicar_regras). "Investimento" já é o valor ao cliente (spend ÷ margem): nunca usar spend.
+  - Pipeline do dashboard em produção (descarta Estratégia em branco e uploads errados), com uma
+    diferença: aqui o investimento é limitado ao contratado no ANO TODO (no dashboard, só desde 01/07).
+    Só o investimento muda; as demais métricas ficam como entregues (ver contrato / aplicar_regras). "Investimento" já é o valor ao cliente (spend ÷ margem): nunca usar spend.
   - Sem alcance: a fonte só tem alcance por dia × anúncio × idade × gênero, não único.
   - Colunas "Gênero" e "Idade" vêm TROCADAS na planilha; aqui são corrigidas.
   - "#DIV/0!" e vazios em Investimento contam 0. Linhas sem data são descartadas.
@@ -81,23 +81,50 @@ def fecha(m, extra=None):
 UPLOADS_ERRADOS = [
     ("[SANTA ISABEL] [DISPLAY] [FAZ BEM - AON]", None, "2026-08-04", "2026-08-10"),
     ("[SANTA ISABEL] [YOUTUBE - IN STREAM] [FAZ BEM - AON]", "[AD] 01 - 01.06 - V2", "2026-08-04", "2026-08-11"),
+    # Meta Tráfego não rodou em outubro: 2 linhas vazias (0 impressões, #DIV/0!) da automação de coleta.
+    ("[PI 437] [HOSPITAL SANTA IZABEL] [TRÁFEGO]", None, "2026-10-01", "2026-10-31"),
 ]
 
-# (4) Investimento contratado por grupo (frente, plataforma, estratégia da base, mês), a partir de 01/07/2026.
-#     Faz Bem: os períodos 5–8 coincidem com os meses jul–out.
-TRAVA_DESDE = "2026-07-01"
-METAS = {}
-for _m in ("2026-07", "2026-08", "2026-09", "2026-10"):
-    METAS[("Institucional AON", "Google", "Search", _m)] = 3000
-    METAS[("Faz Bem", "Google", "Display", _m)] = 1500
-    METAS[("Faz Bem", "Meta", "Alcance", _m)] = 1500
-    METAS[("Faz Bem", "Meta", "Posts de Oportunidade", _m)] = 500
-    METAS[("Faz Bem", "Google", "In-Stream", _m)] = 1500
-for _m in ("2026-07", "2026-08", "2026-09"):
-    METAS[("Institucional AON", "Meta", "Alcance", _m)] = 4250
-    METAS[("Institucional AON", "Meta", "Tráfego", _m)] = 3500
-    METAS[("Institucional AON", "Meta", "Engajamento", _m)] = 2000
-    METAS[("Institucional AON", "Meta", "Posts de Oportunidade", _m)] = 500
+# (4) Investimento contratado (bruto). NESTE RELATÓRIO a trava vale para o ANO TODO (no dashboard, só desde
+#     01/07): o investimento de cada grupo nunca passa do contratado. Só o investimento é ajustado;
+#     impressões, cliques, views e engajamento ficam como entregues. Grupo sem contrato → investimento 0.
+MESES_ANO = [f"2026-{m:02d}" for m in range(1, 11)]
+AON = {  # Institucional AON, por mês (jan → out)
+    ("Google", "Search"):               [3000] * 10,
+    ("Meta", "Alcance"):                [0, 0, 0, 0, 4750, 4750, 4250, 4250, 4250, 0],
+    ("Meta", "Engajamento"):            [0, 0, 0, 0, 5500, 5500, 2000, 2000, 2000, 0],
+    ("Meta", "Tráfego"):                [0, 0, 0, 0, 0, 0, 3500, 3500, 3500, 0],
+    ("Meta", "Posts de Oportunidade"):  [0, 0, 0, 0, 0, 0, 500, 500, 500, 0],
+}
+CHECKUP = {("2026-06", "Meta", "Alcance"): 1000}
+_PACOTE = {("Google", "Display"): 1500, ("Google", "In-Stream"): 1500, ("Meta", "Alcance"): 1500, ("Meta", "Posts de Oportunidade"): 500}
+FAZ_BEM = [  # (período, início, fim, contratado por (plataforma, estratégia))
+    ("P1", "2025-12-23", "2026-02-23", {("Google", "Pesquisa"): 2000, ("Google", "Display"): 5000}),
+    ("P2", "2026-02-24", "2026-03-23", {("Google", "Pesquisa"): 1000, ("Google", "Display"): 2500}),
+    ("P3", "2026-05-11", "2026-05-31", {("Google", "Display"): 1500, ("Meta", "Alcance"): 3500}),
+    ("P4", "2026-06-01", "2026-06-30", _PACOTE),
+    ("P5", "2026-07-01", "2026-07-31", _PACOTE),
+    ("P6", "2026-08-01", "2026-08-31", _PACOTE),
+    ("P7", "2026-09-01", "2026-09-30", _PACOTE),
+    ("P8", "2026-10-01", "2026-10-31", _PACOTE),
+]
+
+
+def contrato(r):
+    """(chave do grupo, valor contratado) da linha."""
+    dia, plat, estr, frente = r["Data"][:10], plataforma(r["Plataforma"]), r["Estratégia "].strip(), r.get("Campanha")
+    if frente == "Institucional AON":
+        mes = dia[:7]
+        valor = AON.get((plat, estr), [0] * 10)[MESES_ANO.index(mes)] if mes in MESES_ANO else 0
+        return ("AON", mes, plat, estr), valor
+    if frente == "Checkup Torcedor":
+        return ("Checkup", dia[:7], plat, estr), CHECKUP.get((dia[:7], plat, estr), 0)
+    if frente == "Faz Bem":
+        for per, ini, fim, pac in FAZ_BEM:
+            if ini <= dia <= fim:
+                return ("Faz Bem", per, plat, estr), pac.get((plat, estr), 0)
+        return ("Faz Bem", "fora de período", plat, estr), 0
+    return ("Outros", dia[:7], plat, estr), 0
 
 
 def upload_errado(campanha, criativo, dia):
@@ -123,30 +150,28 @@ def aplicar_regras(raw, avisos):
         # Sem criativo nesses arrays: a regra cai para campanha + data (só aquele criativo rodou na janela).
         raw[tabela] = [r for r in raw.get(tabela, [])
                        if (r.get("Estratégia ") or "").strip() and not upload_errado(r.get("campaign"), None, r["date"][:10])]
-    avisos.append(f"{descartadas} linhas descartadas (sem data, Estratégia em branco ou uploads errados de agosto).")
+    avisos.append(f"{descartadas} linhas descartadas (sem data, Estratégia em branco ou uploads errados da coleta).")
 
     # (3) Redistribuição do Display PI 438 em setembro: move valores entre dias DENTRO do mês,
     #     sem alterar totais mensais — não afeta nenhum número deste relatório agregado.
 
-    # (4) Trava: grupos acima do contratado são reduzidos na mesma proporção (só reduz).
+    # (4) Trava no contratado, ano todo: grupos acima do contratado são reduzidos na mesma proporção.
     grupos = defaultdict(list)
+    meta_grupo = {}
     for r in rows:
-        dia = r["Data"][:10]
-        if dia < TRAVA_DESDE:
-            continue
-        k = (r.get("Campanha"), plataforma(r["Plataforma"]), r["Estratégia "].strip(), dia[:7])
-        if k in METAS:
-            grupos[k].append(r)
+        k, valor = contrato(r)
+        grupos[k].append(r)
+        meta_grupo[k] = valor
     corte = 0.0
     for k, linhas in grupos.items():
         realizado = sum(num(r.get("Investimento")) for r in linhas)
-        if realizado > METAS[k]:
-            fator = METAS[k] / realizado
+        if realizado > meta_grupo[k]:
+            fator = meta_grupo[k] / realizado if realizado else 0
             for r in linhas:
                 r["Investimento"] = num(r.get("Investimento")) * fator
-            corte += realizado - METAS[k]
+            corte += realizado - meta_grupo[k]
     brl = f"{corte:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    avisos.append(f"Trava no contratado (desde 01/07): R$ {brl} cortados (não indicado na interface).")
+    avisos.append(f"Investimento limitado ao contratado no ano todo: R$ {brl} abaixo do realizado (não indicado na interface).")
     return rows, corte
 
 
@@ -154,7 +179,7 @@ def main(src, dst, baixar_imagens):
     raw = json.load(open(src, encoding="utf-8"))
     avisos = []
     rows, corte = aplicar_regras(raw, avisos)
-    print(f"regras aplicadas · trava no contratado: R$ {corte:,.2f} cortados")
+    print(f"regras aplicadas · investimento limitado ao contratado: R$ {corte:,.2f} abaixo do realizado")
     for r in rows:
         r["_plat"] = plataforma(r["Plataforma"])
         r["_dia"] = r["Data"][:10]  # T03:00Z = meia-noite em Salvador

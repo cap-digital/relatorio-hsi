@@ -74,7 +74,7 @@ export default function Home() {
         eyebrow="Meta × Google"
         title={
           <>
-            Metade da verba em cada <em>vitrine.</em>
+            Duas vitrines, <em>papéis diferentes.</em>
           </>
         }
         description={

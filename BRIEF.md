@@ -19,7 +19,7 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 - **Sem alcance em lugar nenhum.** A fonte não tem alcance único.
 - **Investimento** é o campo `Investimento` da base: o valor ao cliente (spend ÷ margem). Nunca usar spend nem aplicar o "bruto ÷ 0,8785" do Jaques.
-- O snapshot já sai com as **mesmas regras do dashboard em produção** (descarte de Estratégia em branco e dos uploads errados de agosto, mais a trava de investimento no contratado a partir de 01/07). A interface não indica o corte. Não reaplicar nada disso no front.
+- O snapshot já sai com as regras do dashboard em produção (descarte de Estratégia em branco e dos uploads errados da coleta) e com o **investimento limitado ao contratado no ano todo**. Só o investimento é limitado; impressões, cliques, views e engajamento ficam como entregues. A interface não indica o corte. Não reaplicar nada disso no front.
 - Outubro é parcial (até 06/out). Isso deve aparecer no gráfico mensal (`meses[].parcial`).
 - Engajamento:
   - `totais.engajamento` = Meta (engajamento do post) + YouTube (engajamentos).
@@ -33,15 +33,15 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 | Métrica | Valor |
 |---|---|
-| Investimento | R$ 130,1 mil (Google R$ 65,1 mil · 50,1% · Meta R$ 65,0 mil · 49,9%) |
+| Investimento | R$ 115,2 mil (Meta R$ 63,8 mil · Google R$ 51,4 mil) |
 | Impressões | 9,18 mi |
-| Cliques | 101 mil · CTR 1,10% · CPC R$ 1,28 · CPM R$ 14,17 |
+| Cliques | 101 mil · CTR 1,10% · CPC R$ 1,14 · CPM R$ 12,55 |
 | Views de vídeo | 1,22 mi |
 | Engajamentos | 285 mil |
 | Campanhas | 34 |
 
-- **Frentes:** Institucional AON R$ 79,0 mil · Faz Bem R$ 49,9 mil · Checkup Torcedor R$ 1,1 mil.
-- **Busca Google:** 53,5 mil cliques · CTR 23,7% · CPC R$ 0,63.
+- **Frentes:** Institucional AON R$ 78,4 mil · Faz Bem R$ 35,7 mil · Checkup Torcedor R$ 1,0 mil.
+- **Busca Google:** 53,5 mil cliques · CTR 23,7% · CPC R$ 0,57.
 - **Google:** de janeiro a outubro. **Meta:** entra em maio (12/05).
 
 ---
@@ -137,7 +137,7 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
   - descrição: investimento, impressões e cliques do período, em uma frase.
 - **KPIs** (grade de 6, `KpiTile`): Investimento · Impressões · Cliques · Views de vídeo · Engajamentos · CPC médio. O botão "Exportar PDF" fica no hero, como no Jaques.
 - **01 · "Meta × Google"**:
-  - título: "Metade da verba em cada <em>vitrine.</em>";
+  - título: "Duas vitrines, <em>papéis diferentes.</em>";
   - à esquerda, um card com `SplitBar` do investimento por plataforma;
   - à direita, 4 cards `Fato` (iguais ao Jaques): impressões Meta, cliques Google, CPM médio e CTR da busca.
 - **02 · "Mês a mês"**:
