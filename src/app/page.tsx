@@ -153,7 +153,7 @@ export default function Home() {
         <ChartFrame
           eyebrow="Estratégia × mês · investimento"
           title="O que rodou em cada mês"
-          subtitle="Passe o cursor numa célula para ver investimento, métrica principal, frentes e campanhas."
+          subtitle={<span className="no-print">Passe o cursor numa célula para ver investimento, métrica principal, frentes e campanhas.</span>}
           span={3}
           minHeight={420}
           tone="amber"

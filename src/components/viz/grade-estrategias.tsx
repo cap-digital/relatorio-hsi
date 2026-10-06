@@ -87,7 +87,8 @@ export function GradeEstrategias({ grade, meses, fim }: { grade: Grade; meses: M
         </span>
       </div>
 
-      <p className="mt-4 min-h-10 font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-text-3">
+      {/* Leitura do hover: só na tela (no PDF não há cursor). */}
+      <p className="no-print mt-4 min-h-10 font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-text-3">
         {hi ? (
           <>
             {hi.estrategia} · {hi.plataforma} · {mesInfo.get(hi.mes)?.nome ?? hi.mes} ·{" "}

@@ -140,7 +140,12 @@ export default function Midia() {
             Para <em>quem</em> a mídia foi entregue.
           </>
         }
-        description="No Meta, entrega por gênero e faixa etária; escolha o tipo de entrega. No Google, a faixa etária vem só das campanhas Faz Bem."
+        description={
+          <>
+            No Meta, entrega por gênero e faixa etária<span className="no-print">; escolha o tipo de entrega</span>. No Google, a faixa etária vem
+            só das campanhas Faz Bem.
+          </>
+        }
       >
         <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
           <ChartFrame eyebrow="Meta · gênero × idade" title="Entrega por gênero e idade" minHeight={420}>
@@ -260,7 +265,12 @@ export default function Midia() {
             As peças que <em>mais apareceram.</em>
           </>
         }
-        description="Os criativos ordenados por impressões, com a frente e o investimento de cada um. Abra o post no Instagram ou o vídeo no YouTube quando houver link."
+        description={
+          <>
+            Os criativos ordenados por impressões, com a frente e o investimento de cada um.
+            <span className="no-print"> Abra o post no Instagram ou o vídeo no YouTube quando houver link.</span>
+          </>
+        }
       >
         <CriativosGrid criativos={s.criativos} />
       </Section>
