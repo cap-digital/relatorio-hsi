@@ -110,6 +110,14 @@ FAZ_BEM = [  # (período, início, fim, contratado por (plataforma, estratégia)
 ]
 
 
+def contratado_ano():
+    """Soma das tabelas de contrato (AON + Checkup + Faz Bem, todos os períodos): o contratado do ano."""
+    aon = sum(sum(v) for v in AON.values())
+    checkup = sum(CHECKUP.values())
+    faz_bem = sum(sum(pac.values()) for _, _, _, pac in FAZ_BEM)
+    return aon + checkup + faz_bem
+
+
 def contrato(r):
     """(chave do grupo, valor contratado) da linha."""
     dia, plat, estr, frente = r["Data"][:10], plataforma(r["Plataforma"]), r["Estratégia "].strip(), r.get("Campanha")
@@ -415,7 +423,7 @@ def main(src, dst, baixar_imagens):
         "cliente": "Hospital Santa Izabel",
         "periodo": {"inicio": inicio, "fim": fim},
         "atualizadoEm": raw.get("timestamp") or datetime.now(timezone.utc).isoformat(),
-        "totais": fecha(tot, {"campanhas": len(campanhas), "meses": len(meses)}),
+        "totais": fecha(tot, {"campanhas": len(campanhas), "meses": len(meses), "contratado": contratado_ano()}),
         "plataformas": plataformas,
         "meses": meses,
         "frentes": frentes,
@@ -433,7 +441,7 @@ def main(src, dst, baixar_imagens):
     with open(dst, "w", encoding="utf-8") as fh:
         json.dump(snapshot, fh, ensure_ascii=False, indent=1)
     t = snapshot["totais"]
-    print(f"ok → {dst}  ·  {inicio} → {fim}  ·  R$ {t['investimento']:,.0f}  ·  {t['impressoes']:,} impressões  ·  {len(criativos)} criativos")
+    print(f"ok → {dst}  ·  {inicio} → {fim}  ·  R$ {t['investimento']:,.0f} de R$ {t['contratado']:,.0f} contratados  ·  {t['impressoes']:,} impressões  ·  {len(criativos)} criativos")
 
 
 if __name__ == "__main__":

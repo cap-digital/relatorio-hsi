@@ -20,6 +20,8 @@ export interface Periodo {
 export interface Totais extends Metricas {
   campanhas: number;
   meses: number;
+  /** Investimento contratado no ano (soma das tabelas de contrato do build-snapshot.py). */
+  contratado: number;
 }
 
 export interface Plataforma extends Metricas, Periodo {
