@@ -63,7 +63,7 @@ export default function Home() {
         }
         kpis={
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-            <KpiTile label="Investimento" value={t.investimento} format="compactCurrency" decimals={1} tone="amber" hint={`de ${fmtMil(t.contratado)} contratados no ano${ultimo.parcial ? ` · ${ultimo.nome} em andamento` : ""}`} />
+            <KpiTile label="Investimento" value={t.investimento} format="compactCurrency" decimals={1} tone="amber" hint={`de ${fmtMil(t.contratado)} contratados no período${ultimo.parcial ? ` · ${ultimo.nome} em andamento` : ""}`} />
             <KpiTile label="Impressões" value={t.impressoes} format="compact" decimals={2} hint="Vezes que os anúncios apareceram" />
             <KpiTile label="Cliques" value={t.cliques} format="compact" decimals={0} hint={`CTR de ${fmtPct(t.ctr, 2)}`} />
             <KpiTile label="Views de vídeo" value={t.views} format="compact" decimals={2} hint="Meta + YouTube" />
