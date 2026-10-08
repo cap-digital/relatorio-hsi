@@ -46,6 +46,16 @@ export function fmtDia(iso: string, anoRef?: string): string {
 
 const MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 
+/**
+ * Os criativos do snapshot são uma seleção (os de maior entrega), não o total do ano.
+ * Totais fixos: o relatório não será mais atualizado. Chave = frente ou "Mídia" (seção de criativos da /midia).
+ */
+export const CRIATIVOS_NO_ANO: Record<string, string> = {
+  Mídia: "Seleção das peças de maior entrega — ao longo do ano foram mais de 70 criativos, além dos anúncios de texto na busca.",
+  "Institucional AON": "Seleção das peças de maior entrega — ao longo do ano foram mais de 30 criativos, além dos anúncios de texto na busca.",
+  "Faz Bem": "Seleção das peças de maior entrega — ao longo do ano foram mais de 40 criativos.",
+};
+
 /** "dez/25" — mês e ano curtos. */
 export function fmtMesAno(iso: string): string {
   const [y, m] = iso.split("-").map(Number);

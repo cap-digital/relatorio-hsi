@@ -27,6 +27,8 @@ export interface SectionProps {
   /** Editorial index, e.g. "02". */
   index?: string;
   eyebrow?: string;
+  /** Observação curta (mono, pequena) logo abaixo do eyebrow, antes do título. */
+  nota?: ReactNode;
   title?: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -41,6 +43,7 @@ export function Section({
   id,
   index,
   eyebrow,
+  nota,
   title,
   description,
   align = "left",
@@ -62,13 +65,25 @@ export function Section({
               centered ? "mx-auto max-w-4xl items-center text-center" : "max-w-5xl items-start",
             )}
           >
-            {(index || eyebrow) && (
+            {(index || eyebrow) && !nota && (
               <Reveal className={cn("flex items-center gap-4", centered && "justify-center")} y={16}>
                 {index && (
                   <span className="font-mono text-[11px] tracking-[0.18em] text-text-3 tabular">{index}</span>
                 )}
                 {index && <span className={cn("h-px w-10", TONE_LINE[tone])} />}
                 {eyebrow && <span className={cn("eyebrow", TONE_TEXT[tone])}>{eyebrow}</span>}
+              </Reveal>
+            )}
+            {(index || eyebrow) && nota && (
+              <Reveal className="flex max-w-2xl flex-col gap-3" y={16}>
+                <div className={cn("flex items-center gap-4", centered && "justify-center")}>
+                  {index && (
+                    <span className="font-mono text-[11px] tracking-[0.18em] text-text-3 tabular">{index}</span>
+                  )}
+                  {index && <span className={cn("h-px w-10", TONE_LINE[tone])} />}
+                  {eyebrow && <span className={cn("eyebrow", TONE_TEXT[tone])}>{eyebrow}</span>}
+                </div>
+                <p className="font-mono text-[11.5px] leading-relaxed text-text-3">{nota}</p>
               </Reveal>
             )}
             {title && (

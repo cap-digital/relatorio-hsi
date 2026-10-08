@@ -7,7 +7,7 @@ import { CriativosGrid } from "@/components/paginas/criativos";
 import { EntregaPublico } from "@/components/paginas/entrega-publico";
 import { HBars } from "@/components/viz/hbars";
 import { Retencao, SplitBar } from "@/components/viz/small";
-import { fmtBRL, fmtCompact, fmtExtenso, fmtMetricaPrincipal, fmtMil, fmtNum, fmtPct } from "@/data/format";
+import { CRIATIVOS_NO_ANO, fmtBRL, fmtCompact, fmtExtenso, fmtMetricaPrincipal, fmtMil, fmtNum, fmtPct } from "@/data/format";
 import snapshot from "@/data/snapshot.json";
 import type { Snapshot } from "@/data/types";
 
@@ -260,6 +260,7 @@ export default function Midia() {
       <Section
         index="07"
         eyebrow="Alguns dos criativos veiculados · seleção por entrega"
+        nota={CRIATIVOS_NO_ANO["Mídia"]}
         title={
           <>
             As peças que <em>mais apareceram.</em>
