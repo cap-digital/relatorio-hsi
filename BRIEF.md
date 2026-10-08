@@ -33,16 +33,18 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 | Métrica | Valor |
 |---|---|
-| Investimento | R$ 115,2 mil (Meta R$ 63,8 mil · Google R$ 51,4 mil) |
-| Impressões | 9,18 mi |
-| Cliques | 101 mil · CTR 1,10% · CPC R$ 1,14 · CPM R$ 12,55 |
+| Investimento | R$ 121,2 mil (Meta R$ 63,8 mil · Google R$ 57,4 mil) · contratado R$ 128,8 mil |
+| Impressões | 9,31 mi |
+| Cliques | 107 mil · CTR 1,15% · CPC R$ 1,14 · CPM R$ 13,01 |
 | Views de vídeo | 1,22 mi |
 | Engajamentos | 285 mil |
-| Campanhas | 34 |
+| Campanhas | 36 |
 
-- **Frentes:** Institucional AON R$ 78,4 mil · Faz Bem R$ 35,7 mil · Checkup Torcedor R$ 1,0 mil.
-- **Busca Google:** 53,5 mil cliques · CTR 23,7% · CPC R$ 0,57.
-- **Google:** de janeiro a outubro. **Meta:** entra em maio (12/05).
+- **Frentes:** Institucional AON R$ 78,4 mil · Faz Bem R$ 35,7 mil · Curativos R$ 6,0 mil · Checkup Torcedor R$ 1,0 mil.
+- **Curativos:** R$ 6,0 mil · 131.246 impressões · 5.291 cliques (PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026, contratado R$ 6.000).
+- **Busca Google:** 58,8 mil cliques · CTR 16,5% · CPC R$ 0,62 (inclui Curativos).
+- **Google:** de dezembro/2025 (Curativos) a outubro. **Meta:** entra em maio (12/05).
+- **Curativos e dez/25:** os dados vêm de um CSV à parte (`--curativos data/curativos-google.csv`), não da função do Supabase. Dez/25 entra em `meses` e `grade.meses` com `anoAnterior: true` e rótulo "dez/25"; o `periodo` do relatório continua 2026. Observação no rodapé e na seção da frente: "A campanha Curativos começou em dezembro de 2025; os números do relatório incluem esse mês."
 
 ---
 
@@ -97,7 +99,7 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
 
 - **Cores fixas por série:**
   - Meta = `--amber` (limão), Google = `--dusk-2` (verde-água).
-  - Frentes: Institucional = `--amber`, Faz Bem = `--dusk-2`, Checkup Torcedor = `--copper`.
+  - Frentes: Institucional = `--amber`, Faz Bem = `--dusk-2`, Checkup Torcedor = `--copper`, Curativos = `--text` (creme).
 - **Ajustes nos arquivos copiados:**
   - Revise os `rgba(239,59,54,…)` fixos (vermelho do Jaques) em `daily-chart`, `heatmap`, `small` e `menu-overlay`.
   - Revise o `.hub-grain__gradient` do CSS.
@@ -124,7 +126,7 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
 |---|---|---|
 | `/` | Panorama | `/` |
 | `/midia` | Mídia agregada | `/midia` |
-| `/frentes` | Institucional · Faz Bem · Checkup Torcedor | `/territorio` |
+| `/frentes` | Institucional · Faz Bem · Curativos · Checkup Torcedor | `/territorio` |
 | `/relatorio` | As 3 juntas para o PDF | `/relatorio` |
 
 **Nav:** Início · Mídia · Frentes.
@@ -142,15 +144,15 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
   - à direita, 4 cards `Fato` (iguais ao Jaques): impressões Meta, cliques Google, CPM médio e CTR da busca.
 - **02 · "Mês a mês"**:
   - título: "O Google abriu o ano; o Meta <em>entrou em maio.</em>";
-  - `MonthlyChart` dentro de um `ChartFrame` com `span={3}`.
+  - `MonthlyChart` dentro de um `ChartFrame` com `span={3}`; a coluna "dez/25" (ano anterior) vem antes de janeiro, com rótulo atenuado e sem hachura.
 - **03 · "O ano em mosaico"**:
-  - título: "De 2 para 7 <em>estratégias no ar.</em>" (números de `meses[].estrategiasAtivas`: mínimo de jan e máximo do ano);
+  - título: "De 2 para 7 <em>estratégias no ar.</em>" (números de `meses[].estrategiasAtivas`, contados a partir de janeiro/2026: dez/25 aparece na grade, com rótulo atenuado, mas não é o ponto de partida);
   - `Heatmap` do Jaques adaptado (`viz/heatmap.tsx` → `viz/grade-estrategias.tsx`): linhas = `grade.linhas` (plataforma · estratégia), colunas = `grade.meses`, cor da célula = investimento do mês (escala raiz, como no original), célula vazia quando a estratégia não rodou;
   - hover mostra investimento, métrica principal da estratégia, frentes e nº de campanhas da célula; a legenda embaixo segue o padrão "Passe o cursor sobre a grade" do original;
   - rótulo da linha com um ponto da cor da plataforma (Meta = `--amber`, Google = `--dusk-2`); outubro com a mesma marcação de parcial do gráfico mensal.
 - **04 · "Explore"**: `PortasCards` com 2 portas.
   - Mídia: número = impressões;
-  - Frentes: número = "3 frentes", com legenda de 34 campanhas.
+  - Frentes: número = "4 frentes", com legenda de 36 campanhas (calculados).
 
 ### `/midia`
 
@@ -171,16 +173,16 @@ O hero tem KPIs de Investimento · Impressões · CPM · CTR · Cliques. Seçõe
 
 ### `/frentes`
 
-O hero (`tone="dusk"`) tem os KPIs das 3 frentes. Seções:
+O hero (`tone="dusk"`) tem os KPIs das 4 frentes. Seções:
 
-1. **As três frentes:**
+1. **As quatro frentes:**
    - `SplitBar` do investimento;
    - 3 cards grandes no estilo `PortasCards`, sem link: número = investimento, mais período, número de campanhas e plataformas.
-2. **Uma seção por frente** (Institucional AON, Faz Bem, Checkup Torcedor):
+2. **Uma seção por frente** (Institucional AON, Faz Bem, Curativos, Checkup Torcedor):
    - linha de `KpiTile` (investimento, impressões, cliques, CPC);
    - `HBars` de `estrategias` da frente;
    - os criativos dela, filtrados de `criativos[]`;
-   - **Checkup Torcedor** é pequena: só KPIs e o criativo, sem gráfico.
+   - **Checkup Torcedor** e **Curativos** são pequenas: só KPIs e a estratégia (mais o criativo, quando houver), sem gráfico.
 
 ---
 

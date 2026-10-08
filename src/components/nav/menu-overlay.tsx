@@ -24,7 +24,7 @@ interface MenuLink {
 const LINKS: MenuLink[] = [
   { index: "01", href: "/", label: "Início", meta: "Panorama · Meta × Google", image: "inicio" },
   { index: "02", href: "/midia", label: "Mídia", meta: "Estratégias, busca, público, criativos", image: "midia" },
-  { index: "03", href: "/frentes", label: "Frentes", meta: "Institucional · Faz Bem · Checkup", image: "frentes" },
+  { index: "03", href: "/frentes", label: "Frentes", meta: "Investimento, estratégias e criativos por frente", image: "frentes" },
 ];
 
 /** Um criativo do hospital por página (cópias locais em public/criativos/). */

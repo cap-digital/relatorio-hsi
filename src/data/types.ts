@@ -40,6 +40,8 @@ export interface Mes {
   parcial: boolean;
   /** Quantas estratégias rodaram no mês. */
   estrategiasAtivas: number;
+  /** Mês do ano anterior ao período (dez/25, campanha Curativos): entra nos números, marcado na interface. */
+  anoAnterior: boolean;
   meta: Metricas;
   google: Metricas;
   total: Metricas;
@@ -54,6 +56,7 @@ export interface Estrategia extends EstrategiaFrente {
   frentes: string[];
 }
 
+/** Frente de campanha. `inicio` pode ser anterior ao período do relatório (Curativos começa em dez/25). */
 export interface Frente extends Metricas, Periodo {
   frente: string;
   campanhas: number;

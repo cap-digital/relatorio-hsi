@@ -8,7 +8,8 @@ Uso:
      curl -sS -L -X POST 'https://cqrpbiepyeypbkizwacu.supabase.co/functions/v1/HospSantaIzabel2026' \
        -H 'Authorization: Bearer <chave>' -H 'apikey: <chave>' \
        -H 'Content-Type: application/json' --data '{"name":"Functions"}' -o data/hsi-dados.json
-  2) python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --imagens
+  2) python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --curativos data/curativos-google.csv --imagens
+     (--curativos: CSV à parte da campanha Curativos — PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026)
      (--imagens baixa as miniaturas dos criativos para public/criativos/; as URLs do
       fbcdn expiram em dias, então o relatório usa as cópias locais)
 
@@ -23,6 +24,7 @@ Regras (nada estimado além do indicado):
   - "Pesquisa" e "Search" (Google) viram a mesma estratégia: "Pesquisa".
 """
 
+import csv
 import json
 import os
 import sys
@@ -97,6 +99,7 @@ AON = {  # Institucional AON, por mês (jan → out)
     ("Meta", "Posts de Oportunidade"):  [0, 0, 0, 0, 0, 0, 500, 500, 500, 0],
 }
 CHECKUP = {("2026-06", "Meta", "Alcance"): 1000}
+CURATIVOS = 6000  # PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026: um grupo único para a campanha inteira
 _PACOTE = {("Google", "Display"): 1500, ("Google", "In-Stream"): 1500, ("Meta", "Alcance"): 1500, ("Meta", "Posts de Oportunidade"): 500}
 FAZ_BEM = [  # (período, início, fim, contratado por (plataforma, estratégia))
     ("P1", "2025-12-23", "2026-02-23", {("Google", "Pesquisa"): 2000, ("Google", "Display"): 5000}),
@@ -115,7 +118,7 @@ def contratado_ano():
     aon = sum(sum(v) for v in AON.values())
     checkup = sum(CHECKUP.values())
     faz_bem = sum(sum(pac.values()) for _, _, _, pac in FAZ_BEM)
-    return aon + checkup + faz_bem
+    return aon + checkup + faz_bem + CURATIVOS
 
 
 def contrato(r):
@@ -125,6 +128,8 @@ def contrato(r):
         mes = dia[:7]
         valor = AON.get((plat, estr), [0] * 10)[MESES_ANO.index(mes)] if mes in MESES_ANO else 0
         return ("AON", mes, plat, estr), valor
+    if frente == "Curativos":
+        return ("Curativos",), CURATIVOS
     if frente == "Checkup Torcedor":
         return ("Checkup", dia[:7], plat, estr), CHECKUP.get((dia[:7], plat, estr), 0)
     if frente == "Faz Bem":
@@ -133,6 +138,34 @@ def contrato(r):
                 return ("Faz Bem", per, plat, estr), pac.get((plat, estr), 0)
         return ("Faz Bem", "fora de período", plat, estr), 0
     return ("Outros", dia[:7], plat, estr), 0
+
+
+def br_num(x):
+    """'1.234,56' / '25,125' → float (decimais com vírgula)."""
+    x = (x or "").strip().replace(".", "").replace(",", ".")
+    return num(x)
+
+
+def ler_curativos(caminho):
+    """CSV da campanha Curativos (Google) → linhas no formato do consolidado. Investimento = coluna Investimento (nunca spend)."""
+    linhas = []
+    with open(caminho, encoding="utf-8-sig", newline="") as fh:
+        for r in csv.DictReader(fh):
+            d, m, a = (r.get("date") or "").strip().split("/")
+            linhas.append({
+                "Data": f"{a}-{m}-{d}T03:00:00.000Z",  # mesmo formato do consolidado (meia-noite em Salvador)
+                "Plataforma": "Google",
+                "Campanha": "Curativos",
+                "Estratégia ": "Pesquisa",
+                "Mês": MESES_LONGOS[int(m) - 1].capitalize(),
+                "Nome Campanha": r.get("campaign", ""),
+                "Grupo Anúncio": r.get("ad_group_name", ""),
+                "Nome Criativo": r.get("ad_name", ""),
+                "Impressões": br_num(r.get("impressions")),
+                "Cliques": br_num(r.get("clicks")),
+                "Investimento": br_num(r.get("Investimento")),
+            })
+    return linhas
 
 
 def upload_errado(campanha, criativo, dia):
@@ -183,9 +216,13 @@ def aplicar_regras(raw, avisos):
     return rows, corte
 
 
-def main(src, dst, baixar_imagens):
+def main(src, dst, baixar_imagens, curativos=None):
     raw = json.load(open(src, encoding="utf-8"))
     avisos = []
+    if curativos:
+        extra = ler_curativos(curativos)
+        raw["consolidado"] = raw.get("consolidado", []) + extra
+        avisos.append(f"Curativos: {len(extra)} linhas do CSV {os.path.basename(curativos)} (fora da função do Supabase).")
     rows, corte = aplicar_regras(raw, avisos)
     print(f"regras aplicadas · investimento limitado ao contratado: R$ {corte:,.2f} abaixo do realizado")
     for r in rows:
@@ -206,7 +243,10 @@ def main(src, dst, baixar_imagens):
     avisos.append("Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot.")
 
     dias = sorted(r["_dia"] for r in rows)
-    inicio, fim = dias[0], dias[-1]
+    fim = dias[-1]
+    ano = fim[:4]
+    # O período do relatório é o ano corrente; meses do ano anterior (Curativos, dez/25) entram nos números, marcados.
+    inicio = min(d for d in dias if d[:4] == ano)
 
     # ---------------------------------------------------------------- totais
     tot = metricas()
@@ -232,7 +272,12 @@ def main(src, dst, baixar_imagens):
     meses = []
     for mes in sorted(meses_map):
         m_idx = int(mes[5:7]) - 1
-        item = {"mes": mes, "rotulo": MESES[m_idx], "nome": MESES_LONGOS[m_idx], "parcial": mes == fim[:7] and fim[8:] < "28"}
+        anterior = mes[:4] < ano
+        item = {"mes": mes,
+                "rotulo": f"{MESES[m_idx]}/{mes[2:4]}" if anterior else MESES[m_idx],
+                "nome": f"{MESES_LONGOS[m_idx]} de {mes[:4]}" if anterior else MESES_LONGOS[m_idx],
+                "parcial": mes == fim[:7] and fim[8:] < "28",
+                "anoAnterior": anterior}
         total_mes = metricas()
         for p in ("Meta", "Google"):
             m = meses_map[mes].get(p, metricas())
@@ -416,8 +461,12 @@ def main(src, dst, baixar_imagens):
                 with urllib.request.urlopen(req, timeout=30) as resp, open(destino, "wb") as fh:
                     fh.write(resp.read())
                 c["imagem"] = f"/criativos/{c['id']}.jpg"
-            except Exception as e:  # mantém a URL remota
-                avisos.append(f"Miniatura não baixada: {c['nome']} ({e.__class__.__name__}).")
+            except Exception as e:
+                if os.path.exists(destino):  # URL do fbcdn expirou: fica a cópia local de uma rodada anterior
+                    c["imagem"] = f"/criativos/{c['id']}.jpg"
+                    avisos.append(f"Miniatura não baixada, mantida a cópia local: {c['nome']} ({e.__class__.__name__}).")
+                else:  # sem cópia local: mantém a URL remota
+                    avisos.append(f"Miniatura não baixada: {c['nome']} ({e.__class__.__name__}).")
 
     snapshot = {
         "cliente": "Hospital Santa Izabel",
@@ -445,7 +494,15 @@ def main(src, dst, baixar_imagens):
 
 
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    argv = sys.argv[1:]
+    curativos = None
+    if "--curativos" in argv:
+        i = argv.index("--curativos")
+        if i + 1 >= len(argv):
+            sys.exit("--curativos precisa do caminho do CSV")
+        curativos = argv[i + 1]
+        del argv[i:i + 2]
+    args = [a for a in argv if not a.startswith("--")]
     if len(args) != 2:
-        sys.exit("uso: build-snapshot.py <hsi-dados.json> <src/data/snapshot.json> [--imagens]")
-    main(args[0], args[1], "--imagens" in sys.argv)
+        sys.exit("uso: build-snapshot.py <hsi-dados.json> <src/data/snapshot.json> [--curativos <csv>] [--imagens]")
+    main(args[0], args[1], "--imagens" in argv, curativos)

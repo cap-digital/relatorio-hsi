@@ -11,6 +11,7 @@ import { Footer } from "@/components/nav/footer";
 import { PainelProvider, type PainelMeta } from "@/data/provider";
 import snapshot from "@/data/snapshot.json";
 import type { Snapshot } from "@/data/types";
+import { fmtNotaAnoAnterior } from "@/data/format";
 
 const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     atualizadoEm: s.atualizadoEm,
     // Avisos do build só em dev (o rodapé não os mostra em produção, e nem chegam ao payload).
     avisos: process.env.NODE_ENV !== "production" ? s.avisos : [],
+    notas: s.frentes.map((f) => fmtNotaAnoAnterior(f, s.periodo.inicio)).filter((n): n is string => Boolean(n)),
   };
   return (
     <html

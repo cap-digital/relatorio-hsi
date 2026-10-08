@@ -53,6 +53,14 @@ export function Footer() {
           <span>CAP · Mídia, dados e tecnologia</span>
         </div>
 
+        {painel.notas.length > 0 ? (
+          <ul className="mt-3 flex flex-col gap-1 font-mono text-[11px] leading-relaxed text-text-3" role="list">
+            {painel.notas.map((nota) => (
+              <li key={nota}>{nota}</li>
+            ))}
+          </ul>
+        ) : null}
+
         {showWarnings ? (
           <ul className="mt-3 flex flex-col gap-1 font-mono text-[10.5px] tracking-[0.06em] text-copper" role="list">
             {painel.avisos.map((warning) => (

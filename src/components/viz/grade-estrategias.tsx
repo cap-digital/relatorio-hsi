@@ -27,7 +27,8 @@ export function GradeEstrategias({ grade, meses, fim }: { grade: Grade; meses: M
           {grade.meses.map((m) => {
             const info = mesInfo.get(m);
             return (
-              <span key={m} className="pb-1 text-center font-mono text-[10.5px] text-text-3">
+              // Mês do ano anterior (dez/25): rótulo atenuado, sem hachura (hachura = só mês parcial).
+              <span key={m} className={`pb-1 text-center font-mono text-[10.5px] text-text-3 ${info?.anoAnterior ? "opacity-50" : ""}`}>
                 {info ? (info.parcial ? `${info.rotulo}*` : info.rotulo) : m.slice(5)}
               </span>
             );

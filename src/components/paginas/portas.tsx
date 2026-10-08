@@ -12,10 +12,10 @@ export interface Porta {
   numero: string;
   legenda: string;
   texto: string;
-  tom: "amber" | "copper" | "dusk";
+  tom: "amber" | "copper" | "dusk" | "neutral";
 }
 
-const TOM = { amber: "text-amber", copper: "text-copper", dusk: "text-dusk-2" };
+const TOM = { amber: "text-amber", copper: "text-copper", dusk: "text-dusk-2", neutral: "text-text" };
 
 /** Cartões de entrada para as páginas internas, cada um com o número que resume a página. */
 export function PortasCards({ portas }: { portas: Porta[] }) {

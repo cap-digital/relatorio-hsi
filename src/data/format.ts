@@ -37,9 +37,24 @@ export function fmtPct(v: number, decimals = 1): string {
 
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
-export function fmtDia(iso: string): string {
-  const [, m, d] = iso.split("-").map(Number);
-  return `${String(d).padStart(2, "0")} ${MESES[m - 1]}`;
+/** "06 out". Com `anoRef` ("2026"), datas de outro ano levam o ano curto: "02 dez/25". */
+export function fmtDia(iso: string, anoRef?: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  const ano = anoRef && String(y) !== anoRef ? `/${String(y).slice(2)}` : "";
+  return `${String(d).padStart(2, "0")} ${MESES[m - 1]}${ano}`;
+}
+
+const MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+
+/**
+ * Observação para frente que começou antes do período do relatório (Curativos, dez/25):
+ * "A campanha Curativos começou em dezembro de 2025; os números do relatório incluem esse mês."
+ */
+export function fmtNotaAnoAnterior(f: { frente: string; inicio: string }, periodoInicio: string): string | null {
+  if (f.inicio >= periodoInicio) return null;
+  const [y, m] = f.inicio.split("-").map(Number);
+  const meses = (Number(periodoInicio.slice(0, 4)) - y) * 12 - (m - 1);
+  return `A campanha ${f.frente} começou em ${MESES_LONGOS[m - 1]} de ${y}; os números do relatório incluem ${meses === 1 ? "esse mês" : "esses meses"}.`;
 }
 
 export function fmtAtualizado(iso: string): string {
@@ -92,6 +107,11 @@ const EXTENSO = ["zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete
 export function fmtExtenso(n: number, maiuscula = false): string {
   const s = EXTENSO[n] ?? fmtNum(n);
   return maiuscula ? s[0].toUpperCase() + s.slice(1) : s;
+}
+
+/** "a, b e c" — junta itens que podem ter vírgula decimal ("R$ 1,0 mil"). */
+export function fmtLista(itens: string[]): string {
+  return itens.length < 2 ? (itens[0] ?? "") : `${itens.slice(0, -1).join(", ")} e ${itens[itens.length - 1]}`;
 }
 
 /** Fração como "quase 1 em cada 4" / "1 em cada 4" / "mais de 1 em cada 4". */

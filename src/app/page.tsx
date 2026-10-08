@@ -8,7 +8,7 @@ import { PortasCards } from "@/components/paginas/portas";
 import { GradeEstrategias } from "@/components/viz/grade-estrategias";
 import { MonthlyChart } from "@/components/viz/monthly-chart";
 import { SplitBar } from "@/components/viz/small";
-import { fmtBRL, fmtCompact, fmtDia, fmtMil, fmtNum, fmtPct, fmtUmEmCada, rodou } from "@/data/format";
+import { fmtBRL, fmtCompact, fmtDia, fmtLista, fmtMil, fmtNum, fmtPct, fmtUmEmCada, rodou } from "@/data/format";
 import snapshot from "@/data/snapshot.json";
 import type { Snapshot } from "@/data/types";
 
@@ -19,13 +19,19 @@ export default function Home() {
   const t = s.totais;
   const meta = s.plataformas.find((p) => p.plataforma === "Meta")!;
   const google = s.plataformas.find((p) => p.plataforma === "Google")!;
-  const ativasJan = s.meses[0]?.estrategiasAtivas ?? 0;
-  const ativasMax = Math.max(...s.meses.map((m) => m.estrategiasAtivas));
-  const mesesNoMax = s.meses.filter((m) => m.estrategiasAtivas === ativasMax).map((m) => m.nome);
+  const ANO = s.periodo.inicio.slice(0, 4);
+  // O mosaico conta a partir de janeiro do ano do relatório; meses do ano anterior (dez/25) aparecem, mas não são o ponto de partida.
+  const mesesAno = s.meses.filter((m) => !m.anoAnterior);
+  const primeiro = mesesAno[0];
+  const ativasJan = primeiro?.estrategiasAtivas ?? 0;
+  const ativasMax = Math.max(...mesesAno.map((m) => m.estrategiasAtivas));
+  const mesesNoMax = mesesAno.filter((m) => m.estrategiasAtivas === ativasMax).map((m) => m.nome);
   const ultimo = s.meses[s.meses.length - 1];
+  // Início dos dados (pode ser anterior ao período: Curativos começa em dez/25).
+  const inicioDados = s.plataformas.reduce((a, p) => (p.inicio < a ? p.inicio : a), s.periodo.inicio);
   // Contagem pela grade, com a mesma regra das células (investimento 0 e impressões 0 = não rodou).
   const celulasDoMes = (mes: string) => s.grade.celulas.filter((c) => c.mes === mes && rodou(c));
-  const plataformasJan = [...new Set(celulasDoMes(s.meses[0]?.mes ?? "").map((c) => c.plataforma))];
+  const plataformasJan = [...new Set(celulasDoMes(primeiro?.mes ?? "").map((c) => c.plataforma))];
   const ativasUltimo = celulasDoMes(ultimo.mes).length;
 
   // Mês a mês: antes e depois da entrada do Meta.
@@ -51,7 +57,7 @@ export default function Home() {
         }
         description={
           <>
-            {fmtMil(t.investimento)} investidos no Meta e no Google, de {fmtDia(s.periodo.inicio)} a {fmtDia(s.periodo.fim)}, colocaram os
+            {fmtMil(t.investimento)} investidos no Meta e no Google, de {fmtDia(inicioDados, ANO)} a {fmtDia(s.periodo.fim)}, colocaram os
             anúncios do hospital {fmtCompact(t.impressoes, 2)} de vezes na tela e trouxeram {fmtCompact(t.cliques)} cliques.
           </>
         }
@@ -100,7 +106,7 @@ export default function Home() {
               />
             </div>
             <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-text-3">
-              Google desde {fmtDia(google.inicio)} · Meta desde {fmtDia(meta.inicio)}
+              Google desde {fmtDia(google.inicio, ANO)} · Meta desde {fmtDia(meta.inicio, ANO)}
             </p>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -148,7 +154,7 @@ export default function Home() {
             De {ativasJan} para {ativasMax} <em>estratégias no ar.</em>
           </>
         }
-        description={`Cada linha é uma estratégia, cada coluna um mês; quanto mais clara a célula, maior o investimento, e vazia quando a estratégia não rodou. O ano começou com ${ativasJan} estratégias ${plataformasJan.length === 1 ? `no ${plataformasJan[0]}` : "no Google e no Meta"} e chegou a ${ativasMax} em ${mesesNoMax.join(", ").replace(/, ([^,]*)$/, " e $1")}. ${ultimo.parcial ? `Em ${ultimo.nome}, até ${fmtDia(s.periodo.fim)}, ${ativasUltimo} já rodaram.` : ""}`}
+        description={`Cada linha é uma estratégia, cada coluna um mês; quanto mais clara a célula, maior o investimento, e vazia quando a estratégia não rodou. O ano começou com ${ativasJan} estratégias ${plataformasJan.length === 1 ? `no ${plataformasJan[0]}` : "no Google e no Meta"} e chegou a ${ativasMax} em ${fmtLista(mesesNoMax)}. ${ultimo.parcial ? `Em ${ultimo.nome}, até ${fmtDia(s.periodo.fim)}, ${ativasUltimo} já rodaram.` : ""}`}
       >
         <ChartFrame
           eyebrow="Estratégia × mês · investimento"

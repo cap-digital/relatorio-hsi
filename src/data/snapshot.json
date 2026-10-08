@@ -6,17 +6,17 @@
  },
  "atualizadoEm": "2026-10-06T17:02:29.656Z",
  "totais": {
-  "investimento": 115184.05,
-  "impressoes": 9180111,
-  "cliques": 101322,
+  "investimento": 121184.05,
+  "impressoes": 9311357,
+  "cliques": 106613,
   "views": 1218811,
   "engajamento": 284955,
-  "ctr": 0.01104,
-  "cpm": 12.55,
+  "ctr": 0.01145,
+  "cpm": 13.01,
   "cpc": 1.14,
-  "campanhas": 34,
-  "meses": 10,
-  "contratado": 122750
+  "campanhas": 36,
+  "meses": 11,
+  "contratado": 128750
  },
  "plataformas": [
   {
@@ -34,26 +34,27 @@
    "campanhas": 17
   },
   {
-   "investimento": 51433.07,
-   "impressoes": 2676401,
-   "cliques": 68918,
+   "investimento": 57433.07,
+   "impressoes": 2807647,
+   "cliques": 74209,
    "views": 69996,
    "engajamento": 88039,
-   "ctr": 0.02575,
-   "cpm": 19.22,
-   "cpc": 0.75,
+   "ctr": 0.02643,
+   "cpm": 20.46,
+   "cpc": 0.77,
    "plataforma": "Google",
-   "inicio": "2026-01-01",
+   "inicio": "2025-12-02",
    "fim": "2026-10-06",
-   "campanhas": 17
+   "campanhas": 19
   }
  ],
  "meses": [
   {
-   "mes": "2026-01",
-   "rotulo": "jan",
-   "nome": "janeiro",
+   "mes": "2025-12",
+   "rotulo": "dez/25",
+   "nome": "dezembro de 2025",
    "parcial": false,
+   "anoAnterior": true,
    "meta": {
     "investimento": 0.0,
     "impressoes": 0,
@@ -65,33 +66,73 @@
     "cpc": 0
    },
    "google": {
-    "investimento": 5537.22,
-    "impressoes": 584201,
-    "cliques": 8080,
+    "investimento": 1871.23,
+    "impressoes": 37456,
+    "cliques": 1042,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.01383,
-    "cpm": 9.48,
-    "cpc": 0.69
+    "ctr": 0.02782,
+    "cpm": 49.96,
+    "cpc": 1.8
    },
    "total": {
-    "investimento": 5537.22,
-    "impressoes": 584201,
-    "cliques": 8080,
+    "investimento": 1871.23,
+    "impressoes": 37456,
+    "cliques": 1042,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.01383,
-    "cpm": 9.48,
-    "cpc": 0.69
+    "ctr": 0.02782,
+    "cpm": 49.96,
+    "cpc": 1.8
+   },
+   "estrategiasAtivas": 1,
+   "campanhasAtivas": 2
+  },
+  {
+   "mes": "2026-01",
+   "rotulo": "jan",
+   "nome": "janeiro",
+   "parcial": false,
+   "anoAnterior": false,
+   "meta": {
+    "investimento": 0.0,
+    "impressoes": 0,
+    "cliques": 0,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0,
+    "cpm": 0,
+    "cpc": 0
+   },
+   "google": {
+    "investimento": 7895.76,
+    "impressoes": 638762,
+    "cliques": 10511,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0.01646,
+    "cpm": 12.36,
+    "cpc": 0.75
+   },
+   "total": {
+    "investimento": 7895.76,
+    "impressoes": 638762,
+    "cliques": 10511,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0.01646,
+    "cpm": 12.36,
+    "cpc": 0.75
    },
    "estrategiasAtivas": 2,
-   "campanhasAtivas": 3
+   "campanhasAtivas": 4
   },
   {
    "mes": "2026-02",
    "rotulo": "fev",
    "nome": "fevereiro",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 0.0,
     "impressoes": 0,
@@ -103,33 +144,34 @@
     "cpc": 0
    },
    "google": {
-    "investimento": 8879.43,
-    "impressoes": 765215,
-    "cliques": 5494,
+    "investimento": 10649.67,
+    "impressoes": 804444,
+    "cliques": 7312,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.00718,
-    "cpm": 11.6,
-    "cpc": 1.62
+    "ctr": 0.00909,
+    "cpm": 13.24,
+    "cpc": 1.46
    },
    "total": {
-    "investimento": 8879.43,
-    "impressoes": 765215,
-    "cliques": 5494,
+    "investimento": 10649.67,
+    "impressoes": 804444,
+    "cliques": 7312,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.00718,
-    "cpm": 11.6,
-    "cpc": 1.62
+    "ctr": 0.00909,
+    "cpm": 13.24,
+    "cpc": 1.46
    },
    "estrategiasAtivas": 2,
-   "campanhasAtivas": 3
+   "campanhasAtivas": 4
   },
   {
    "mes": "2026-03",
    "rotulo": "mar",
    "nome": "março",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 0.0,
     "impressoes": 0,
@@ -168,6 +210,7 @@
    "rotulo": "abr",
    "nome": "abril",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 0.0,
     "impressoes": 0,
@@ -206,6 +249,7 @@
    "rotulo": "mai",
    "nome": "maio",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 13750.0,
     "impressoes": 1358015,
@@ -244,6 +288,7 @@
    "rotulo": "jun",
    "nome": "junho",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 13145.71,
     "impressoes": 1563262,
@@ -282,6 +327,7 @@
    "rotulo": "jul",
    "nome": "julho",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 12250.0,
     "impressoes": 1184333,
@@ -320,6 +366,7 @@
    "rotulo": "ago",
    "nome": "agosto",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 12250.0,
     "impressoes": 1192666,
@@ -358,6 +405,7 @@
    "rotulo": "set",
    "nome": "setembro",
    "parcial": false,
+   "anoAnterior": false,
    "meta": {
     "investimento": 12250.0,
     "impressoes": 1174194,
@@ -396,6 +444,7 @@
    "rotulo": "out",
    "nome": "outubro",
    "parcial": true,
+   "anoAnterior": false,
    "meta": {
     "investimento": 105.27,
     "impressoes": 31240,
@@ -628,6 +677,46 @@
    ]
   },
   {
+   "investimento": 6000.0,
+   "impressoes": 131246,
+   "cliques": 5291,
+   "views": 0,
+   "engajamento": 0,
+   "ctr": 0.04031,
+   "cpm": 45.72,
+   "cpc": 1.13,
+   "frente": "Curativos",
+   "inicio": "2025-12-02",
+   "fim": "2026-02-25",
+   "campanhas": 2,
+   "plataformas": {
+    "Google": {
+     "investimento": 6000.0,
+     "impressoes": 131246,
+     "cliques": 5291,
+     "views": 0,
+     "engajamento": 0,
+     "ctr": 0.04031,
+     "cpm": 45.72,
+     "cpc": 1.13
+    }
+   },
+   "estrategias": [
+    {
+     "investimento": 6000.0,
+     "impressoes": 131246,
+     "cliques": 5291,
+     "views": 0,
+     "engajamento": 0,
+     "ctr": 0.04031,
+     "cpm": 45.72,
+     "cpc": 1.13,
+     "plataforma": "Google",
+     "estrategia": "Pesquisa"
+    }
+   ]
+  },
+  {
    "investimento": 1000.0,
    "impressoes": 286492,
    "cliques": 128,
@@ -670,6 +759,23 @@
  ],
  "estrategias": [
   {
+   "investimento": 36290.45,
+   "impressoes": 356512,
+   "cliques": 58788,
+   "views": 0,
+   "engajamento": 0,
+   "ctr": 0.1649,
+   "cpm": 101.79,
+   "cpc": 0.62,
+   "plataforma": "Google",
+   "estrategia": "Pesquisa",
+   "frentes": [
+    "Curativos",
+    "Faz Bem",
+    "Institucional AON"
+   ]
+  },
+  {
    "investimento": 32855.27,
    "impressoes": 5038588,
    "cliques": 9625,
@@ -682,22 +788,6 @@
    "estrategia": "Alcance",
    "frentes": [
     "Checkup Torcedor",
-    "Faz Bem",
-    "Institucional AON"
-   ]
-  },
-  {
-   "investimento": 30290.45,
-   "impressoes": 225266,
-   "cliques": 53497,
-   "views": 0,
-   "engajamento": 0,
-   "ctr": 0.23748,
-   "cpm": 134.47,
-   "cpc": 0.57,
-   "plataforma": "Google",
-   "estrategia": "Pesquisa",
-   "frentes": [
     "Faz Bem",
     "Institucional AON"
    ]
@@ -781,6 +871,7 @@
  ],
  "grade": {
   "meses": [
+   "2025-12",
    "2026-01",
    "2026-02",
    "2026-03",
@@ -794,12 +885,12 @@
   ],
   "linhas": [
    {
-    "plataforma": "Meta",
-    "estrategia": "Alcance"
-   },
-   {
     "plataforma": "Google",
     "estrategia": "Pesquisa"
+   },
+   {
+    "plataforma": "Meta",
+    "estrategia": "Alcance"
    },
    {
     "plataforma": "Meta",
@@ -824,6 +915,23 @@
   ],
   "celulas": [
    {
+    "investimento": 1871.23,
+    "impressoes": 37456,
+    "cliques": 1042,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0.02782,
+    "cpm": 49.96,
+    "cpc": 1.8,
+    "plataforma": "Google",
+    "estrategia": "Pesquisa",
+    "mes": "2025-12",
+    "frentes": [
+     "Curativos"
+    ],
+    "campanhas": 2
+   },
+   {
     "investimento": 1665.36,
     "impressoes": 546165,
     "cliques": 342,
@@ -841,22 +949,23 @@
     "campanhas": 1
    },
    {
-    "investimento": 3871.86,
-    "impressoes": 38036,
-    "cliques": 7738,
+    "investimento": 6230.4,
+    "impressoes": 92597,
+    "cliques": 10169,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.20344,
-    "cpm": 101.79,
-    "cpc": 0.5,
+    "ctr": 0.10982,
+    "cpm": 67.29,
+    "cpc": 0.61,
     "plataforma": "Google",
     "estrategia": "Pesquisa",
     "mes": "2026-01",
     "frentes": [
+     "Curativos",
      "Faz Bem",
      "Institucional AON"
     ],
-    "campanhas": 2
+    "campanhas": 3
    },
    {
     "investimento": 4275.26,
@@ -876,22 +985,23 @@
     "campanhas": 1
    },
    {
-    "investimento": 4604.17,
-    "impressoes": 25474,
-    "cliques": 5183,
+    "investimento": 6374.4,
+    "impressoes": 64703,
+    "cliques": 7001,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.20346,
-    "cpm": 180.74,
-    "cpc": 0.89,
+    "ctr": 0.1082,
+    "cpm": 98.52,
+    "cpc": 0.91,
     "plataforma": "Google",
     "estrategia": "Pesquisa",
     "mes": "2026-02",
     "frentes": [
+     "Curativos",
      "Faz Bem",
      "Institucional AON"
     ],
-    "campanhas": 2
+    "campanhas": 3
    },
    {
     "investimento": 1559.38,
@@ -1570,14 +1680,14 @@
   ]
  },
  "busca": {
-  "investimento": 30290.45,
-  "impressoes": 225266,
-  "cliques": 53497,
+  "investimento": 36290.45,
+  "impressoes": 356512,
+  "cliques": 58788,
   "views": 0,
   "engajamento": 0,
-  "ctr": 0.23748,
-  "cpm": 134.47,
-  "cpc": 0.57,
+  "ctr": 0.1649,
+  "cpm": 101.79,
+  "cpc": 0.62,
   "anuncios": [
    {
     "investimento": 7840.24,
@@ -1645,6 +1755,23 @@
     "frente": "Institucional AON"
    },
    {
+    "investimento": 6000.0,
+    "impressoes": 131246,
+    "cliques": 5291,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0.04031,
+    "cpm": 45.72,
+    "cpc": 1.13,
+    "titulos": [
+     "HSI: Curativos Especiais",
+     "HSI: Terapia Hiperbárica",
+     "Tratamento para Feridas",
+     "HSI: Saúde e Tecnologia"
+    ],
+    "frente": "Curativos"
+   },
+   {
     "investimento": 3283.79,
     "impressoes": 22181,
     "cliques": 3811,
@@ -1657,22 +1784,6 @@
      "Atendimento com convênio",
      "Convêncios aceitos no HSI",
      "Rede credenciada em Salvador"
-    ],
-    "frente": "Institucional AON"
-   },
-   {
-    "investimento": 1212.47,
-    "impressoes": 10758,
-    "cliques": 3259,
-    "views": 0,
-    "engajamento": 0,
-    "ctr": 0.30294,
-    "cpm": 112.7,
-    "cpc": 0.37,
-    "titulos": [
-     "UTI Pediátrica HSI",
-     "Pediatria Alta Complexidade",
-     "UTI Infantil Salvador"
     ],
     "frente": "Institucional AON"
    }
@@ -2226,9 +2337,19 @@
   }
  ],
  "avisos": [
+  "Curativos: 308 linhas do CSV curativos-google.csv (fora da função do Supabase).",
   "44 linhas descartadas (sem data, Estratégia em branco ou uploads errados da coleta).",
   "Investimento limitado ao contratado no ano todo: R$ 15.172,68 abaixo do realizado (não indicado na interface).",
   "Alcance fora do relatório: a fonte não traz alcance único.",
-  "Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot."
+  "Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot.",
+  "Miniatura não baixada, mantida a cópia local: AD3 Mais Planos de Saúde (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: AD1 Robótica (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: AD2 Centro Médico Ondina (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: Ad3 Vendas (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: Ad2 Vantagens (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: AD3 Planos de Saúde (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: Ad1 Institucional (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: AD2 My Day (HTTPError).",
+  "Miniatura não baixada, mantida a cópia local: Ad2 Empresarial (HTTPError)."
  ]
 }

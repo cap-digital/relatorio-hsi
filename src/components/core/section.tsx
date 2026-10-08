@@ -3,13 +3,15 @@ import { cn } from "@/lib/utils";
 import { SplitHeading } from "./split-heading";
 import { Reveal } from "./reveal";
 
-export type SectionTone = "default" | "amber" | "copper" | "dusk";
+/** `neutral` = --text (creme): 4ª cor de frente, distinta de limão, verde-água e verde. */
+export type SectionTone = "default" | "amber" | "copper" | "dusk" | "neutral";
 
 const TONE_TEXT: Record<SectionTone, string> = {
   default: "text-amber",
   amber: "text-amber",
   copper: "text-copper",
   dusk: "text-dusk-2",
+  neutral: "text-text",
 };
 
 const TONE_LINE: Record<SectionTone, string> = {
@@ -17,6 +19,7 @@ const TONE_LINE: Record<SectionTone, string> = {
   amber: "bg-amber/60",
   copper: "bg-copper/60",
   dusk: "bg-dusk-2/60",
+  neutral: "bg-text/60",
 };
 
 export interface SectionProps {

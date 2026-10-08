@@ -468,6 +468,11 @@ html.lenis body {
     --card-accent: var(--dusk-2);
     --card-glow: var(--dusk-glow);
   }
+  /* 4ª frente (Curativos): creme do --text */
+  .hub-card[data-tone="neutral"] {
+    --card-accent: var(--text);
+    --card-glow: color-mix(in oklab, var(--text) 22%, transparent);
+  }
   @media (hover: hover) {
     .hub-card:hover {
       border-color: color-mix(in oklab, var(--card-accent) 40%, var(--line));

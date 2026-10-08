@@ -8,7 +8,7 @@ import { CriativosGrid } from "@/components/paginas/criativos";
 import { PortasCards, type Porta } from "@/components/paginas/portas";
 import { HBars } from "@/components/viz/hbars";
 import { SplitBar } from "@/components/viz/small";
-import { fmtBRL, fmtDia, fmtExtenso, fmtMetricaPrincipal, fmtMil, fmtNum, fmtPct, metricaPrincipal } from "@/data/format";
+import { fmtBRL, fmtDia, fmtExtenso, fmtLista, fmtMetricaPrincipal, fmtMil, fmtNotaAnoAnterior, fmtNum, fmtPct, metricaPrincipal } from "@/data/format";
 import snapshot from "@/data/snapshot.json";
 import type { Frente, Snapshot } from "@/data/types";
 
@@ -16,9 +16,12 @@ export const metadata: Metadata = { title: "Frentes · Hospital Santa Izabel" };
 
 const s: Snapshot = snapshot;
 
-/** Cor fixa de cada frente: Institucional = limão, Faz Bem = verde-água, Checkup Torcedor = verde da marca. */
-const TOM: Record<string, Porta["tom"]> = { "Institucional AON": "amber", "Faz Bem": "dusk", "Checkup Torcedor": "copper" };
-const COR = { amber: "var(--amber)", dusk: "var(--dusk-2)", copper: "var(--copper)" } as const;
+/** Cor fixa de cada frente: Institucional = limão, Faz Bem = verde-água, Checkup Torcedor = verde da marca, Curativos = creme (--text). */
+const TOM: Record<string, Porta["tom"]> = { "Institucional AON": "amber", "Faz Bem": "dusk", "Checkup Torcedor": "copper", Curativos: "neutral" };
+const COR = { amber: "var(--amber)", dusk: "var(--dusk-2)", copper: "var(--copper)", neutral: "var(--text)" } as const;
+/** KpiTile e ChartFrame chamam o creme de "default". */
+const tomKpi = (t: Porta["tom"]): KpiTone => (t === "neutral" ? "default" : t);
+const ANO = s.periodo.inicio.slice(0, 4);
 const COR_PLATAFORMA: Record<string, string> = { Meta: "var(--amber)", Google: "var(--dusk-2)" };
 
 
@@ -44,9 +47,9 @@ export default function Frentes() {
             {fmtExtenso(frentes.length, true)} frentes, <em>um hospital.</em>
           </>
         }
-        description={`${frentes.map((f) => `${f.frente} recebeu ${fmtMil(f.investimento)}`).join(", ").replace(/, ([^,]*)$/, " e $1")}. Cada uma com estratégias, plataformas e criativos próprios.`}
+        description={`${fmtLista(frentes.map((f) => `${f.frente} recebeu ${fmtMil(f.investimento)}`))}. Cada uma com estratégias, plataformas e criativos próprios.`}
         kpis={
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+          <div className={`grid grid-cols-2 gap-3 ${frentes.length % 4 === 0 ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
             {frentes.map((f, i) => (
               <KpiTile
                 key={f.frente}
@@ -54,9 +57,9 @@ export default function Frentes() {
                 value={f.investimento}
                 format="compactCurrency"
                 decimals={1}
-                tone={tomDe(f) as KpiTone}
+                tone={tomKpi(tomDe(f))}
                 hint={`${fmtPct(f.investimento / t.investimento)} do investimento · ${campanhas(f.campanhas)}`}
-                className={i === frentes.length - 1 ? "col-span-2 md:col-span-1" : undefined}
+                className={frentes.length % 2 === 1 && i === frentes.length - 1 ? "col-span-2 md:col-span-1" : undefined}
               />
             ))}
           </div>
@@ -86,7 +89,7 @@ export default function Frentes() {
               titulo: f.frente,
               numero: fmtMil(f.investimento),
               legenda: `${campanhas(f.campanhas)} · ${plataformas(f)}`,
-              texto: `${fmtDia(f.inicio)} → ${fmtDia(f.fim)} · ${f.estrategias.map((e) => e.estrategia).join(", ")}.`,
+              texto: `${fmtDia(f.inicio, ANO)} → ${fmtDia(f.fim, ANO)} · ${f.estrategias.map((e) => e.estrategia).join(", ")}.`,
               tom: tomDe(f),
             }))}
           />
@@ -107,6 +110,7 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
   const principal = [...f.estrategias].sort((a, b) => b.investimento - a.investimento)[0];
   const custo = principal && metricaPrincipal(principal).custoRotulo === "CPM" ? { label: "CPM", value: f.cpm } : { label: "CPC", value: f.cpc };
   const pequena = f.estrategias.length <= 1;
+  const nota = fmtNotaAnoAnterior(f, s.periodo.inicio);
 
   const grade = <CriativosGrid criativos={criativos} />;
 
@@ -123,7 +127,7 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
         }
         description={
           principal
-            ? `${fmtMil(f.investimento)} em ${campanhas(f.campanhas)} ${nasPlataformas(f)}, de ${fmtDia(f.inicio)} a ${fmtDia(f.fim)}. ${
+            ? `${fmtMil(f.investimento)} em ${campanhas(f.campanhas)} ${nasPlataformas(f)}, de ${fmtDia(f.inicio, ANO)} a ${fmtDia(f.fim, ANO)}. ${
                 pequena
                   ? `Uma só estratégia, ${principal.estrategia}: ${fmtMetricaPrincipal(principal)}.`
                   : `A maior estratégia foi ${principal.estrategia} (${principal.plataforma}): ${fmtMetricaPrincipal(principal)}.`
@@ -132,7 +136,7 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
         }
       >
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <KpiTile label="Investimento" value={f.investimento} format="compactCurrency" decimals={1} tone={tom as KpiTone} />
+          <KpiTile label="Investimento" value={f.investimento} format="compactCurrency" decimals={1} tone={tomKpi(tom)} />
           <KpiTile label="Impressões" value={f.impressoes} format="compact" decimals={f.impressoes >= 1e6 ? 2 : 0} />
           <KpiTile label="Cliques" value={f.cliques} format="compact" decimals={1} hint={`CTR de ${fmtPct(f.ctr, 2)}`} />
           <KpiTile label={custo.label} value={custo.value} format="currency" decimals={2} hint={custo.label === "CPM" ? "Custo por mil impressões" : "Custo por clique"} />
@@ -140,7 +144,7 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
 
         {!pequena && (
           <div className="mt-4">
-            <ChartFrame eyebrow="Estratégias" title="Investimento por estratégia" subtitle="Com a métrica que cada estratégia tinha como meta" minHeight={200} tone={tom}>
+            <ChartFrame eyebrow="Estratégias" title="Investimento por estratégia" subtitle="Com a métrica que cada estratégia tinha como meta" minHeight={200} tone={tomKpi(tom)}>
               <HBars
                 items={f.estrategias.map((e) => ({
                   key: `${e.plataforma}-${e.estrategia}`,
@@ -155,7 +159,9 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
           </div>
         )}
 
-        {pequena && (
+        {nota && <p className="mt-5 font-mono text-[11.5px] leading-relaxed text-text-3">{nota}</p>}
+
+        {pequena && criativos.length > 0 && (
           <div className="mt-[clamp(32px,4vw,56px)]">
             <span className="eyebrow text-text-3">{criativos.length === 1 ? "O criativo" : `Os ${criativos.length} criativos`} da frente</span>
             <div className="mt-5">{grade}</div>

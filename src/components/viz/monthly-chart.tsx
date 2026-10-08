@@ -105,7 +105,8 @@ export function MonthlyChart({ meses, fim, height = 360 }: { meses: Mes[]; /** �
                       transition={{ duration: 0.8, delay: 0.25 + i * 0.05, ease: EASE }}
                     />
                     {(meses.length - 1 - i) % step === 0 && (
-                      <text x={bx + bw / 2} y={ih + 22} textAnchor="middle" className="fill-[var(--text-3)] font-mono text-[10.5px]">
+                      // Mês do ano anterior (dez/25): rótulo atenuado, sem hachura (hachura = só mês parcial).
+                      <text x={bx + bw / 2} y={ih + 22} textAnchor="middle" opacity={d.anoAnterior ? 0.5 : 1} className="fill-[var(--text-3)] font-mono text-[10.5px]">
                         {d.parcial ? `${d.rotulo}*` : d.rotulo}
                       </text>
                     )}

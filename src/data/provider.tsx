@@ -8,6 +8,8 @@ export interface PainelMeta {
   periodo: { inicio: string; fim: string };
   atualizadoEm: string;
   avisos: string[];
+  /** Observações informativas (sempre visíveis), ex.: frente que começou antes do período. */
+  notas: string[];
 }
 
 const Ctx = createContext<PainelMeta | null>(null);
