@@ -46,6 +46,18 @@ export function fmtDia(iso: string, anoRef?: string): string {
 
 const MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
 
+/** "dez/25" — mês e ano curtos. */
+export function fmtMesAno(iso: string): string {
+  const [y, m] = iso.split("-").map(Number);
+  return `${MESES[m - 1]}/${String(y).slice(2)}`;
+}
+
+/** "dezembro de 2025". */
+export function fmtMesAnoLongo(iso: string): string {
+  const [y, m] = iso.split("-").map(Number);
+  return `${MESES_LONGOS[m - 1]} de ${y}`;
+}
+
 /**
  * Observação para frente que começou antes do período do relatório (Curativos, dez/25):
  * "A campanha Curativos começou em dezembro de 2025; os números do relatório incluem esse mês."

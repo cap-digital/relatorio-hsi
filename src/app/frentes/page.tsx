@@ -8,7 +8,7 @@ import { CriativosGrid } from "@/components/paginas/criativos";
 import { PortasCards, type Porta } from "@/components/paginas/portas";
 import { HBars } from "@/components/viz/hbars";
 import { SplitBar } from "@/components/viz/small";
-import { fmtBRL, fmtDia, fmtExtenso, fmtLista, fmtMetricaPrincipal, fmtMil, fmtNotaAnoAnterior, fmtNum, fmtPct, metricaPrincipal } from "@/data/format";
+import { fmtBRL, fmtDia, fmtExtenso, fmtLista, fmtMesAno, fmtMesAnoLongo, fmtMetricaPrincipal, fmtMil, fmtNotaAnoAnterior, fmtNum, fmtPct, metricaPrincipal } from "@/data/format";
 import snapshot from "@/data/snapshot.json";
 import type { Frente, Snapshot } from "@/data/types";
 
@@ -22,6 +22,8 @@ const COR = { amber: "var(--amber)", dusk: "var(--dusk-2)", copper: "var(--coppe
 /** KpiTile e ChartFrame chamam o creme de "default". */
 const tomKpi = (t: Porta["tom"]): KpiTone => (t === "neutral" ? "default" : t);
 const ANO = s.periodo.inicio.slice(0, 4);
+/** Objetivo da campanha, quando o cartão e a seção o explicitam (não vem do snapshot). */
+const OBJETIVO: Record<string, string> = { Curativos: "tráfego" };
 const COR_PLATAFORMA: Record<string, string> = { Meta: "var(--amber)", Google: "var(--dusk-2)" };
 
 
@@ -29,6 +31,8 @@ const tomDe = (f: Frente) => TOM[f.frente] ?? "amber";
 const plataformas = (f: Frente) => Object.keys(f.plataformas).sort().join(" + ");
 /** "no Google e no Meta" */
 const nasPlataformas = (f: Frente) => Object.keys(f.plataformas).sort().map((p) => `no ${p}`).join(" e ");
+/** "Google · Pesquisa (tráfego)" */
+const canal = (f: Frente) => `${plataformas(f)} · ${f.estrategias.map((e) => e.estrategia).join(", ")}${OBJETIVO[f.frente] ? ` (${OBJETIVO[f.frente]})` : ""}`;
 const campanhas = (n: number) => `${n} ${n === 1 ? "campanha" : "campanhas"}`;
 
 export default function Frentes() {
@@ -89,6 +93,7 @@ export default function Frentes() {
               titulo: f.frente,
               numero: fmtMil(f.investimento),
               legenda: `${campanhas(f.campanhas)} · ${plataformas(f)}`,
+              nota: OBJETIVO[f.frente] ? `${canal(f)} · ${fmtMesAno(f.inicio)} → ${fmtMesAno(f.fim)}` : undefined,
               texto: `${fmtDia(f.inicio, ANO)} → ${fmtDia(f.fim, ANO)} · ${f.estrategias.map((e) => e.estrategia).join(", ")}.`,
               tom: tomDe(f),
             }))}
@@ -118,7 +123,7 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
     <>
       <Section
         index={index}
-        eyebrow={f.frente}
+        eyebrow={OBJETIVO[f.frente] ? `${f.frente} · ${canal(f)}` : f.frente}
         tone={tom as SectionTone}
         title={
           <>
@@ -126,7 +131,9 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
           </>
         }
         description={
-          principal
+          principal && OBJETIVO[f.frente]
+            ? `${plataformas(f)} · ${principal.estrategia} com objetivo de ${OBJETIVO[f.frente]}, de ${fmtMesAnoLongo(f.inicio)} a ${fmtMesAnoLongo(f.fim)}: ${fmtMil(f.investimento)} em ${campanhas(f.campanhas)}. A métrica principal são os ${metricaPrincipal(principal).rotulo} (${metricaPrincipal(principal).custoRotulo}): ${fmtMetricaPrincipal(principal)}.`
+            : principal
             ? `${fmtMil(f.investimento)} em ${campanhas(f.campanhas)} ${nasPlataformas(f)}, de ${fmtDia(f.inicio, ANO)} a ${fmtDia(f.fim, ANO)}. ${
                 pequena
                   ? `Uma só estratégia, ${principal.estrategia}: ${fmtMetricaPrincipal(principal)}.`

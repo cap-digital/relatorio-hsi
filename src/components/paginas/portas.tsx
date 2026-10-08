@@ -11,6 +11,8 @@ export interface Porta {
   titulo: string;
   numero: string;
   legenda: string;
+  /** Linha extra no estilo da legenda (ex.: plataforma · estratégia · período). */
+  nota?: string;
   texto: string;
   tom: "amber" | "copper" | "dusk" | "neutral";
 }
@@ -36,6 +38,7 @@ export function PortasCards({ portas }: { portas: Porta[] }) {
             <div>
               <span className={cn("display block leading-none tracking-[-0.04em] tabular", tres ? "text-[clamp(2.6rem,4.2vw,4rem)]" : "text-[clamp(3rem,5vw,4.5rem)]", TOM[p.tom])}>{p.numero}</span>
               <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] text-text-3">{p.legenda}</span>
+              {p.nota && <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.14em] text-text-3">{p.nota}</span>}
               <p className="mt-6 text-[15px] leading-relaxed text-text-2">{p.texto}</p>
             </div>
           </>
