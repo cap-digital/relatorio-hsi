@@ -22,6 +22,15 @@ const COR = { amber: "var(--amber)", dusk: "var(--dusk-2)", copper: "var(--coppe
 /** KpiTile e ChartFrame chamam o creme de "default". */
 const tomKpi = (t: Porta["tom"]): KpiTone => (t === "neutral" ? "default" : t);
 const ANO = s.periodo.inicio.slice(0, 4);
+/**
+ * Os criativos do snapshot são uma seleção (os de maior entrega), não o total do ano.
+ * Totais fixos: o relatório não será mais atualizado.
+ */
+const CRIATIVOS_NO_ANO: Record<string, string> = {
+  "Institucional AON": "Seleção das peças de maior entrega — ao longo do ano foram mais de 30 criativos, além dos anúncios de texto na busca.",
+  "Faz Bem": "Seleção das peças de maior entrega — ao longo do ano foram mais de 40 criativos.",
+};
+
 /** Objetivo da campanha, quando o cartão e a seção o explicitam (não vem do snapshot). */
 const OBJETIVO: Record<string, string> = { Curativos: "tráfego" };
 const COR_PLATAFORMA: Record<string, string> = { Meta: "var(--amber)", Google: "var(--dusk-2)" };
@@ -178,7 +187,15 @@ function SecaoFrente({ frente: f, index }: { frente: Frente; index: string }) {
 
       {/* Frentes maiores: criativos em seção própria (uma página a mais no PDF, sem zoom excessivo). */}
       {!pequena && (
-        <Section eyebrow={`${f.frente} · ${criativos.length} criativos`} tone={tom as SectionTone}>
+        <Section
+          eyebrow={`${f.frente} · alguns dos criativos veiculados`}
+          description={
+            CRIATIVOS_NO_ANO[f.frente] ? (
+              <span className="block font-mono text-[11.5px] leading-relaxed text-text-3">{CRIATIVOS_NO_ANO[f.frente]}</span>
+            ) : undefined
+          }
+          tone={tom as SectionTone}
+        >
           {grade}
         </Section>
       )}

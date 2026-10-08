@@ -259,7 +259,7 @@ export default function Midia() {
 
       <Section
         index="07"
-        eyebrow="Criativos"
+        eyebrow="Alguns dos criativos veiculados · seleção por entrega"
         title={
           <>
             As peças que <em>mais apareceram.</em>
