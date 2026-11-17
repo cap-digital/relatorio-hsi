@@ -20,9 +20,15 @@ export function fmtCompact(v: number, decimals = 1): string {
   return fmtNum(v, 0);
 }
 
+/**
+ * Valor em R$. Sem abreviação, sempre com centavos: "R$ 1,10", "R$ 5.500,00".
+ * `compact` abrevia a partir de mil ("R$ 128,8 mil", casas = `decimals`, padrão 1); abaixo de mil, centavos
+ * ("R$ 873,07"), salvo `decimals: 0` explícito (rótulos de eixo: "R$ 0").
+ */
 export function fmtBRL(v: number, opts: { compact?: boolean; decimals?: number } = {}): string {
   if (opts.compact && Math.abs(v) >= 1e3) return `R$ ${fmtCompact(v, opts.decimals ?? 1)}`;
-  return nf({ style: "currency", currency: "BRL", maximumFractionDigits: opts.decimals ?? 0, minimumFractionDigits: opts.decimals ?? 0 }).format(v);
+  const casas = opts.compact ? (opts.decimals === 0 ? 0 : 2) : (opts.decimals ?? 2);
+  return nf({ style: "currency", currency: "BRL", maximumFractionDigits: casas, minimumFractionDigits: casas }).format(v);
 }
 
 /** "R$ 129,3 mil" — milhares com uma casa fixa, como na tabela de referência do relatório. */

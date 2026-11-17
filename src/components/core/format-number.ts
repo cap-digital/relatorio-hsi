@@ -2,10 +2,10 @@
  * pt-BR number formatting for Counter/KpiTile. Mirrors the rules of `src/data/format.ts`
  * (kept local so core never depends on the data layer).
  *   number:          1.234.567
- *   currency:        R$ 1.980.000
+ *   currency:        R$ 1,10 · R$ 1.980.000,00   (centavos sempre fixos: `decimals`, padrão 2)
  *   percent:         12,4%        (v in 0–100)
  *   compact:         12,4 mi · 812 mil · 1,2 bi
- *   compactCurrency: R$ 1,98 mi · R$ 79,0 mil (casas fixas = decimals)
+ *   compactCurrency: R$ 1,98 mi · R$ 79,0 mil (casas fixas = decimals) · abaixo de mil: R$ 873,07 (sempre 2)
  */
 export type CounterFormat = "number" | "currency" | "percent" | "compact" | "compactCurrency";
 
@@ -47,8 +47,11 @@ export function formatCounterValue(v: number, format: CounterFormat = "number", 
   const safe = Number.isFinite(v) ? v : 0;
 
   switch (format) {
-    case "currency":
-      return nf({ style: "currency", currency: "BRL", ...fraction(decimals ?? 0, fixedFraction) }).format(safe);
+    case "currency": {
+      // Valor em R$ sem abreviação: casas sempre fixas (R$ 1,10, nunca R$ 1,1).
+      const casas = fixedFraction ?? decimals ?? 2;
+      return nf({ style: "currency", currency: "BRL", ...fraction(casas, casas) }).format(safe);
+    }
     case "percent":
       return `${nf(fraction(decimals ?? 1, fixedFraction ?? decimals ?? 1)).format(safe)}%`;
     case "compact": {
@@ -58,7 +61,9 @@ export function formatCounterValue(v: number, format: CounterFormat = "number", 
     }
     case "compactCurrency": {
       const { div, unit } = compactUnit(Math.abs(unitOf ?? safe));
-      const n = nf({ style: "currency", currency: "BRL", ...fraction(decimals ?? 2, fixedFraction ?? decimals) }).format(safe / div);
+      // Com unidade (mil/mi), casas fixas = decimals; sem unidade (< R$ 1 mil), centavos: sempre 2.
+      const casas = fixedFraction ?? (unit ? (decimals ?? 1) : 2);
+      const n = nf({ style: "currency", currency: "BRL", ...fraction(casas, casas) }).format(safe / div);
       return unit ? `${n} ${unit}` : n;
     }
     default:
