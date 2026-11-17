@@ -1976,36 +1976,6 @@
       "impressoes": 2,
       "cliques": 1,
       "ctr": 0.5
-     },
-     {
-      "termo": "faz bem bem estar",
-      "impressoes": 27,
-      "cliques": 0,
-      "ctr": 0.0
-     },
-     {
-      "termo": "programa faz bem",
-      "impressoes": 4,
-      "cliques": 0,
-      "ctr": 0.0
-     },
-     {
-      "termo": "orientação em saúde",
-      "impressoes": 1,
-      "cliques": 0,
-      "ctr": 0.0
-     },
-     {
-      "termo": "programa de saúde",
-      "impressoes": 1,
-      "cliques": 0,
-      "ctr": 0.0
-     },
-     {
-      "termo": "santa casa salvador",
-      "impressoes": 1,
-      "cliques": 0,
-      "ctr": 0.0
      }
     ]
    },
@@ -2013,12 +1983,16 @@
     "Institucional AON": {
      "termos": 88,
      "cliques": 54880,
-     "impressoes": 224315
+     "impressoes": 224315,
+     "cliquesPesquisa": 54880,
+     "completa": true
     },
     "Faz Bem": {
      "termos": 15,
      "cliques": 596,
-     "impressoes": 12933
+     "impressoes": 12933,
+     "cliquesPesquisa": 1272,
+     "completa": false
     }
    }
   }

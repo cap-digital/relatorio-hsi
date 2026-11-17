@@ -10,6 +10,14 @@ import { BotaoVerTodos } from "./ver-todos";
 const FRENTES = ["Institucional AON", "Faz Bem"] as const;
 const INICIAL = 10;
 export const NOTA_PALAVRAS_CHAVE = "Sem custo por palavra-chave na fonte. Não inclui a campanha Curativos.";
+/** Ressalva da frente cuja fonte de palavras-chave não cobre os cliques de Pesquisa (totais.completa = false). */
+const RESSALVA: Record<string, string> = {
+  "Faz Bem": "A fonte de palavras-chave do Faz Bem está incompleta em jan–mar; o ranking mostra os termos registrados.",
+};
+const ressalva = (dados: Dados, frente: string): string | null =>
+  dados.totais[frente]?.completa === false
+    ? (RESSALVA[frente] ?? `A fonte de palavras-chave de ${frente} está incompleta; o ranking mostra os termos registrados.`)
+    : null;
 
 function itens(lista: PalavraChave[]): HBarItem[] {
   return lista.map((p) => ({
@@ -25,15 +33,29 @@ function itens(lista: PalavraChave[]): HBarItem[] {
 function Resumo({ dados, frente }: { dados: Dados; frente: string }) {
   const t = dados.totais[frente];
   if (!t) return null;
+  // Fonte incompleta: os totais não representam a frente — fica só o nº de termos.
   return (
     <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3">
-      {fmtNum(t.termos)} termos distintos · {fmtNum(t.cliques)} cliques · {fmtNum(t.impressoes)} impressões
+      {fmtNum(t.termos)} termos distintos
+      {t.completa && (
+        <>
+          {" "}
+          · {fmtNum(t.cliques)} cliques · {fmtNum(t.impressoes)} impressões
+        </>
+      )}
     </p>
   );
 }
 
-export function NotaPalavrasChave({ className }: { className?: string }) {
-  return <p className={cn("font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3", className)}>{NOTA_PALAVRAS_CHAVE}</p>;
+export function NotaPalavrasChave({ ressalvas = [], className }: { ressalvas?: string[]; className?: string }) {
+  return (
+    <div className={cn("flex flex-col gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3", className)}>
+      <p>{NOTA_PALAVRAS_CHAVE}</p>
+      {ressalvas.map((r) => (
+        <p key={r}>{r}</p>
+      ))}
+    </div>
+  );
 }
 
 /** Tela: abas por frente (mesmo padrão do EntregaPublico), top 10 e "Ver todos" até 15. */
@@ -69,7 +91,7 @@ export function PalavrasChave({ dados }: { dados: Dados }) {
       </div>
       <HBars key={frente} className="mt-6" items={itens(aberto ? lista : lista.slice(0, INICIAL))} />
       <BotaoVerTodos aberto={aberto} total={lista.length} inicial={INICIAL} onToggle={() => setAberto((v) => !v)} />
-      <NotaPalavrasChave className="mt-6" />
+      <NotaPalavrasChave className="mt-6" ressalvas={[ressalva(dados, frente)].filter((r): r is string => !!r)} />
     </div>
   );
 }
@@ -91,7 +113,7 @@ export function PalavrasChavePdf({ dados }: { dados: Dados }) {
           />
         </div>
       ))}
-      <NotaPalavrasChave />
+      <NotaPalavrasChave ressalvas={FRENTES.map((f) => ressalva(dados, f)).filter((r): r is string => !!r)} />
     </div>
   );
 }

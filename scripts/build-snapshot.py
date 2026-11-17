@@ -266,8 +266,9 @@ def frente_keyword(campanha):
 
 
 def palavras_chave(linhas, inicio, fim, cliques_pesquisa, top=15):
-    """googlekeywords → {porFrente: {frente: [top por cliques]}, totais: {frente: {...}}}.
-    Imprime a conferência (cliques das keywords × cliques de Pesquisa do consolidado, por frente)."""
+    """googlekeywords → {porFrente: {frente: [top por cliques, só termos com clique]}, totais: {frente: {...}}}.
+    Conferência (cliques das keywords × cliques de Pesquisa do consolidado, por frente): impressa no terminal e
+    gravada em totais (cliquesPesquisa, completa) — a interface esconde os totais da frente incompleta."""
     acc = defaultdict(lambda: {"impressoes": 0.0, "cliques": 0.0})
     vazias, fora, outras = 0, 0, defaultdict(int)
     for r in linhas:
@@ -296,14 +297,20 @@ def palavras_chave(linhas, inicio, fim, cliques_pesquisa, top=15):
     for frente in ("Institucional AON", "Faz Bem"):
         termos = [(t, m) for (f, t), m in acc.items() if f == frente]
         termos.sort(key=lambda tm: (-tm[1]["cliques"], -tm[1]["impressoes"], tm[0]))
+        com_clique = [(t, m) for t, m in termos if round(m["cliques"]) > 0]  # termo com 0 clique não entra no ranking
         por_frente[frente] = [{"termo": t, "impressoes": round(m["impressoes"]), "cliques": round(m["cliques"]),
-                               "ctr": round(m["cliques"] / m["impressoes"], 5) if m["impressoes"] else 0} for t, m in termos[:top]]
-        totais[frente] = {"termos": len(termos), "cliques": round(sum(m["cliques"] for _, m in termos)),
-                          "impressoes": round(sum(m["impressoes"] for _, m in termos))}
+                               "ctr": round(m["cliques"] / m["impressoes"], 5) if m["impressoes"] else 0} for t, m in com_clique[:top]]
+        cliques = round(sum(m["cliques"] for _, m in termos))
+        cons = round(cliques_pesquisa.get(frente, 0))
+        totais[frente] = {"termos": len(termos), "cliques": cliques,
+                          "impressoes": round(sum(m["impressoes"] for _, m in termos)),
+                          "cliquesPesquisa": cons,
+                          # Fonte completa: as keywords cobrem os cliques de Pesquisa da frente (tolerância de 1%).
+                          "completa": bool(cons) and cliques >= cons * 0.99}
 
     print("conferência · cliques das palavras-chave × cliques de Pesquisa no consolidado (mesmo período):")
     for frente, tt in totais.items():
-        cons = round(cliques_pesquisa.get(frente, 0))
+        cons = tt["cliquesPesquisa"]
         dif = tt["cliques"] - cons
         pct = f"{dif / cons * 100:+.1f}%" if cons else "—"
         print(f"  - {frente}: keywords {tt['cliques']:,} × consolidado {cons:,} → diferença {dif:+,} ({pct})".replace(",", "."))

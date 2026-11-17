@@ -43,6 +43,7 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 - **Frentes:** Institucional AON R$ 81.250 · Faz Bem R$ 40.500 · Curativos R$ 6.000 · Checkup Torcedor R$ 1.000 (cada uma igual ao contratado).
 - **Curativos:** R$ 6,0 mil · 131.246 impressões · 5.291 cliques (PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026, contratado R$ 6.000).
 - **Busca Google:** 61,4 mil cliques · CTR 16,4% · CPC R$ 0,63 (inclui Curativos).
+- **Palavras-chave (01/01 → 31/10):** Institucional AON 88 termos · 54.880 cliques (= Pesquisa AON no consolidado) · Faz Bem 15 termos, 10 com clique · 596 cliques nas keywords contra 1.272 de Pesquisa no consolidado (fonte incompleta).
 - **Outubro (fechado):** R$ 8,0 mil · AON só Google Pesquisa R$ 3.000 · Faz Bem: Display R$ 1.500 · In-Stream R$ 1.500 · Meta Alcance R$ 1.500 · Meta Posts de oportunidade R$ 500.
 - **Grupos (amostra):** AON Meta Engajamento jun R$ 5.500 · Faz Bem P3 Display (mai) R$ 1.500 · P4 In-Stream (jun) R$ 1.500 · P5 Display (jul) R$ 1.500.
 - **Google:** de dezembro/2025 (Curativos) a outubro. **Meta:** entra em maio (12/05).
@@ -162,6 +163,13 @@ O hero tem KPIs de Investimento · Impressões · CPM · CTR · Cliques. Seçõe
 
 1. **Estratégias:** dois `HBars` lado a lado, investimento por estratégia e cliques por estratégia. O `sub` mostra plataforma, CTR e CPC.
 2. **Busca no Google:** KPIs de cliques, CTR e CPC mais a lista dos 6 anúncios de texto (`busca.anuncios`). A lista segue o padrão da seção "Materiais" do Jaques, com títulos e números em mono.
+   - **Palavras-chave** (`busca.palavrasChave`): bloco "Palavras-chave que mais trouxeram cliques" logo abaixo, com abas Institucional AON / Faz Bem (padrão de abas do `EntregaPublico`), `HBars` com termo, cliques e "X impr. · CTR Y%", top 10 + "Ver todos" até 15.
+     - **Fonte:** array `googlekeywords` da função do Supabase (aba Google_keywords: date, campaign, impressions, clicks, engagements, keyword_text). Sem custo por palavra-chave e sem Curativos.
+     - **Regras (no `build-snapshot.py`):** descarta `keyword_text` vazio (Display); só datas de 01/01/2026 até o `--ate`; frente pelo nome da campanha ("FAZ BEM" → Faz Bem; senão "INSTITUCIONAL" ou "AON" → Institucional AON; outras são ignoradas e listadas no terminal); termo normalizado (minúsculas, trim, espaços duplicados), mantido como vem da fonte; agregado por frente + termo; ranking por cliques, **sem termos com 0 clique**; top 15.
+     - **Conferência:** o script compara os cliques das keywords com os cliques de Pesquisa da frente no consolidado (mesmo período) e grava `totais[frente].cliquesPesquisa` e `completa` (cobertura ≥ 99%).
+     - **Ressalva do Faz Bem:** a fonte de palavras-chave do Faz Bem está incompleta em jan–mar (596 de 1.272 cliques; abril bate). Com `completa: false`, o resumo da aba mostra só o nº de termos (sem cliques e impressões) e a observação ganha: "A fonte de palavras-chave do Faz Bem está incompleta em jan–mar; o ranking mostra os termos registrados." Na aba AON (100%), o resumo mostra termos, cliques e impressões.
+     - Observação fixa, em mono pequeno: "Sem custo por palavra-chave na fonte. Não inclui a campanha Curativos."
+     - **PDF:** página própria logo depois da Busca no Google (bloco `.so-pdf`), sem abas, com as duas frentes uma abaixo da outra, top 10 cada (em duas colunas: 1–5 | 6–10).
 3. **Público:**
    - `EntregaPublico` com os dados do Meta. As abas passam a ser **Impressões / Cliques / Investimento / Engajamento**, sem "Alcance".
    - Ao lado, `HBars` de idade do Google (`publico.googleIdade`) com a nota "só Faz Bem".

@@ -103,6 +103,10 @@ export interface TotaisPalavrasChave {
   termos: number;
   cliques: number;
   impressoes: number;
+  /** Cliques de Pesquisa da frente no consolidado, mesmo período (conferência). */
+  cliquesPesquisa: number;
+  /** As palavras-chave cobrem os cliques de Pesquisa (±1%). Se não, a interface mostra só o nº de termos e a ressalva. */
+  completa: boolean;
 }
 
 /** Google Pesquisa por palavra-chave (aba Google_keywords). Sem custo na fonte; sem Curativos. */
