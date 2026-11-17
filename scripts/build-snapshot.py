@@ -23,6 +23,8 @@ Regras (nada estimado além do indicado):
   - "#DIV/0!" e vazios em Investimento contam 0. Linhas sem data são descartadas.
   - YouTube: a fonte traz a TAXA de cada quartil por dia; contagem = taxa × impressões.
   - "Pesquisa" e "Search" (Google) viram a mesma estratégia: "Pesquisa".
+  - Palavras-chave (googlekeywords): só termos não vazios, de 01/01 do ano ao corte; frente pelo nome da campanha
+    ("FAZ BEM" → Faz Bem; "INSTITUCIONAL"/"AON" → Institucional AON). Sem custo por palavra-chave na fonte.
 """
 
 import csv
@@ -254,6 +256,60 @@ def cortar(linhas, campo, ate):
     return ficam, len(linhas) - len(ficam)
 
 
+def frente_keyword(campanha):
+    c = (campanha or "").upper()
+    if "FAZ BEM" in c:
+        return "Faz Bem"
+    if "INSTITUCIONAL" in c or "AON" in c:
+        return "Institucional AON"
+    return None
+
+
+def palavras_chave(linhas, inicio, fim, cliques_pesquisa, top=15):
+    """googlekeywords → {porFrente: {frente: [top por cliques]}, totais: {frente: {...}}}.
+    Imprime a conferência (cliques das keywords × cliques de Pesquisa do consolidado, por frente)."""
+    acc = defaultdict(lambda: {"impressoes": 0.0, "cliques": 0.0})
+    vazias, fora, outras = 0, 0, defaultdict(int)
+    for r in linhas:
+        termo = " ".join((r.get("keyword_text") or "").lower().split())
+        if not termo:
+            vazias += 1
+            continue
+        dia = (r.get("date") or "")[:10]
+        if not (inicio <= dia <= fim):
+            fora += 1
+            continue
+        frente = frente_keyword(r.get("campaign"))
+        if not frente:
+            outras[r.get("campaign") or "(sem campanha)"] += 1
+            continue
+        x = acc[(frente, termo)]
+        x["impressoes"] += num(r.get("impressions"))
+        x["cliques"] += num(r.get("clicks"))
+    print(f"palavras-chave: {len(linhas)} linhas · {vazias} sem termo (Display) · {fora} fora de {inicio} → {fim}")
+    if outras:
+        print("palavras-chave: campanhas sem frente reconhecida (ignoradas):")
+        for c, n in sorted(outras.items()):
+            print(f"  - {c}: {n} linhas")
+
+    por_frente, totais = {}, {}
+    for frente in ("Institucional AON", "Faz Bem"):
+        termos = [(t, m) for (f, t), m in acc.items() if f == frente]
+        termos.sort(key=lambda tm: (-tm[1]["cliques"], -tm[1]["impressoes"], tm[0]))
+        por_frente[frente] = [{"termo": t, "impressoes": round(m["impressoes"]), "cliques": round(m["cliques"]),
+                               "ctr": round(m["cliques"] / m["impressoes"], 5) if m["impressoes"] else 0} for t, m in termos[:top]]
+        totais[frente] = {"termos": len(termos), "cliques": round(sum(m["cliques"] for _, m in termos)),
+                          "impressoes": round(sum(m["impressoes"] for _, m in termos))}
+
+    print("conferência · cliques das palavras-chave × cliques de Pesquisa no consolidado (mesmo período):")
+    for frente, tt in totais.items():
+        cons = round(cliques_pesquisa.get(frente, 0))
+        dif = tt["cliques"] - cons
+        pct = f"{dif / cons * 100:+.1f}%" if cons else "—"
+        print(f"  - {frente}: keywords {tt['cliques']:,} × consolidado {cons:,} → diferença {dif:+,} ({pct})".replace(",", "."))
+    return {"porFrente": por_frente, "totais": totais}
+
+
 def main(src, dst, baixar_imagens, curativos=None, ate=None):
     raw = json.load(open(src, encoding="utf-8"))
     avisos = []
@@ -398,10 +454,17 @@ def main(src, dst, baixar_imagens, curativos=None, ate=None):
         soma(busca, r)
         soma(anuncios[r["Nome Criativo"]], r)
         anuncio_frente[r["Nome Criativo"]] = r["_frente"]
-    busca_out = fecha(busca, {"anuncios": [
-        fecha(m, {"titulos": [t.strip() for t in nome.split("|") if t.strip()][:4], "frente": anuncio_frente[nome]})
-        for nome, m in sorted(anuncios.items(), key=lambda kv: -kv[1]["cliques"])[:6]
-    ]})
+    cliques_pesquisa = defaultdict(float)
+    for r in busca_rows:
+        if r["_dia"] >= f"{ano}-01-01":
+            cliques_pesquisa[r["_frente"]] += num(r.get("Cliques"))
+    busca_out = fecha(busca, {
+        "anuncios": [
+            fecha(m, {"titulos": [t.strip() for t in nome.split("|") if t.strip()][:4], "frente": anuncio_frente[nome]})
+            for nome, m in sorted(anuncios.items(), key=lambda kv: -kv[1]["cliques"])[:6]
+        ],
+        "palavrasChave": palavras_chave(raw.get("googlekeywords", []), f"{ano}-01-01", ate or fim, cliques_pesquisa),
+    })
 
     # ---------------------------------------------------------------- público
     meta_rows = [r for r in rows if r["_plat"] == "Meta"]

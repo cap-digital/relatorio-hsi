@@ -20,10 +20,12 @@ export interface HBarsProps {
   items: HBarItem[];
   max?: number;
   className?: string;
+  /** Sem animação: barras já na largura final (blocos que só aparecem no PDF, onde o whileInView nunca dispara). */
+  estatico?: boolean;
 }
 
 /** Ranking horizontal animado — rótulo em cima, barra fina, valor à direita. */
-export function HBars({ items, max, className }: HBarsProps) {
+export function HBars({ items, max, className, estatico }: HBarsProps) {
   const top = max ?? Math.max(...items.map((i) => i.value), 1);
   return (
     <ol className={cn("flex flex-col gap-4", className)}>
@@ -34,14 +36,18 @@ export function HBars({ items, max, className }: HBarsProps) {
             <span className="shrink-0 font-mono text-[12.5px] text-text tabular">{it.display}</span>
           </div>
           <div className="relative mt-2 h-[6px] overflow-hidden rounded-full bg-surface-3">
-            <motion.div
-              className="absolute inset-y-0 left-0 rounded-full"
-              style={{ background: it.color ?? "var(--amber)" }}
-              initial={{ width: 0 }}
-              whileInView={{ width: `${(it.value / top) * 100}%` }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-            />
+            {estatico ? (
+              <div className="absolute inset-y-0 left-0 rounded-full" style={{ background: it.color ?? "var(--amber)", width: `${(it.value / top) * 100}%` }} />
+            ) : (
+              <motion.div
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{ background: it.color ?? "var(--amber)" }}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${(it.value / top) * 100}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              />
+            )}
           </div>
           {it.sub && <p className="mt-1.5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-text-3">{it.sub}</p>}
         </li>

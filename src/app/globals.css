@@ -638,6 +638,11 @@ html.lenis body {
   background: repeating-linear-gradient(135deg, rgba(95, 194, 174, 0.85) 0 3px, rgba(95, 194, 174, 0.25) 3px 6px);
 }
 
+/* Blocos só do PDF (ex.: palavras-chave sem abas): escondidos na tela. */
+.so-pdf {
+  display: none;
+}
+
 /* ---------------------------------------------------------- exportar PDF */
 /* /api/pdf abre /relatorio num Chrome headless, rola, liga .exportando e imprime
    em páginas de 1440×1018px (largura do layout, proporção A4 deitada). */
@@ -656,6 +661,9 @@ html.exportando .relatorio * {
     background: var(--ink) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+  .so-pdf {
+    display: block !important;
   }
   .hub-nav,
   .no-print,

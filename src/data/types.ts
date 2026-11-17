@@ -90,8 +90,31 @@ export interface AnuncioBusca extends Metricas {
   frente: string;
 }
 
+export interface PalavraChave {
+  /** Termo normalizado (minúsculas, sem espaços duplicados). */
+  termo: string;
+  impressoes: number;
+  cliques: number;
+  ctr: number;
+}
+
+export interface TotaisPalavrasChave {
+  /** Termos distintos da frente no período. */
+  termos: number;
+  cliques: number;
+  impressoes: number;
+}
+
+/** Google Pesquisa por palavra-chave (aba Google_keywords). Sem custo na fonte; sem Curativos. */
+export interface PalavrasChave {
+  /** Top 15 por cliques, por frente ("Institucional AON", "Faz Bem"). */
+  porFrente: Record<string, PalavraChave[]>;
+  totais: Record<string, TotaisPalavrasChave>;
+}
+
 export interface Busca extends Metricas {
   anuncios: AnuncioBusca[];
+  palavrasChave: PalavrasChave;
 }
 
 export interface PublicoMeta {

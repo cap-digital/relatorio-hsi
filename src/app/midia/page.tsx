@@ -5,6 +5,7 @@ import { Section } from "@/components/core/section";
 import { PageHero } from "@/components/hero/page-hero";
 import { CriativosGrid } from "@/components/paginas/criativos";
 import { EntregaPublico } from "@/components/paginas/entrega-publico";
+import { PalavrasChave, PalavrasChavePdf } from "@/components/paginas/palavras-chave";
 import { HBars } from "@/components/viz/hbars";
 import { Retencao, SplitBar } from "@/components/viz/small";
 import { CRIATIVOS_NO_ANO, fmtBRL, fmtCompact, fmtExtenso, fmtMetricaPrincipal, fmtMil, fmtNum, fmtPct } from "@/data/format";
@@ -130,6 +131,32 @@ export default function Midia() {
             </ul>
           </ChartFrame>
         </div>
+        {/* Tela: abas por frente. No PDF este bloco sai e as palavras-chave ganham a página seguinte (sem abas). */}
+        <ChartFrame
+          eyebrow="Google Pesquisa · palavras-chave"
+          title="Palavras-chave que mais trouxeram cliques"
+          subtitle="Os termos comprados na busca, por frente, ordenados por cliques"
+          minHeight={420}
+          tone="dusk"
+          className="no-print mt-4"
+        >
+          <PalavrasChave dados={b.palavrasChave} />
+        </ChartFrame>
+      </Section>
+
+      {/* Só no PDF: uma página com as duas frentes, uma abaixo da outra, top 10 cada. */}
+      <Section
+        index="02"
+        eyebrow="Busca no Google · palavras-chave"
+        tone="dusk"
+        className="so-pdf"
+        title={
+          <>
+            Palavras-chave que <em>mais trouxeram cliques.</em>
+          </>
+        }
+      >
+        <PalavrasChavePdf dados={b.palavrasChave} />
       </Section>
 
       <Section

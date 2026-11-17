@@ -4,7 +4,7 @@
   "inicio": "2026-01-01",
   "fim": "2026-10-31"
  },
- "atualizadoEm": "2026-11-17T18:38:12.553Z",
+ "atualizadoEm": "2026-11-17T20:34:45.614Z",
  "totais": {
   "investimento": 128750.0,
   "impressoes": 9663714,
@@ -1821,7 +1821,207 @@
     ],
     "frente": "Institucional AON"
    }
-  ]
+  ],
+  "palavrasChave": {
+   "porFrente": {
+    "Institucional AON": [
+     {
+      "termo": "hospital santa isabel",
+      "impressoes": 82839,
+      "cliques": 23068,
+      "ctr": 0.27847
+     },
+     {
+      "termo": "santa isabel",
+      "impressoes": 43832,
+      "cliques": 12807,
+      "ctr": 0.29218
+     },
+     {
+      "termo": "hospital particular",
+      "impressoes": 33272,
+      "cliques": 4831,
+      "ctr": 0.1452
+     },
+     {
+      "termo": "ortopedista",
+      "impressoes": 18116,
+      "cliques": 3317,
+      "ctr": 0.1831
+     },
+     {
+      "termo": "cardiologia",
+      "impressoes": 9303,
+      "cliques": 1946,
+      "ctr": 0.20918
+     },
+     {
+      "termo": "hospitalsantaizabel org br",
+      "impressoes": 4333,
+      "cliques": 1546,
+      "ctr": 0.3568
+     },
+     {
+      "termo": "https www hospitalsantaizabel org br",
+      "impressoes": 2697,
+      "cliques": 1413,
+      "ctr": 0.52392
+     },
+     {
+      "termo": "http www hospitalsantaizabel org br",
+      "impressoes": 4540,
+      "cliques": 1035,
+      "ctr": 0.22797
+     },
+     {
+      "termo": "site hospital santa izabel",
+      "impressoes": 4064,
+      "cliques": 1034,
+      "ctr": 0.25443
+     },
+     {
+      "termo": "hospital santa izabel em",
+      "impressoes": 3003,
+      "cliques": 774,
+      "ctr": 0.25774
+     },
+     {
+      "termo": "exame cardiologico",
+      "impressoes": 2350,
+      "cliques": 667,
+      "ctr": 0.28383
+     },
+     {
+      "termo": "hospital santa isabel exames",
+      "impressoes": 1813,
+      "cliques": 383,
+      "ctr": 0.21125
+     },
+     {
+      "termo": "plano de saúde salvador",
+      "impressoes": 1261,
+      "cliques": 222,
+      "ctr": 0.17605
+     },
+     {
+      "termo": "hospital santa isabel em",
+      "impressoes": 905,
+      "cliques": 194,
+      "ctr": 0.21436
+     },
+     {
+      "termo": "hospital santa izabel e particular",
+      "impressoes": 787,
+      "cliques": 193,
+      "ctr": 0.24524
+     }
+    ],
+    "Faz Bem": [
+     {
+      "termo": "plano de saúde",
+      "impressoes": 7771,
+      "cliques": 397,
+      "ctr": 0.05109
+     },
+     {
+      "termo": "saúde e bem estar",
+      "impressoes": 1920,
+      "cliques": 93,
+      "ctr": 0.04844
+     },
+     {
+      "termo": "hábitos saudáveis",
+      "impressoes": 1052,
+      "cliques": 48,
+      "ctr": 0.04563
+     },
+     {
+      "termo": "informações de saúde",
+      "impressoes": 1651,
+      "cliques": 41,
+      "ctr": 0.02483
+     },
+     {
+      "termo": "cuidado com a saúde",
+      "impressoes": 385,
+      "cliques": 10,
+      "ctr": 0.02597
+     },
+     {
+      "termo": "qualidade de vida",
+      "impressoes": 60,
+      "cliques": 2,
+      "ctr": 0.03333
+     },
+     {
+      "termo": "santa casa",
+      "impressoes": 30,
+      "cliques": 2,
+      "ctr": 0.06667
+     },
+     {
+      "termo": "rotina saudável",
+      "impressoes": 22,
+      "cliques": 1,
+      "ctr": 0.04545
+     },
+     {
+      "termo": "projeto faz bem",
+      "impressoes": 6,
+      "cliques": 1,
+      "ctr": 0.16667
+     },
+     {
+      "termo": "faz bem saúde",
+      "impressoes": 2,
+      "cliques": 1,
+      "ctr": 0.5
+     },
+     {
+      "termo": "faz bem bem estar",
+      "impressoes": 27,
+      "cliques": 0,
+      "ctr": 0.0
+     },
+     {
+      "termo": "programa faz bem",
+      "impressoes": 4,
+      "cliques": 0,
+      "ctr": 0.0
+     },
+     {
+      "termo": "orientação em saúde",
+      "impressoes": 1,
+      "cliques": 0,
+      "ctr": 0.0
+     },
+     {
+      "termo": "programa de saúde",
+      "impressoes": 1,
+      "cliques": 0,
+      "ctr": 0.0
+     },
+     {
+      "termo": "santa casa salvador",
+      "impressoes": 1,
+      "cliques": 0,
+      "ctr": 0.0
+     }
+    ]
+   },
+   "totais": {
+    "Institucional AON": {
+     "termos": 88,
+     "cliques": 54880,
+     "impressoes": 224315
+    },
+    "Faz Bem": {
+     "termos": 15,
+     "cliques": 596,
+     "impressoes": 12933
+    }
+   }
+  }
  },
  "publico": {
   "meta": [
