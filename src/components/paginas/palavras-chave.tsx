@@ -9,7 +9,18 @@ import { BotaoVerTodos } from "./ver-todos";
 
 const FRENTES = ["Institucional AON", "Faz Bem"] as const;
 const INICIAL = 10;
+const MAXIMO = 15;
+/** No ranking por CTR, termos com menos impressões que isso ficam de fora (2 impr. e 1 clique = 50%). */
+const CTR_MIN_IMPRESSOES = 50;
 export const NOTA_PALAVRAS_CHAVE = "Sem custo por palavra-chave na fonte. Não inclui a campanha Curativos.";
+const NOTA_CTR = `CTR considera termos com ${CTR_MIN_IMPRESSOES}+ impressões.`;
+
+type Metrica = "cliques" | "impressoes" | "ctr";
+const METRICAS: { k: Metrica; label: string }[] = [
+  { k: "cliques", label: "Cliques" },
+  { k: "impressoes", label: "Impressões" },
+  { k: "ctr", label: "CTR" },
+];
 /** Ressalva da frente cuja fonte de palavras-chave não cobre os cliques de Pesquisa (totais.completa = false). */
 const RESSALVA: Record<string, string> = {
   "Faz Bem": "A fonte de palavras-chave do Faz Bem está incompleta em jan–mar; o ranking mostra os termos registrados.",
@@ -19,15 +30,50 @@ const ressalva = (dados: Dados, frente: string): string | null =>
     ? (RESSALVA[frente] ?? `A fonte de palavras-chave de ${frente} está incompleta; o ranking mostra os termos registrados.`)
     : null;
 
-function itens(lista: PalavraChave[]): HBarItem[] {
+/** Ranking pela métrica (maior em cima; empate → cliques, depois o termo). No CTR, só termos com 50+ impressões. */
+function ranking(lista: PalavraChave[], m: Metrica): PalavraChave[] {
+  const base = m === "ctr" ? lista.filter((p) => p.impressoes >= CTR_MIN_IMPRESSOES) : lista;
+  return [...base].sort((a, b) => b[m] - a[m] || b.cliques - a.cliques || a.termo.localeCompare(b.termo, "pt-BR"));
+}
+
+const cliques = (n: number) => `${fmtNum(n)} ${n === 1 ? "clique" : "cliques"}`;
+
+/** A barra representa a métrica escolhida; o sub mostra as outras duas. */
+function itens(lista: PalavraChave[], m: Metrica = "cliques"): HBarItem[] {
   return lista.map((p) => ({
     key: p.termo,
     label: p.termo,
-    value: p.cliques,
-    display: fmtNum(p.cliques),
-    sub: `${fmtNum(p.impressoes)} impr. · CTR ${fmtPct(p.ctr, 1)}`,
+    value: p[m],
+    display: m === "ctr" ? fmtPct(p.ctr, 1) : fmtNum(p[m]),
+    sub:
+      m === "cliques"
+        ? `${fmtNum(p.impressoes)} impr. · CTR ${fmtPct(p.ctr, 1)}`
+        : m === "impressoes"
+          ? `${cliques(p.cliques)} · CTR ${fmtPct(p.ctr, 1)}`
+          : `${cliques(p.cliques)} · ${fmtNum(p.impressoes)} impr.`,
     color: "var(--dusk-2)",
   }));
+}
+
+function Pilulas<T extends string>({ rotulo, opcoes, ativo, onChange }: { rotulo: string; opcoes: { k: T; label: string }[]; ativo: T; onChange: (k: T) => void }) {
+  return (
+    <div role="tablist" aria-label={rotulo} className="flex flex-wrap gap-2">
+      {opcoes.map((o) => (
+        <button
+          key={o.k}
+          role="tab"
+          aria-selected={ativo === o.k}
+          onClick={() => onChange(o.k)}
+          className={cn(
+            "rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300",
+            ativo === o.k ? "border-transparent bg-text text-ink" : "border-line text-text-2 hover:border-line-strong hover:text-text",
+          )}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 function Resumo({ dados, frente }: { dados: Dados; frente: string }) {
@@ -36,7 +82,7 @@ function Resumo({ dados, frente }: { dados: Dados; frente: string }) {
   // Fonte incompleta: os totais não representam a frente — fica só o nº de termos.
   return (
     <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3">
-      {fmtNum(t.termos)} termos distintos
+      {fmtNum(t.termos)} {t.termos === 1 ? "termo" : "termos"} com clique
       {t.completa && (
         <>
           {" "}
@@ -47,10 +93,13 @@ function Resumo({ dados, frente }: { dados: Dados; frente: string }) {
   );
 }
 
-export function NotaPalavrasChave({ ressalvas = [], className }: { ressalvas?: string[]; className?: string }) {
+export function NotaPalavrasChave({ ressalvas = [], ctr = false, className }: { ressalvas?: string[]; ctr?: boolean; className?: string }) {
   return (
     <div className={cn("flex flex-col gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3", className)}>
-      <p>{NOTA_PALAVRAS_CHAVE}</p>
+      <p>
+        {NOTA_PALAVRAS_CHAVE}
+        {ctr && ` ${NOTA_CTR}`}
+      </p>
       {ressalvas.map((r) => (
         <p key={r}>{r}</p>
       ))}
@@ -58,40 +107,35 @@ export function NotaPalavrasChave({ ressalvas = [], className }: { ressalvas?: s
   );
 }
 
-/** Tela: abas por frente (mesmo padrão do EntregaPublico), top 10 e "Ver todos" até 15. */
+/** Tela: abas por frente e seletor de métrica (mesmo padrão do EntregaPublico); top 10 e "Ver todos" até 15. */
 export function PalavrasChave({ dados }: { dados: Dados }) {
-  const frentes = FRENTES.filter((f) => dados.porFrente[f]?.length);
-  const [frente, setFrente] = useState<string>(frentes[0] ?? FRENTES[0]);
+  const frentes = FRENTES.filter((f) => dados.porFrente[f]?.length).map((f) => ({ k: f as string, label: f as string }));
+  const [frente, setFrente] = useState<string>(frentes[0]?.k ?? FRENTES[0]);
+  const [metrica, setMetrica] = useState<Metrica>("cliques");
   const [aberto, setAberto] = useState(false);
-  const lista = dados.porFrente[frente] ?? [];
+  const lista = ranking(dados.porFrente[frente] ?? [], metrica).slice(0, MAXIMO);
 
   return (
     <div>
-      <div role="tablist" aria-label="Frente" className="flex flex-wrap gap-2">
-        {frentes.map((f) => (
-          <button
-            key={f}
-            role="tab"
-            aria-selected={frente === f}
-            onClick={() => {
-              setFrente(f);
-              setAberto(false);
-            }}
-            className={cn(
-              "rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300",
-              frente === f ? "border-transparent bg-text text-ink" : "border-line text-text-2 hover:border-line-strong hover:text-text",
-            )}
-          >
-            {f}
-          </button>
-        ))}
-      </div>
+      <Pilulas
+        rotulo="Frente"
+        opcoes={frentes}
+        ativo={frente}
+        onChange={(f) => {
+          setFrente(f);
+          setAberto(false);
+        }}
+      />
       <div className="mt-4">
         <Resumo dados={dados} frente={frente} />
       </div>
-      <HBars key={frente} className="mt-6" items={itens(aberto ? lista : lista.slice(0, INICIAL))} />
+      <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3">Ordenar por</span>
+        <Pilulas rotulo="Métrica" opcoes={METRICAS} ativo={metrica} onChange={setMetrica} />
+      </div>
+      <HBars key={`${frente}-${metrica}`} className="mt-6" items={itens(aberto ? lista : lista.slice(0, INICIAL), metrica)} />
       <BotaoVerTodos aberto={aberto} total={lista.length} inicial={INICIAL} onToggle={() => setAberto((v) => !v)} />
-      <NotaPalavrasChave className="mt-6" ressalvas={[ressalva(dados, frente)].filter((r): r is string => !!r)} />
+      <NotaPalavrasChave className="mt-6" ctr ressalvas={[ressalva(dados, frente)].filter((r): r is string => !!r)} />
     </div>
   );
 }
@@ -109,7 +153,7 @@ export function PalavrasChavePdf({ dados }: { dados: Dados }) {
           <HBars
             estatico
             className="mt-6 block columns-2 gap-x-14 [&>li]:mb-4 [&>li]:break-inside-avoid"
-            items={itens(dados.porFrente[f].slice(0, INICIAL))}
+            items={itens(ranking(dados.porFrente[f], "cliques").slice(0, INICIAL))}
           />
         </div>
       ))}

@@ -135,7 +135,7 @@ export default function Midia() {
         <ChartFrame
           eyebrow="Google Pesquisa · palavras-chave"
           title="Palavras-chave que mais trouxeram cliques"
-          subtitle="Os termos comprados na busca, por frente, ordenados por cliques"
+          subtitle="Os termos comprados na busca, por frente, ordenados pela métrica escolhida"
           minHeight={420}
           tone="dusk"
           className="no-print mt-4"

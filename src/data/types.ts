@@ -99,9 +99,10 @@ export interface PalavraChave {
 }
 
 export interface TotaisPalavrasChave {
-  /** Termos distintos da frente no período. */
+  /** Termos com pelo menos 1 clique (os do ranking). */
   termos: number;
   cliques: number;
+  /** Impressões dos termos com clique. */
   impressoes: number;
   /** Cliques de Pesquisa da frente no consolidado, mesmo período (conferência). */
   cliquesPesquisa: number;
@@ -111,7 +112,7 @@ export interface TotaisPalavrasChave {
 
 /** Google Pesquisa por palavra-chave (aba Google_keywords). Sem custo na fonte; sem Curativos. */
 export interface PalavrasChave {
-  /** Top 15 por cliques, por frente ("Institucional AON", "Faz Bem"). */
+  /** Todos os termos com pelo menos 1 clique, por frente ("Institucional AON", "Faz Bem"), ordenados por cliques. */
   porFrente: Record<string, PalavraChave[]>;
   totais: Record<string, TotaisPalavrasChave>;
 }

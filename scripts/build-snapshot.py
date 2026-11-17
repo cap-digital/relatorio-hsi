@@ -265,8 +265,9 @@ def frente_keyword(campanha):
     return None
 
 
-def palavras_chave(linhas, inicio, fim, cliques_pesquisa, top=15):
-    """googlekeywords → {porFrente: {frente: [top por cliques, só termos com clique]}, totais: {frente: {...}}}.
+def palavras_chave(linhas, inicio, fim, cliques_pesquisa):
+    """googlekeywords → {porFrente: {frente: [todos os termos com clique, por cliques]}, totais: {frente: {...}}}.
+    A interface reordena por cliques, impressões ou CTR e corta no top 10 / 15.
     Conferência (cliques das keywords × cliques de Pesquisa do consolidado, por frente): impressa no terminal e
     gravada em totais (cliquesPesquisa, completa) — a interface esconde os totais da frente incompleta."""
     acc = defaultdict(lambda: {"impressoes": 0.0, "cliques": 0.0})
@@ -299,11 +300,12 @@ def palavras_chave(linhas, inicio, fim, cliques_pesquisa, top=15):
         termos.sort(key=lambda tm: (-tm[1]["cliques"], -tm[1]["impressoes"], tm[0]))
         com_clique = [(t, m) for t, m in termos if round(m["cliques"]) > 0]  # termo com 0 clique não entra no ranking
         por_frente[frente] = [{"termo": t, "impressoes": round(m["impressoes"]), "cliques": round(m["cliques"]),
-                               "ctr": round(m["cliques"] / m["impressoes"], 5) if m["impressoes"] else 0} for t, m in com_clique[:top]]
+                               "ctr": round(m["cliques"] / m["impressoes"], 5) if m["impressoes"] else 0} for t, m in com_clique]
         cliques = round(sum(m["cliques"] for _, m in termos))
         cons = round(cliques_pesquisa.get(frente, 0))
-        totais[frente] = {"termos": len(termos), "cliques": cliques,
-                          "impressoes": round(sum(m["impressoes"] for _, m in termos)),
+        # Resumo só com termos de pelo menos 1 clique (os mesmos do ranking); cliques iguais aos de todos os termos.
+        totais[frente] = {"termos": len(com_clique), "cliques": cliques,
+                          "impressoes": round(sum(m["impressoes"] for _, m in com_clique)),
                           "cliquesPesquisa": cons,
                           # Fonte completa: as keywords cobrem os cliques de Pesquisa da frente (tolerância de 1%).
                           "completa": bool(cons) and cliques >= cons * 0.99}
