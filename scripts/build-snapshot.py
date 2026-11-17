@@ -8,7 +8,8 @@ Uso:
      curl -sS -L -X POST 'https://cqrpbiepyeypbkizwacu.supabase.co/functions/v1/HospSantaIzabel2026' \
        -H 'Authorization: Bearer <chave>' -H 'apikey: <chave>' \
        -H 'Content-Type: application/json' --data '{"name":"Functions"}' -o data/hsi-dados.json
-  2) python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --curativos data/curativos-google.csv --imagens
+  2) python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --curativos data/curativos-google.csv --ate 2026-10-31 --imagens
+     (--ate AAAA-MM-DD: corte de data — descarta linhas posteriores no consolidado, googlefazbemage/gender e CSV da Curativos)
      (--curativos: CSV à parte da campanha Curativos — PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026)
      (--imagens baixa as miniaturas dos criativos para public/criativos/; as URLs do
       fbcdn expiram em dias, então o relatório usa as cópias locais)
@@ -216,11 +217,27 @@ def aplicar_regras(raw, avisos):
     return rows, corte
 
 
-def main(src, dst, baixar_imagens, curativos=None):
+def cortar(linhas, campo, ate):
+    """Descarta linhas com data posterior a `ate` (AAAA-MM-DD). Linhas sem data seguem (aplicar_regras as descarta)."""
+    if not ate:
+        return linhas, 0
+    ficam = [r for r in linhas if not r.get(campo) or r[campo][:10] <= ate]
+    return ficam, len(linhas) - len(ficam)
+
+
+def main(src, dst, baixar_imagens, curativos=None, ate=None):
     raw = json.load(open(src, encoding="utf-8"))
     avisos = []
+    if ate:
+        raw["consolidado"], n = cortar(raw.get("consolidado", []), "Data", ate)
+        for tabela in ("googlefazbemage", "googlefazbemgender"):
+            raw[tabela], k = cortar(raw.get(tabela, []), "date", ate)
+            n += k
+        print(f"corte em {ate}: {n} linhas posteriores descartadas (consolidado + googlefazbemage/gender)")
     if curativos:
-        extra = ler_curativos(curativos)
+        extra, k = cortar(ler_curativos(curativos), "Data", ate)
+        if k:
+            print(f"corte em {ate}: {k} linhas posteriores descartadas do CSV da Curativos")
         raw["consolidado"] = raw.get("consolidado", []) + extra
         avisos.append(f"Curativos: {len(extra)} linhas do CSV {os.path.basename(curativos)} (fora da função do Supabase).")
     rows, corte = aplicar_regras(raw, avisos)
@@ -502,7 +519,18 @@ if __name__ == "__main__":
             sys.exit("--curativos precisa do caminho do CSV")
         curativos = argv[i + 1]
         del argv[i:i + 2]
+    ate = None
+    if "--ate" in argv:
+        i = argv.index("--ate")
+        if i + 1 >= len(argv):
+            sys.exit("--ate precisa de uma data AAAA-MM-DD")
+        ate = argv[i + 1]
+        try:
+            datetime.strptime(ate, "%Y-%m-%d")
+        except ValueError:
+            sys.exit(f"--ate: data inválida {ate!r} (use AAAA-MM-DD)")
+        del argv[i:i + 2]
     args = [a for a in argv if not a.startswith("--")]
     if len(args) != 2:
-        sys.exit("uso: build-snapshot.py <hsi-dados.json> <src/data/snapshot.json> [--curativos <csv>] [--imagens]")
-    main(args[0], args[1], "--imagens" in argv, curativos)
+        sys.exit("uso: build-snapshot.py <hsi-dados.json> <src/data/snapshot.json> [--curativos <csv>] [--ate AAAA-MM-DD] [--imagens]")
+    main(args[0], args[1], "--imagens" in argv, curativos, ate)

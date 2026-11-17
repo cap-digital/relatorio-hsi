@@ -1,4 +1,4 @@
-# Balanço de mídia 2026 · Hospital Santa Izabel (até 06/out)
+# Balanço de mídia 2026 · Hospital Santa Izabel (até 31/out)
 
 Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano de 2026 até agora. **Não é pós-venda e não é encerramento**, porque as campanhas continuam no ar. Cada mês teve estratégias, plataformas e campanhas diferentes, e o relatório precisa mostrar essa evolução. Nunca usar "pós-venda", "pós-campanha", "encerrada" nem "10 meses". Ele é **agregado**: números grandes, comparações e destaques. Nada de leitura dia a dia nem filtros de data.
 
@@ -11,7 +11,7 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 ## 1. Dados
 
 - **`src/data/snapshot.json`** é a única fonte do relatório. Ele é estático, já vem agregado e as páginas são HTML gerado no build. Não há chamada de API em tempo de execução.
-- Para regenerar, rode `python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --imagens`. O `curl` para baixar `data/hsi-dados.json` está no topo do script. Coloque `data/` no `.gitignore` (são 27 MB).
+- Para regenerar, rode `python3 scripts/build-snapshot.py data/hsi-dados.json src/data/snapshot.json --curativos data/curativos-google.csv --ate 2026-10-31 --imagens`. O `curl` para baixar `data/hsi-dados.json` está no topo do script. Coloque `data/` no `.gitignore` (são ~31 MB).
 - O `--imagens` baixa as miniaturas dos criativos para `public/criativos/`, porque as URLs do fbcdn expiram. Rode **uma vez localmente** antes do deploy.
 - Crie `src/data/types.ts` com os tipos do snapshot e um `src/data/format.ts`. O format é **copiado** de `src/data/politica/format.ts` do Jaques (fmtNum, fmtCompact, fmtBRL, fmtPct, fmtDia).
 
@@ -20,7 +20,7 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 - **Sem alcance em lugar nenhum.** A fonte não tem alcance único.
 - **Investimento** é o campo `Investimento` da base: o valor ao cliente (spend ÷ margem). Nunca usar spend nem aplicar o "bruto ÷ 0,8785" do Jaques.
 - O snapshot já sai com as regras do dashboard em produção (descarte de Estratégia em branco e dos uploads errados da coleta) e com o **investimento limitado ao contratado no ano todo**. Só o investimento é limitado; impressões, cliques, views e engajamento ficam como entregues. A interface não indica o corte. Não reaplicar nada disso no front.
-- Outubro é parcial (até 06/out). Isso deve aparecer no gráfico mensal (`meses[].parcial`).
+- O corte do relatório é 31/10/2026 (`--ate 2026-10-31`): outubro está fechado e nenhum mês é parcial. Novembro já está na base, mas fica fora. Se um corte futuro cair no meio de um mês, `meses[].parcial` liga a hachura e a legenda "Mês parcial" no gráfico mensal e no mosaico.
 - Engajamento:
   - `totais.engajamento` = Meta (engajamento do post) + YouTube (engajamentos).
   - Na seção de engajamento do Meta, ao lado do total, aparecem sempre as 5 linhas (Reações, Comentários, Compartilhamentos, Salvamentos, Cliques no link), com 0 explícito quando for o caso.
@@ -33,16 +33,17 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 | Métrica | Valor |
 |---|---|
-| Investimento | R$ 121,2 mil (Meta R$ 63,8 mil · Google R$ 57,4 mil) · contratado R$ 128,8 mil |
-| Impressões | 9,31 mi |
-| Cliques | 107 mil · CTR 1,15% · CPC R$ 1,14 · CPM R$ 13,01 |
-| Views de vídeo | 1,22 mi |
-| Engajamentos | 285 mil |
-| Campanhas | 36 |
+| Investimento | R$ 128,6 mil (Meta R$ 65,6 mil · Google R$ 63,0 mil) · contratado R$ 128,8 mil |
+| Impressões | 9,66 mi |
+| Cliques | 116,9 mil · CTR 1,21% · CPC R$ 1,10 · CPM R$ 13,31 |
+| Views de vídeo | 1,24 mi |
+| Engajamentos | 311 mil |
+| Campanhas | 38 |
 
-- **Frentes:** Institucional AON R$ 78,4 mil · Faz Bem R$ 35,7 mil · Curativos R$ 6,0 mil · Checkup Torcedor R$ 1,0 mil.
+- **Frentes:** Institucional AON R$ 81,1 mil · Faz Bem R$ 40,4 mil · Curativos R$ 6,0 mil · Checkup Torcedor R$ 1,0 mil.
 - **Curativos:** R$ 6,0 mil · 131.246 impressões · 5.291 cliques (PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026, contratado R$ 6.000).
-- **Busca Google:** 58,8 mil cliques · CTR 16,5% · CPC R$ 0,62 (inclui Curativos).
+- **Busca Google:** 61,4 mil cliques · CTR 16,4% · CPC R$ 0,63 (inclui Curativos).
+- **Outubro (fechado):** R$ 8,0 mil · AON só Google Pesquisa R$ 3.000 · Faz Bem: Display R$ 1.500 · In-Stream R$ 1.500 · Meta Alcance R$ 1.500 · Meta Posts de oportunidade R$ 500.
 - **Google:** de dezembro/2025 (Curativos) a outubro. **Meta:** entra em maio (12/05).
 - **Curativos e dez/25:** os dados vêm de um CSV à parte (`--curativos data/curativos-google.csv`), não da função do Supabase. Dez/25 entra em `meses` e `grade.meses` com `anoAnterior: true` e rótulo "dez/25"; o `periodo` do relatório continua 2026. Observação no rodapé e na seção da frente: "A campanha Curativos começou em dezembro de 2025; os números do relatório incluem esse mês."
 
@@ -134,7 +135,7 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
 ### `/` Início
 
 - **Hero** (`tone="amber"`):
-  - eyebrow: "Balanço de mídia · Hospital Santa Izabel · 2026 até 06 out";
+  - eyebrow: "Balanço de mídia · Hospital Santa Izabel · 2026 até 31 out";
   - título: "2026, <em>até aqui.</em>";
   - descrição: investimento, impressões e cliques do período, em uma frase.
 - **KPIs** (grade de 6, `KpiTile`): Investimento · Impressões · Cliques · Views de vídeo · Engajamentos · CPC médio. O botão "Exportar PDF" fica no hero, como no Jaques.
@@ -144,15 +145,15 @@ A mecânica continua a mesma (escuro cinematográfico, grão, cortina, títulos 
   - à direita, 4 cards `Fato` (iguais ao Jaques): impressões Meta, cliques Google, CPM médio e CTR da busca.
 - **02 · "Mês a mês"**:
   - título: "O Google abriu o ano; o Meta <em>entrou em maio.</em>";
-  - `MonthlyChart` dentro de um `ChartFrame` com `span={3}`; a coluna "dez/25" (ano anterior) vem antes de janeiro, com rótulo atenuado e sem hachura.
+  - `MonthlyChart` dentro de um `ChartFrame` com `span={3}`; a coluna "dez/25" (ano anterior) vem antes de janeiro, com rótulo atenuado e sem hachura (hachura só se houver mês parcial; com o corte em 31/10, nenhum).
 - **03 · "O ano em mosaico"**:
   - título: "De 2 para 7 <em>estratégias no ar.</em>" (números de `meses[].estrategiasAtivas`, contados a partir de janeiro/2026: dez/25 aparece na grade, com rótulo atenuado, mas não é o ponto de partida);
   - `Heatmap` do Jaques adaptado (`viz/heatmap.tsx` → `viz/grade-estrategias.tsx`): linhas = `grade.linhas` (plataforma · estratégia), colunas = `grade.meses`, cor da célula = investimento do mês (escala raiz, como no original), célula vazia quando a estratégia não rodou;
   - hover mostra investimento, métrica principal da estratégia, frentes e nº de campanhas da célula; a legenda embaixo segue o padrão "Passe o cursor sobre a grade" do original;
-  - rótulo da linha com um ponto da cor da plataforma (Meta = `--amber`, Google = `--dusk-2`); outubro com a mesma marcação de parcial do gráfico mensal.
+  - rótulo da linha com um ponto da cor da plataforma (Meta = `--amber`, Google = `--dusk-2`); mês parcial (se houver) com a mesma marcação do gráfico mensal; com o corte em 31/10, outubro aparece sem hachura.
 - **04 · "Explore"**: `PortasCards` com 2 portas.
   - Mídia: número = impressões;
-  - Frentes: número = "4 frentes", com legenda de 36 campanhas (calculados).
+  - Frentes: número = "4 frentes", com legenda de 38 campanhas (calculados).
 
 ### `/midia`
 

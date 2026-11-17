@@ -630,7 +630,7 @@ html.lenis body {
   }
 }
 
-/* Mês parcial (outubro, até 06/out) — hachura na cor da série */
+/* Mês parcial (quando o corte cai no meio do mês) — hachura na cor da série */
 .hatch-amber {
   background: repeating-linear-gradient(135deg, rgba(200, 220, 76, 0.85) 0 3px, rgba(200, 220, 76, 0.25) 3px 6px);
 }

@@ -34,7 +34,7 @@ export function MonthlyChart({ meses, fim, height = 360 }: { meses: Mes[]; /** �
   }, [meses, iw, ih]);
 
   const hd = hi === null ? null : meses[hi];
-  // Em telas estreitas, rótulo de mês alternado, contado do fim (o último mês, parcial, sempre aparece).
+  // Em telas estreitas, rótulo de mês alternado, contado do fim (o último mês sempre aparece).
   const step = x.step() < 34 ? 2 : 1;
 
   return (
@@ -46,10 +46,12 @@ export function MonthlyChart({ meses, fim, height = 360 }: { meses: Mes[]; /** �
           <span className="h-[2px] w-4 rounded-full bg-text" />
           Impressões (eixo direito)
         </span>
-        <span className="flex items-center gap-2">
-          <span className="hatch-amber size-2.5 rounded-[3px]" />
-          Mês parcial (até {fmtDia(fim)})
-        </span>
+        {meses.some((m) => m.parcial) && (
+          <span className="flex items-center gap-2">
+            <span className="hatch-amber size-2.5 rounded-[3px]" />
+            Mês parcial (até {fmtDia(fim)})
+          </span>
+        )}
       </div>
 
       <div ref={ref} className="relative w-full" style={{ height }}>

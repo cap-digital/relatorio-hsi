@@ -82,10 +82,12 @@ export function GradeEstrategias({ grade, meses, fim }: { grade: Grade; meses: M
           <span className="h-2.5 w-10 rounded-[3px]" style={{ background: "linear-gradient(90deg, rgba(200,220,76,.12), rgba(200,220,76,1))" }} />
           Investimento no mês
         </span>
-        <span className="flex items-center gap-2">
-          <span className="hatch-amber size-2.5 rounded-[3px]" />
-          Mês parcial (até {fmtDia(fim)})
-        </span>
+        {meses.some((m) => m.parcial) && (
+          <span className="flex items-center gap-2">
+            <span className="hatch-amber size-2.5 rounded-[3px]" />
+            Mês parcial (até {fmtDia(fim)})
+          </span>
+        )}
       </div>
 
       {/* Leitura do hover: só na tela (no PDF não há cursor). */}

@@ -36,7 +36,7 @@ export interface Mes {
   rotulo: string;
   /** "janeiro" */
   nome: string;
-  /** Mês ainda em curso (outubro, até 06/out). */
+  /** Mês cortado antes do fim (último dia com dados < 28). Com o corte em 31/10, nenhum mês é parcial. */
   parcial: boolean;
   /** Quantas estratégias rodaram no mês. */
   estrategiasAtivas: number;

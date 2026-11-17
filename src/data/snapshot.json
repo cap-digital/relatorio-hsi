@@ -2,50 +2,50 @@
  "cliente": "Hospital Santa Izabel",
  "periodo": {
   "inicio": "2026-01-01",
-  "fim": "2026-10-06"
+  "fim": "2026-10-31"
  },
- "atualizadoEm": "2026-10-06T17:02:29.656Z",
+ "atualizadoEm": "2026-11-17T18:38:12.553Z",
  "totais": {
-  "investimento": 121184.05,
-  "impressoes": 9311357,
-  "cliques": 106613,
-  "views": 1218811,
-  "engajamento": 284955,
-  "ctr": 0.01145,
-  "cpm": 13.01,
-  "cpc": 1.14,
-  "campanhas": 36,
+  "investimento": 128595.14,
+  "impressoes": 9663714,
+  "cliques": 116855,
+  "views": 1238511,
+  "engajamento": 310913,
+  "ctr": 0.01209,
+  "cpm": 13.31,
+  "cpc": 1.1,
+  "campanhas": 38,
   "meses": 11,
   "contratado": 128750
  },
  "plataformas": [
   {
-   "investimento": 63750.98,
-   "impressoes": 6503710,
-   "cliques": 32404,
+   "investimento": 65645.71,
+   "impressoes": 6763360,
+   "cliques": 32968,
    "views": 1148815,
-   "engajamento": 196916,
-   "ctr": 0.00498,
-   "cpm": 9.8,
-   "cpc": 1.97,
+   "engajamento": 197359,
+   "ctr": 0.00487,
+   "cpm": 9.71,
+   "cpc": 1.99,
    "plataforma": "Meta",
    "inicio": "2026-05-12",
-   "fim": "2026-10-06",
-   "campanhas": 17
+   "fim": "2026-10-31",
+   "campanhas": 18
   },
   {
-   "investimento": 57433.07,
-   "impressoes": 2807647,
-   "cliques": 74209,
-   "views": 69996,
-   "engajamento": 88039,
-   "ctr": 0.02643,
-   "cpm": 20.46,
-   "cpc": 0.77,
+   "investimento": 62949.42,
+   "impressoes": 2900354,
+   "cliques": 83887,
+   "views": 89696,
+   "engajamento": 113554,
+   "ctr": 0.02892,
+   "cpm": 21.7,
+   "cpc": 0.75,
    "plataforma": "Google",
    "inicio": "2025-12-02",
-   "fim": "2026-10-06",
-   "campanhas": 19
+   "fim": "2026-10-31",
+   "campanhas": 20
   }
  ],
  "meses": [
@@ -443,66 +443,66 @@
    "mes": "2026-10",
    "rotulo": "out",
    "nome": "outubro",
-   "parcial": true,
+   "parcial": false,
    "anoAnterior": false,
    "meta": {
-    "investimento": 105.27,
-    "impressoes": 31240,
-    "cliques": 50,
+    "investimento": 2000.0,
+    "impressoes": 290890,
+    "cliques": 614,
     "views": 0,
-    "engajamento": 40,
-    "ctr": 0.0016,
-    "cpm": 3.37,
-    "cpc": 2.11
+    "engajamento": 483,
+    "ctr": 0.00211,
+    "cpm": 6.88,
+    "cpc": 3.26
    },
    "google": {
-    "investimento": 483.64,
-    "impressoes": 6148,
-    "cliques": 154,
-    "views": 2650,
-    "engajamento": 3429,
-    "ctr": 0.02505,
-    "cpm": 78.67,
-    "cpc": 3.14
+    "investimento": 6000.0,
+    "impressoes": 98855,
+    "cliques": 9832,
+    "views": 22350,
+    "engajamento": 28944,
+    "ctr": 0.09946,
+    "cpm": 60.69,
+    "cpc": 0.61
    },
    "total": {
-    "investimento": 588.91,
-    "impressoes": 37388,
-    "cliques": 204,
-    "views": 2650,
-    "engajamento": 3469,
-    "ctr": 0.00546,
-    "cpm": 15.75,
-    "cpc": 2.89
+    "investimento": 8000.0,
+    "impressoes": 389745,
+    "cliques": 10446,
+    "views": 22350,
+    "engajamento": 29427,
+    "ctr": 0.0268,
+    "cpm": 20.53,
+    "cpc": 0.77
    },
-   "estrategiasAtivas": 3,
-   "campanhasAtivas": 3
+   "estrategiasAtivas": 5,
+   "campanhasAtivas": 5
   }
  ],
  "frentes": [
   {
-   "investimento": 78436.16,
-   "impressoes": 4520552,
-   "cliques": 80926,
+   "investimento": 81145.71,
+   "impressoes": 4539101,
+   "cliques": 83581,
    "views": 761006,
    "engajamento": 182036,
-   "ctr": 0.0179,
-   "cpm": 17.35,
+   "ctr": 0.01841,
+   "cpm": 17.88,
    "cpc": 0.97,
    "frente": "Institucional AON",
    "inicio": "2026-01-01",
-   "fim": "2026-10-06",
+   "fim": "2026-10-31",
    "campanhas": 15,
    "plataformas": {
     "Google": {
-     "investimento": 27290.45,
-     "impressoes": 205767,
-     "cliques": 52225,
+     "investimento": 30000.0,
+     "impressoes": 224316,
+     "cliques": 54880,
      "views": 0,
      "engajamento": 0,
-     "ctr": 0.25381,
-     "cpm": 132.63,
-     "cpc": 0.52
+     "ctr": 0.24465,
+     "cpm": 133.74,
+     "cpc": 0.55
     },
     "Meta": {
      "investimento": 51145.71,
@@ -517,14 +517,14 @@
    },
    "estrategias": [
     {
-     "investimento": 27290.45,
-     "impressoes": 205767,
-     "cliques": 52225,
+     "investimento": 30000.0,
+     "impressoes": 224316,
+     "cliques": 54880,
      "views": 0,
      "engajamento": 0,
-     "ctr": 0.25381,
-     "cpm": 132.63,
-     "cpc": 0.52,
+     "ctr": 0.24465,
+     "cpm": 133.74,
+     "cpc": 0.55,
      "plataforma": "Google",
      "estrategia": "Pesquisa"
     },
@@ -579,74 +579,74 @@
    ]
   },
   {
-   "investimento": 35747.88,
-   "impressoes": 4373067,
-   "cliques": 20268,
-   "views": 188385,
-   "engajamento": 95059,
-   "ctr": 0.00463,
-   "cpm": 8.17,
-   "cpc": 1.76,
+   "investimento": 40449.42,
+   "impressoes": 4706875,
+   "cliques": 27855,
+   "views": 208085,
+   "engajamento": 121017,
+   "ctr": 0.00592,
+   "cpm": 8.59,
+   "cpc": 1.45,
    "frente": "Faz Bem",
    "inicio": "2026-01-01",
-   "fim": "2026-10-06",
-   "campanhas": 18,
+   "fim": "2026-10-31",
+   "campanhas": 20,
    "plataformas": {
     "Google": {
-     "investimento": 24142.62,
-     "impressoes": 2470634,
-     "cliques": 16693,
-     "views": 69996,
-     "engajamento": 88039,
-     "ctr": 0.00676,
-     "cpm": 9.77,
-     "cpc": 1.45
+     "investimento": 26949.42,
+     "impressoes": 2544792,
+     "cliques": 23716,
+     "views": 89696,
+     "engajamento": 113554,
+     "ctr": 0.00932,
+     "cpm": 10.59,
+     "cpc": 1.14
     },
     "Meta": {
-     "investimento": 11605.27,
-     "impressoes": 1902433,
-     "cliques": 3575,
+     "investimento": 13500.0,
+     "impressoes": 2162083,
+     "cliques": 4139,
      "views": 118389,
-     "engajamento": 7020,
-     "ctr": 0.00188,
-     "cpm": 6.1,
-     "cpc": 3.25
+     "engajamento": 7463,
+     "ctr": 0.00191,
+     "cpm": 6.24,
+     "cpc": 3.26
     }
    },
    "estrategias": [
     {
-     "investimento": 14963.99,
-     "impressoes": 2324273,
-     "cliques": 15299,
+     "investimento": 16463.99,
+     "impressoes": 2361014,
+     "cliques": 22290,
      "views": 0,
      "engajamento": 0,
-     "ctr": 0.00658,
-     "cpm": 6.44,
-     "cpc": 0.98,
+     "ctr": 0.00944,
+     "cpm": 6.97,
+     "cpc": 0.74,
      "plataforma": "Google",
      "estrategia": "Display"
     },
     {
-     "investimento": 9605.27,
-     "impressoes": 1513435,
-     "cliques": 2788,
+     "investimento": 11000.0,
+     "impressoes": 1707142,
+     "cliques": 3159,
      "views": 72830,
-     "engajamento": 5089,
-     "ctr": 0.00184,
-     "cpm": 6.35,
-     "cpc": 3.45,
+     "engajamento": 5379,
+     "ctr": 0.00185,
+     "cpm": 6.44,
+     "cpc": 3.48,
      "plataforma": "Meta",
      "estrategia": "Alcance"
     },
     {
-     "investimento": 6178.63,
-     "impressoes": 126862,
-     "cliques": 122,
-     "views": 69996,
-     "engajamento": 88039,
-     "ctr": 0.00096,
-     "cpm": 48.7,
-     "cpc": 50.64,
+     "investimento": 7485.43,
+     "impressoes": 164279,
+     "cliques": 154,
+     "views": 89696,
+     "engajamento": 113554,
+     "ctr": 0.00094,
+     "cpm": 45.57,
+     "cpc": 48.61,
      "plataforma": "Google",
      "estrategia": "YouTube In-Stream"
     },
@@ -663,14 +663,14 @@
      "estrategia": "Pesquisa"
     },
     {
-     "investimento": 2000.0,
-     "impressoes": 388998,
-     "cliques": 787,
+     "investimento": 2500.0,
+     "impressoes": 454941,
+     "cliques": 980,
      "views": 45559,
-     "engajamento": 1931,
-     "ctr": 0.00202,
-     "cpm": 5.14,
-     "cpc": 2.54,
+     "engajamento": 2084,
+     "ctr": 0.00215,
+     "cpm": 5.5,
+     "cpc": 2.55,
      "plataforma": "Meta",
      "estrategia": "Posts de oportunidade"
     }
@@ -759,14 +759,14 @@
  ],
  "estrategias": [
   {
-   "investimento": 36290.45,
-   "impressoes": 356512,
-   "cliques": 58788,
+   "investimento": 39000.0,
+   "impressoes": 375061,
+   "cliques": 61443,
    "views": 0,
    "engajamento": 0,
-   "ctr": 0.1649,
-   "cpm": 101.79,
-   "cpc": 0.62,
+   "ctr": 0.16382,
+   "cpm": 103.98,
+   "cpc": 0.63,
    "plataforma": "Google",
    "estrategia": "Pesquisa",
    "frentes": [
@@ -776,14 +776,14 @@
    ]
   },
   {
-   "investimento": 32855.27,
-   "impressoes": 5038588,
-   "cliques": 9625,
+   "investimento": 34250.0,
+   "impressoes": 5232295,
+   "cliques": 9996,
    "views": 527648,
-   "engajamento": 27439,
+   "engajamento": 27729,
    "ctr": 0.00191,
-   "cpm": 6.52,
-   "cpc": 3.41,
+   "cpm": 6.55,
+   "cpc": 3.43,
    "plataforma": "Meta",
    "estrategia": "Alcance",
    "frentes": [
@@ -808,14 +808,14 @@
    ]
   },
   {
-   "investimento": 14963.99,
-   "impressoes": 2324273,
-   "cliques": 15299,
+   "investimento": 16463.99,
+   "impressoes": 2361014,
+   "cliques": 22290,
    "views": 0,
    "engajamento": 0,
-   "ctr": 0.00658,
-   "cpm": 6.44,
-   "cpc": 0.98,
+   "ctr": 0.00944,
+   "cpm": 6.97,
+   "cpc": 0.74,
    "plataforma": "Google",
    "estrategia": "Display",
    "frentes": [
@@ -838,14 +838,14 @@
    ]
   },
   {
-   "investimento": 6178.63,
-   "impressoes": 126862,
-   "cliques": 122,
-   "views": 69996,
-   "engajamento": 88039,
-   "ctr": 0.00096,
-   "cpm": 48.7,
-   "cpc": 50.64,
+   "investimento": 7485.43,
+   "impressoes": 164279,
+   "cliques": 154,
+   "views": 89696,
+   "engajamento": 113554,
+   "ctr": 0.00094,
+   "cpm": 45.57,
+   "cpc": 48.61,
    "plataforma": "Google",
    "estrategia": "YouTube In-Stream",
    "frentes": [
@@ -853,14 +853,14 @@
    ]
   },
   {
-   "investimento": 3500.0,
-   "impressoes": 655761,
-   "cliques": 1633,
+   "investimento": 4000.0,
+   "impressoes": 721704,
+   "cliques": 1826,
    "views": 130997,
-   "engajamento": 10383,
-   "ctr": 0.00249,
-   "cpm": 5.34,
-   "cpc": 2.14,
+   "engajamento": 10536,
+   "ctr": 0.00253,
+   "cpm": 5.54,
+   "cpc": 2.19,
    "plataforma": "Meta",
    "estrategia": "Posts de oportunidade",
    "frentes": [
@@ -1627,14 +1627,31 @@
     "campanhas": 1
    },
    {
-    "investimento": 290.45,
-    "impressoes": 1110,
-    "cliques": 150,
+    "investimento": 1500.0,
+    "impressoes": 36741,
+    "cliques": 6991,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.13514,
-    "cpm": 261.67,
-    "cpc": 1.94,
+    "ctr": 0.19028,
+    "cpm": 40.83,
+    "cpc": 0.21,
+    "plataforma": "Google",
+    "estrategia": "Display",
+    "mes": "2026-10",
+    "frentes": [
+     "Faz Bem"
+    ],
+    "campanhas": 1
+   },
+   {
+    "investimento": 3000.0,
+    "impressoes": 19659,
+    "cliques": 2805,
+    "views": 0,
+    "engajamento": 0,
+    "ctr": 0.14268,
+    "cpm": 152.6,
+    "cpc": 1.07,
     "plataforma": "Google",
     "estrategia": "Pesquisa",
     "mes": "2026-10",
@@ -1644,14 +1661,14 @@
     "campanhas": 1
    },
    {
-    "investimento": 193.19,
-    "impressoes": 5038,
-    "cliques": 4,
-    "views": 2650,
-    "engajamento": 3429,
-    "ctr": 0.00079,
-    "cpm": 38.35,
-    "cpc": 48.3,
+    "investimento": 1500.0,
+    "impressoes": 42455,
+    "cliques": 36,
+    "views": 22350,
+    "engajamento": 28944,
+    "ctr": 0.00085,
+    "cpm": 35.33,
+    "cpc": 41.67,
     "plataforma": "Google",
     "estrategia": "YouTube In-Stream",
     "mes": "2026-10",
@@ -1661,16 +1678,33 @@
     "campanhas": 1
    },
    {
-    "investimento": 105.27,
-    "impressoes": 31240,
-    "cliques": 50,
+    "investimento": 1500.0,
+    "impressoes": 224947,
+    "cliques": 421,
     "views": 0,
-    "engajamento": 40,
-    "ctr": 0.0016,
-    "cpm": 3.37,
-    "cpc": 2.11,
+    "engajamento": 330,
+    "ctr": 0.00187,
+    "cpm": 6.67,
+    "cpc": 3.56,
     "plataforma": "Meta",
     "estrategia": "Alcance",
+    "mes": "2026-10",
+    "frentes": [
+     "Faz Bem"
+    ],
+    "campanhas": 1
+   },
+   {
+    "investimento": 500.0,
+    "impressoes": 65943,
+    "cliques": 193,
+    "views": 0,
+    "engajamento": 153,
+    "ctr": 0.00293,
+    "cpm": 7.58,
+    "cpc": 2.59,
+    "plataforma": "Meta",
+    "estrategia": "Posts de oportunidade",
     "mes": "2026-10",
     "frentes": [
      "Faz Bem"
@@ -1680,14 +1714,14 @@
   ]
  },
  "busca": {
-  "investimento": 36290.45,
-  "impressoes": 356512,
-  "cliques": 58788,
+  "investimento": 39000.0,
+  "impressoes": 375061,
+  "cliques": 61443,
   "views": 0,
   "engajamento": 0,
-  "ctr": 0.1649,
-  "cpm": 101.79,
-  "cpc": 0.62,
+  "ctr": 0.16382,
+  "cpm": 103.98,
+  "cpc": 0.63,
   "anuncios": [
    {
     "investimento": 7840.24,
@@ -1772,14 +1806,14 @@
     "frente": "Curativos"
    },
    {
-    "investimento": 3283.79,
-    "impressoes": 22181,
-    "cliques": 3811,
+    "investimento": 4788.52,
+    "impressoes": 33922,
+    "cliques": 5152,
     "views": 0,
     "engajamento": 0,
-    "ctr": 0.17181,
-    "cpm": 148.04,
-    "cpc": 0.86,
+    "ctr": 0.15188,
+    "cpm": 141.16,
+    "cpc": 0.93,
     "titulos": [
      "Atendimento com convênio",
      "Convêncios aceitos no HSI",
@@ -1794,121 +1828,121 @@
    {
     "idade": "25-34",
     "genero": "female",
-    "impressoes": 873252.0,
-    "cliques": 1816.0,
-    "investimento": 6991.94,
-    "engajamento": 13015.0
+    "impressoes": 910892.0,
+    "cliques": 1857.0,
+    "investimento": 7277.34,
+    "engajamento": 13044.0
    },
    {
     "idade": "25-34",
     "genero": "male",
-    "impressoes": 774331.0,
-    "cliques": 1670.0,
-    "investimento": 6344.95,
-    "engajamento": 12064.0
+    "impressoes": 807857.0,
+    "cliques": 1698.0,
+    "investimento": 6601.32,
+    "engajamento": 12086.0
    },
    {
     "idade": "25-34",
     "genero": "unknown",
-    "impressoes": 3591.0,
+    "impressoes": 3724.0,
     "cliques": 8.0,
-    "investimento": 32.62,
+    "investimento": 33.84,
     "engajamento": 62.0
    },
    {
     "idade": "35-44",
     "genero": "female",
-    "impressoes": 762928.0,
-    "cliques": 2353.0,
-    "investimento": 7344.69,
-    "engajamento": 15554.0
+    "impressoes": 786430.0,
+    "cliques": 2397.0,
+    "investimento": 7514.53,
+    "engajamento": 15595.0
    },
    {
     "idade": "35-44",
     "genero": "male",
-    "impressoes": 812799.0,
-    "cliques": 2367.0,
-    "investimento": 7084.26,
-    "engajamento": 12913.0
+    "impressoes": 840733.0,
+    "cliques": 2412.0,
+    "investimento": 7284.8,
+    "engajamento": 12950.0
    },
    {
     "idade": "35-44",
     "genero": "unknown",
-    "impressoes": 3559.0,
+    "impressoes": 3626.0,
     "cliques": 13.0,
-    "investimento": 37.41,
+    "investimento": 37.62,
     "engajamento": 59.0
    },
    {
     "idade": "45-54",
     "genero": "female",
-    "impressoes": 597091.0,
-    "cliques": 3473.0,
-    "investimento": 6631.74,
-    "engajamento": 22227.0
+    "impressoes": 620161.0,
+    "cliques": 3532.0,
+    "investimento": 6798.0,
+    "engajamento": 22274.0
    },
    {
     "idade": "45-54",
     "genero": "male",
-    "impressoes": 707711.0,
-    "cliques": 2545.0,
-    "investimento": 6202.83,
-    "engajamento": 13148.0
+    "impressoes": 737221.0,
+    "cliques": 2615.0,
+    "investimento": 6415.2,
+    "engajamento": 13198.0
    },
    {
     "idade": "45-54",
     "genero": "unknown",
-    "impressoes": 2131.0,
+    "impressoes": 2181.0,
     "cliques": 19.0,
-    "investimento": 28.19,
+    "investimento": 28.56,
     "engajamento": 80.0
    },
    {
     "idade": "55-64",
     "genero": "female",
-    "impressoes": 573958.0,
-    "cliques": 5683.0,
-    "investimento": 7054.5,
-    "engajamento": 34317.0
+    "impressoes": 599018.0,
+    "cliques": 5752.0,
+    "investimento": 7232.9,
+    "engajamento": 34372.0
    },
    {
     "idade": "55-64",
     "genero": "male",
-    "impressoes": 562375.0,
-    "cliques": 2360.0,
-    "investimento": 4824.12,
-    "engajamento": 11671.0
+    "impressoes": 587512.0,
+    "cliques": 2439.0,
+    "investimento": 5001.66,
+    "engajamento": 11735.0
    },
    {
     "idade": "55-64",
     "genero": "unknown",
-    "impressoes": 1294.0,
+    "impressoes": 1349.0,
     "cliques": 8.0,
-    "investimento": 14.07,
+    "investimento": 14.57,
     "engajamento": 50.0
    },
    {
     "idade": "65+",
     "genero": "female",
-    "impressoes": 449377.0,
-    "cliques": 7535.0,
-    "investimento": 7741.34,
-    "engajamento": 46178.0
+    "impressoes": 467790.0,
+    "cliques": 7610.0,
+    "investimento": 7874.88,
+    "engajamento": 46232.0
    },
    {
     "idade": "65+",
     "genero": "male",
-    "impressoes": 322156.0,
-    "cliques": 2068.0,
-    "investimento": 3098.63,
-    "engajamento": 10044.0
+    "impressoes": 337015.0,
+    "cliques": 2115.0,
+    "investimento": 3207.13,
+    "engajamento": 10082.0
    },
    {
     "idade": "65+",
     "genero": "unknown",
-    "impressoes": 894.0,
+    "impressoes": 935.0,
     "cliques": 7.0,
-    "investimento": 9.99,
+    "investimento": 10.3,
     "engajamento": 47.0
    },
    {
@@ -1922,7 +1956,7 @@
    {
     "idade": "desconhecida",
     "genero": "male",
-    "impressoes": 70.0,
+    "impressoes": 71.0,
     "cliques": 0.0,
     "investimento": 0.65,
     "engajamento": 0.0
@@ -1930,74 +1964,74 @@
    {
     "idade": "desconhecida",
     "genero": "unknown",
-    "impressoes": 56065.0,
-    "cliques": 479.0,
-    "investimento": 307.57,
-    "engajamento": 5483.0
+    "impressoes": 56717.0,
+    "cliques": 486.0,
+    "investimento": 310.94,
+    "engajamento": 5489.0
    }
   ],
   "googleIdade": [
    {
     "chave": "18-24",
-    "impressoes": 284475,
-    "cliques": 503,
-    "views": 9273
+    "impressoes": 290762,
+    "cliques": 1151,
+    "views": 10881
    },
    {
     "chave": "25-34",
-    "impressoes": 311372,
-    "cliques": 529,
-    "views": 13740
+    "impressoes": 327392,
+    "cliques": 2231,
+    "views": 17820
    },
    {
     "chave": "35-44",
-    "impressoes": 311801,
-    "cliques": 2462,
-    "views": 11479
+    "impressoes": 323963,
+    "cliques": 3591,
+    "views": 14689
    },
    {
     "chave": "45-54",
-    "impressoes": 283901,
-    "cliques": 2450,
-    "views": 9531
+    "impressoes": 293567,
+    "cliques": 3121,
+    "views": 12582
    },
    {
     "chave": "55-64",
-    "impressoes": 141467,
-    "cliques": 1539,
-    "views": 8596
+    "impressoes": 149706,
+    "cliques": 2272,
+    "views": 11264
    },
    {
     "chave": "65+",
-    "impressoes": 98162,
-    "cliques": 1354,
-    "views": 7743
+    "impressoes": 105194,
+    "cliques": 1753,
+    "views": 10394
    },
    {
     "chave": "desconhecida",
-    "impressoes": 373229,
-    "cliques": 7540,
-    "views": 9457
+    "impressoes": 388328,
+    "cliques": 9281,
+    "views": 12065
    }
   ],
   "googleGenero": [
    {
     "chave": "male",
-    "impressoes": 760444,
-    "cliques": 5984,
-    "views": 26401
+    "impressoes": 794822,
+    "cliques": 9448,
+    "views": 34586
    },
    {
     "chave": "female",
-    "impressoes": 842826,
-    "cliques": 9292,
-    "views": 34499
+    "impressoes": 875533,
+    "cliques": 12279,
+    "views": 43796
    },
    {
     "chave": "unknown",
-    "impressoes": 201137,
-    "cliques": 1101,
-    "views": 8919
+    "impressoes": 208557,
+    "cliques": 1673,
+    "views": 11313
    }
   ],
   "notaGoogle": "Idade e gênero do Google: só campanhas Faz Bem (tabelas googlefazbemage/gender)."
@@ -2011,24 +2045,24 @@
    "p100": 6249
   },
   "youtube": {
-   "impressoes": 126862,
-   "views": 69996,
-   "investimento": 6178.63,
-   "p25": 99464,
-   "p50": 81831,
-   "p75": 75333,
-   "p100": 71256
+   "impressoes": 164279,
+   "views": 89696,
+   "investimento": 7485.43,
+   "p25": 128289,
+   "p50": 104949,
+   "p75": 96516,
+   "p100": 91190
   },
   "notaYoutube": "Quartis do YouTube = taxa diária × impressões (estimativa da contagem)."
  },
  "engajamento": {
-  "total": 196916,
-  "reacoes": 30179,
+  "total": 197359,
+  "reacoes": 30198,
   "comentarios": 92,
   "compartilhamentos": 485,
-  "salvamentos": 247,
-  "cliquesLink": 17548,
-  "youtube": 88039
+  "salvamentos": 248,
+  "cliquesLink": 17971,
+  "youtube": 113554
  },
  "criativos": [
   {
@@ -2065,7 +2099,7 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/14122796317406586351?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLMu4d1OiBhwG7qaxWMFzRJlLmK4OnxfOd89FLjgF0uTN-2lREGm9X_j07kzYhZVe7JJ8h98pTeBAfbaKZZJoqwTYyVicUcZpcZD0rDkRjNhL667An_nA_ee0i8FoxmtS8HXN-SogGFtfjIf1bB-kn5&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=RpU8lsW4iuTFD7DMoZRLyQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeH1kJetCTG6SA5OuLzD0J-V5rj0ZM7WnPLmuPRkztac8sO8gwafmra-Qpr4lLlKSSlItmmxVbldHdrhTmmYFubH&_nc_tpa=Q5bMBQLsZdJfuhmMVrgZv1RgIKxWLK3pkMW253DdQ1NpZoJb9hhjF7FoUYuTturHHmLFuYumhbqzyuZkhw&oh=06_Q3_EAQTbHyH8XWf3RCCoKU_xnn64zpfOm3zdDPZrnbMHgLxg&oe=6AC6C53A",
+   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/14122796317406586351?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLMu4d1OiBhwG7qaxWMFzRJlLmK4OnxfOd89FLjgF0uTN-2lREGm9X_j07kzYhZVe7JJ8h98pTeBAfbaKZZJoqwTYyVicUcZpcZD0rDkRjNhL667An_nA_ee0i8FoxmtS8HXN-SogGFtfjIf1bB-kn5&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=xCtGvLdJbQ50H6F4G6fzZg&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeH1kJetCTG6SA5OuLzD0J-V5rj0ZM7WnPLmuPRkztac8sO8gwafmra-Qpr4lLlKSSlItmmxVbldHdrhTmmYFubH&_nc_tpa=Q5bMBQLEH9uGM_-1xu5I3XfsTNc_JFyRe-f13V7iIw6InLmwjgpgzxtTB7-JqvO4GhBCHVz-Y8Ac2OGxOw&oh=06_Q3_FAYmRQCjT7SHgz7jNHVEmUkYTjb4eLAs4eSYqkV3KMA-7&oe=6AFCD2BA",
    "link": "https://www.instagram.com/p/DYVxupJgIha/",
    "imagem": "/criativos/meta-02.jpg"
   },
@@ -2084,7 +2118,7 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/14312032691458403100?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJLIJuxBowrkq0pNMhTlZQSiPcNnftivkOQyDB-kw5Ujor35ktxzYDxVUqOtARBPtDsVg2zBRJcZQYl0sA_M6iApdPdhW8zKD7LAdieQoZ8mBS2as5zigU5z0LDUv_r10xS1a3ZQgMRGrTri0TB7qZD&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=RpU8lsW4iuTFD7DMoZRLyQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeHIiR6pJYHWAhJRU-Es6CqZ2rPFLk2Dca3as8UuTYNxrZzWj-Dea92aCkb1tyljs_bt1ewi-bh8Vst0YTdb1u6T&_nc_tpa=Q5bMBQIpoE7NiftVcxfloatmPBhuYB7R-akIaqcz2h4GSPkDwzilVmKfu3FurbtbvAkBlYMX5z11MqUyTQ&oh=06_Q3_EAcIOthMKUKsKN_Rfffg7uI-vlKGSQYSM5Yjyd2z0MiEC&oe=6AC6B6EA",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/14312032691458403100?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJLIJuxBowrkq0pNMhTlZQSiPcNnftivkOQyDB-kw5Ujor35ktxzYDxVUqOtARBPtDsVg2zBRJcZQYl0sA_M6iApdPdhW8zKD7LAdieQoZ8mBS2as5zigU5z0LDUv_r10xS1a3ZQgMRGrTri0TB7qZD&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=xCtGvLdJbQ50H6F4G6fzZg&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeHIiR6pJYHWAhJRU-Es6CqZ2rPFLk2Dca3as8UuTYNxrZzWj-Dea92aCkb1tyljs_bt1ewi-bh8Vst0YTdb1u6T&_nc_tpa=Q5bMBQJmKttRajoIsksHPqRzQhHozIZyxy12YwtndbCPmK4C-UYoVDz3yYm1l_O-64LkFkF5t6_Ejv_I1A&oh=06_Q3_FATeR-v31HAMmsPMXtIy86PDA9Cf2ZtaA0OE2PyNctEQL&oe=6AFCC46A",
    "link": "https://www.instagram.com/p/DYVxxCygMBF/",
    "imagem": "/criativos/meta-03.jpg"
   },
@@ -2103,7 +2137,7 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/7849249459743764155?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKSxawD4IzOZomdCe2EbgCVK4ZFB1H5LiYVtxhPC7WKnkTlX7hb76-vIL6z7bE0PpvaMv1o0R9LzQ-uw0QW4hsJ-TpQVu2utysxenNoL62P_Kpc2dvuVUN_hv8xhi4HJHs-K8q7fVXTwllOJaba0IZQ&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=wdRYjQVDSHpta2FlX_4HDQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeEyp9rzn12LButZDLK2oJOLqrYx8YILQgGqtjHxggtCAbk0awCIAnL-eYnJu-Z6v5zI0CZCrp2co59nDxibDE6D&_nc_tpa=Q5bMBQKG9kw8l0eK0nIL6zmNYW8U-ussXymqOUoNeMDnmeaGu1wnrIMxU-nnzpKnQ7isfe64hVgwSTL5CQ&oh=06_Q3_EAX_Id7jnLyFA7Ttr3TJc1n4tZa778CEvYvP3arP16xBW&oe=6AC6BEBC",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/7849249459743764155?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKSxawD4IzOZomdCe2EbgCVK4ZFB1H5LiYVtxhPC7WKnkTlX7hb76-vIL6z7bE0PpvaMv1o0R9LzQ-uw0QW4hsJ-TpQVu2utysxenNoL62P_Kpc2dvuVUN_hv8xhi4HJHs-K8q7fVXTwllOJaba0IZQ&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=hVxDwITQg87L0XjKSQHH9Q&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeEyp9rzn12LButZDLK2oJOLqrYx8YILQgGqtjHxggtCAbk0awCIAnL-eYnJu-Z6v5zI0CZCrp2co59nDxibDE6D&_nc_tpa=Q5bMBQJH2EDelJ2QSPE8mzcpS1QW4t882kp-GCxT_2XnzpLa4fgvPFOFgKxKlSGOF4GQECXA5gqneIM6-g&_nc_enc=Uu966o35UZTN-Nj-V46qE1OljlCh1yzmKaOPc1HYUzQa-Phjy5ZbBewp0QKfBDpQLdypQhrIclR0BnoQuF5JRrN-YIQjUiAhc3YUNs4UqcrtYsE&oh=06_Q3_FAfQHTnEtXM3-kvNPtVZh8Z-MgL_KVn0roh5RZjlwX1nl&oe=6AFCCC3C",
    "link": "https://www.instagram.com/p/DcuBvoeg57h/",
    "imagem": "/criativos/meta-04.jpg"
   },
@@ -2141,7 +2175,7 @@
    "frente": "Faz Bem",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/13713942592229853379?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJItswDJMyqydWXIBUWRGIoCWKGJkv0iry94JDi2u7DjEc2DyVi_3x4czBUfWsSbSg5j7cIDKjbHJDj-UJnNfgqFYLUYeC6xYjKxgfsKZvvLXHQJ65clRfHOW45Irrve6H-jkQ-yvm5Ia93FYt2urRg&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=BrpjTdDf9vco6nGVYLJIOw&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeHk9VeL0tAy52IJdAi-P7OffhoK6JgnfE9-GgromCd8T544avrwvNDmvgcZz4a_8fLR4jl1GAHkldZHT3gMedqb&_nc_tpa=Q5bMBQKJPKSchIudBP4jwBnYdPWNW60Jla3HCYCbQ-siFuX51zfxecL2XyHkatjO8g7ZxE9YUfAtAAGPzQ&oh=06_Q3_EAbJJpr3MpOMnV_eil1PNsOo4M-a5BCJ65wmrTCGS5T55&oe=6AC6CCC9",
+   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/13713942592229853379?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJItswDJMyqydWXIBUWRGIoCWKGJkv0iry94JDi2u7DjEc2DyVi_3x4czBUfWsSbSg5j7cIDKjbHJDj-UJnNfgqFYLUYeC6xYjKxgfsKZvvLXHQJ65clRfHOW45Irrve6H-jkQ-yvm5Ia93FYt2urRg&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=wmSolFzh_liiWSrX7A7A-A&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeHk9VeL0tAy52IJdAi-P7OffhoK6JgnfE9-GgromCd8T544avrwvNDmvgcZz4a_8fLR4jl1GAHkldZHT3gMedqb&_nc_tpa=Q5bMBQJQ-z5V3kaMW7nt2Bv6e4BE1vOiEPrOSBzIf8LkpdGWrf-xchCia0ndJeHNeTYZfvH6J-iOeEdTYQ&oh=06_Q3_FARY_ZwgQrqhY3hoTeQbyXlNd8KFLRTvQL8guHEersv1o&oe=6AFCDA49",
    "link": "https://www.instagram.com/p/DaWLbg3gsiy/",
    "imagem": "/criativos/meta-06.jpg"
   },
@@ -2160,7 +2194,7 @@
    "frente": "Faz Bem",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/13720276142040807996?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLtf6312QVyo1TfrdAVy8H-H7A7lCj78vFG6z36FdoTgAlgf_4SiCZH9Z5gQ5s4DwlCHvZVWMSMCiAp20mozs0wnLjcREDJUyXo1Vtt9jCuIJmsE2RLprRkwMj65Q2z_NHMpMNtDMz7B86kgxGFMklQ&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=BrpjTdDf9vco6nGVYLJIOw&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeF9RcQ0y4ZH0TxYapkzF2re5lIKxNCBhUjmUgrE0IGFSJv-HYbQDJzvxUUEdlAMo5btwWeiFH8VP5uVuMxol-yB&_nc_tpa=Q5bMBQK5G6-J6rC9pGm4BduH0GSBFz2zDYfLhvSQxmfi4C6sUdghPSiNT5pic_OjeIto78OWK1nhSaZ_5Q&oh=06_Q3_EAf207HDa9YBpffsKIJ53KO8VSv4TxVu4wFDtOl-_kKvX&oe=6AC6D84A",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/13720276142040807996?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLtf6312QVyo1TfrdAVy8H-H7A7lCj78vFG6z36FdoTgAlgf_4SiCZH9Z5gQ5s4DwlCHvZVWMSMCiAp20mozs0wnLjcREDJUyXo1Vtt9jCuIJmsE2RLprRkwMj65Q2z_NHMpMNtDMz7B86kgxGFMklQ&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=wmSolFzh_liiWSrX7A7A-A&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeF9RcQ0y4ZH0TxYapkzF2re5lIKxNCBhUjmUgrE0IGFSJv-HYbQDJzvxUUEdlAMo5btwWeiFH8VP5uVuMxol-yB&_nc_tpa=Q5bMBQIHvz5c9UddYl7n11iprQr_i4zgCQ6SV4lrekI5Aui4S4YEMd79ycckIrGCrg4M3AKaOhzRKvpstw&oh=06_Q3_FARY0o5M9kSErLEtjmJFZyE03ihmDhFaN2Z2dh-p4hmqM&oe=6AFCE5CA",
    "link": "https://www.instagram.com/p/DaWLbmMA4Cn/",
    "imagem": "/criativos/meta-07.jpg"
   },
@@ -2179,26 +2213,26 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/14173729277560106321?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIVRgphLXjUNh8xiqZ89725_rs7eVOL-4z1CjpQO8MauV8o3TMWbkTQHh32_vwhwyKgrDa2KRGadeFATO5WEoiXCZ8W_uU1ojSkT7SKvxPtA8itTQjyBkP-0maCqp9vETTNosgO2aSsNW8KpXj_eJA1&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=wdRYjQVDSHpta2FlX_4HDQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeGb427UAiy6yUKI6KAR9bYZg1Qkjucl_7WDVCSO5yX_tRslMchV5yC1SuYntuxwffcdm6-pYC0U3UcYTB2n0-oW&_nc_tpa=Q5bMBQJTqc4A2P9kWzJphxUhMLWlmaAeb-K78U6VKAKc7lsRkGZAwJ-uttBsDAb57izbJxrFoEg1MIwAxQ&oh=06_Q3_EAasK_ogQmn4SUqGwg1gOainJb8KDVex0TW9QAo4r579o&oe=6AC6AFFF",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/14173729277560106321?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIVRgphLXjUNh8xiqZ89725_rs7eVOL-4z1CjpQO8MauV8o3TMWbkTQHh32_vwhwyKgrDa2KRGadeFATO5WEoiXCZ8W_uU1ojSkT7SKvxPtA8itTQjyBkP-0maCqp9vETTNosgO2aSsNW8KpXj_eJA1&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=hVxDwITQg87L0XjKSQHH9Q&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeGb427UAiy6yUKI6KAR9bYZg1Qkjucl_7WDVCSO5yX_tRslMchV5yC1SuYntuxwffcdm6-pYC0U3UcYTB2n0-oW&_nc_tpa=Q5bMBQJWgVO2_M0JLMSPiBvIFER-iarWZNf04xIWdrNeGafxL4YPBv3x9tndozJwMU9zBxXneIogjHiLOA&oh=06_Q3_FAQlB4Vrk-zw7RsOqaozOglal-lJpI-lOu3tGOG2htG4E&oe=6AFCBD7F",
    "link": "https://www.instagram.com/p/DcuBvrMg7ud/",
    "imagem": "/criativos/meta-08.jpg"
   },
   {
-   "investimento": 1762.83,
-   "impressoes": 301383,
-   "cliques": 593,
+   "investimento": 2261.04,
+   "impressoes": 364778,
+   "cliques": 683,
    "views": 0,
-   "engajamento": 446,
-   "ctr": 0.00197,
-   "cpm": 5.85,
-   "cpc": 2.97,
+   "engajamento": 522,
+   "ctr": 0.00187,
+   "cpm": 6.2,
+   "cpc": 3.31,
    "id": "meta-09",
    "nome": "Ad1 Institucional",
    "plataforma": "Meta",
    "frente": "Faz Bem",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/9075233929504788918?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLlfQ4EI-p4jzxT8UI6s3vft0yY3kjKm-wwkqNwNoNeyIoxDlUYgoPI8tuTW6npevf_rXFcnFF1I4p7_TWQix1DJNY_p5qe2ekIU8-cueHx83H4xoPdXDywckOe91RxYcvTyblUA0oL_i6kSPkkpaep&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=u1hjJq9POCQnmAqxvDAeYQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeFNJAwBP8IT9w9hEKL2JWSD8MDZKW_CP_rwwNkpb8I_-mKCR65ED4l4XiLKJ3kHztwcYUUXvV_EsogVx4_goDJa&_nc_tpa=Q5bMBQJhwwZuRbvOXKOIQ_uVuldEX-9neSGN6hpNcFpfQDVGVqQJcfO-DHwgoXP9UHiEObGBNwKri03OrQ&oh=06_Q3_EAXYlutb-X8_t2QkvtxsqqjZSPuh09N6GY_KQKppXsdsU&oe=6AC6E30D",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/9075233929504788918?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLlfQ4EI-p4jzxT8UI6s3vft0yY3kjKm-wwkqNwNoNeyIoxDlUYgoPI8tuTW6npevf_rXFcnFF1I4p7_TWQix1DJNY_p5qe2ekIU8-cueHx83H4xoPdXDywckOe91RxYcvTyblUA0oL_i6kSPkkpaep&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=f7DQVeNsjfzbav19IUoKkQ&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeFNJAwBP8IT9w9hEKL2JWSD8MDZKW_CP_rwwNkpb8I_-mKCR65ED4l4XiLKJ3kHztwcYUUXvV_EsogVx4_goDJa&_nc_tpa=Q5bMBQK9BEc6SQq4lsE63A2-PqIzr_IOBWM_i1eeUwO_rmea5cUyebaaUjvwkOVQDu0foQvgAaAgUaOCxw&oh=06_Q3_FAVp4FnA69xWm83YoZRemmD24T_t7qREKq5aArT2TcSaR&oe=6AFE09CD",
    "link": "https://www.instagram.com/p/Dcs3rrUA2AX/",
    "imagem": "/criativos/meta-09.jpg"
   },
@@ -2217,9 +2251,28 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/276969652640183750?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQL_d072k2w-3emf0sDgzrhoY51gF-DR85EO4Jp29WHa3jE2PLB2-jMp9CruQaQaY06YjkQ3BGMvOK1M43-DUkh2_DD6V633D4J-bLwnhAiRjsCiVtQmecDe6xLdtNbCQ_0_pIUipXbGKPsr08_oX86a&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=RpU8lsW4iuTFD7DMoZRLyQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeHrCzmoGno9j2xvmuM_pPxvs4TvJ6cD7EWzhO8npwPsRR4ffWtjQsTjEs8hRMdf29sJhEyOPQpopzdm0JIzSf1M&_nc_tpa=Q5bMBQJd3hwgLYuALKECG2sAAD5N54C0o8stnXqaa-KVnr7mc-IcOJxkEpXDeo-oJOtv9CDAwyV65U4DLw&oh=06_Q3_EAXgDSC3BaEPCrYuUxykgfdyh-FdIB4cEXrrwm2SXaKsZ&oe=6AC6D09D",
+   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/276969652640183750?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQL_d072k2w-3emf0sDgzrhoY51gF-DR85EO4Jp29WHa3jE2PLB2-jMp9CruQaQaY06YjkQ3BGMvOK1M43-DUkh2_DD6V633D4J-bLwnhAiRjsCiVtQmecDe6xLdtNbCQ_0_pIUipXbGKPsr08_oX86a&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=xCtGvLdJbQ50H6F4G6fzZg&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeHrCzmoGno9j2xvmuM_pPxvs4TvJ6cD7EWzhO8npwPsRR4ffWtjQsTjEs8hRMdf29sJhEyOPQpopzdm0JIzSf1M&_nc_tpa=Q5bMBQIcL8hwFL7r-erMjyFJHMS4jKT9D77S_G8Umygsh28vNLmfIqmaGOn9C_xOky50_C8LTJEBkqYAlw&oh=06_Q3_FAUJfItimfrrGlMWQ-211sL06xfD8CoB64OpCQ-Tj0FuT&oe=6AFCDE1D",
    "link": "https://www.instagram.com/p/DYVxwuiAEbm/",
    "imagem": "/criativos/meta-10.jpg"
+  },
+  {
+   "investimento": 1531.34,
+   "impressoes": 258952,
+   "cliques": 542,
+   "views": 0,
+   "engajamento": 411,
+   "ctr": 0.00209,
+   "cpm": 5.91,
+   "cpc": 2.83,
+   "id": "meta-11",
+   "nome": "Ad2 Empresarial",
+   "plataforma": "Meta",
+   "frente": "Faz Bem",
+   "estrategia": "Alcance",
+   "formato": "imagem",
+   "imagemOrigem": "https://external-fra5-1.xx.fbcdn.net/emg1/v/t13/7041175472045421599?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI_kOVoUf1eD9xvD3-Qc-Okh47ydo4V0ax1qt05G-atFuwtdYojT8Emda8yUx3465I9cZKlzu97wzQvfiwSz8Qoy7mPiLgzfQzW63jSM5BJ62Xm2G8VDCSmI6sinGJl0j7yAuvQ0Ew10Dph1JTgptB0&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra5-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=f7DQVeNsjfzbav19IUoKkQ&edm=AEuWsiQEAAAA&_nc_map=urlgen_bucketless&_nc_zt=3&_nc_eui2=AeEYmTlbsr0cckis5H8rVU7AH23djjSD7xYfbd2ONIPvFqFNDk85Nk0edIcj52jyDICH9fbg8w3G5aq86GFuIfKW&_nc_tpa=Q5bMBQIYvOHssZhrfI1fnlz7R2SfEVaYp-kQDbtgx_QfMLVBXHmCJH1DakGizA8IT71_EshzVMwLT5W1Eg&oh=06_Q3_FAc1GZEshaBUSttzEcqzCjGNcw2dRmomwlLKeEcL0y7Yh&oe=6AFE39C4",
+   "link": "https://www.instagram.com/p/Dcs3ryYApwk/",
+   "imagem": "/criativos/meta-11.jpg"
   },
   {
    "investimento": 873.07,
@@ -2230,15 +2283,15 @@
    "ctr": 0.00014,
    "cpm": 3.57,
    "cpc": 24.94,
-   "id": "meta-11",
+   "id": "meta-12",
    "nome": "AD 01 HOMEM",
    "plataforma": "Meta",
    "frente": "Checkup Torcedor",
    "estrategia": "Alcance",
    "formato": "video",
-   "imagemOrigem": "https://scontent-fra5-1.xx.fbcdn.net/v/t15.5256-10/724174541_865051156661389_2695135070461316714_n.jpg?_nc_cat=102&ccb=1-7&_nc_eui2=AeEko9X101lVb46DIlpsoa2pPk0oocs52po-TSihyznamgQdGFXcxYrc1WZ2OF21lemQ0OA3HgsUz0N5SqkM0IEy&_nc_ohc=tVkninS2Ie4Q7kNvwGmANPh&_nc_oc=AdowHh24TxDf1STN1-1COy1_G2h8fn3qrS-rRNAk_dlKr7LjjijwxvipkRLweDBiVtA&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&edm=AEuWsiQEAAAA&_nc_gid=LCYhswKoOCzv1FN8-YqvOg&_nc_tpa=Q5bMBQIau9Y09VwzevAHFAkXKrQJFU7G1w8Ngw_8MgOelNuUKQdG8uaSmrzlHc8B0XTp9sQXlFmgbBWUnw&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQM1kx6IN4dWx69KTnmRpsua7eG57-WXxw37bXMt9mZ12Q&oe=6ACACC2B",
+   "imagemOrigem": "https://scontent-fra5-1.xx.fbcdn.net/v/t15.5256-10/724174541_865051156661389_2695135070461316714_n.jpg?_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_eui2=AeEko9X101lVb46DIlpsoa2pPk0oocs52po-TSihyznamgQdGFXcxYrc1WZ2OF21lemQ0OA3HgsUz0N5SqkM0IEy&_nc_ohc=jQcY52_dp4wQ7kNvwGaFAIe&_nc_oc=Adq5Z3RpUeKX4uAu-YbvpX7aNyhY2V_GcifS6UQ6iLm6Po8h9UDexYgqupyEmumENCg&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&edm=AEuWsiQEAAAA&_nc_gid=Xt1vPEBnZ8a-7_QLde9qTA&_nc_tpa=Q5bMBQL43qd5ham0jFTbmWcO6-xxIsUzXbf0kpTWTRNeQxWKeayW3EG_JpxLHdYDCAkRauoKl9qn_OvZ8g&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQRXQAJb43dOb4qw8-Dt0hs7iIgvxovJo6dNYDlesLjHFA&oe=6B00D9AB",
    "link": "https://www.instagram.com/p/DZlmMmUAK8t/",
-   "imagem": "/criativos/meta-11.jpg"
+   "imagem": "/criativos/meta-12.jpg"
   },
   {
    "investimento": 315.99,
@@ -2249,7 +2302,7 @@
    "ctr": 0.00051,
    "cpm": 1.53,
    "cpc": 3.01,
-   "id": "google-12",
+   "id": "google-13",
    "nome": "IMG_4887.jpg",
    "plataforma": "Google",
    "frente": "Faz Bem",
@@ -2257,26 +2310,7 @@
    "formato": "imagem",
    "imagemOrigem": "https://tpc.googlesyndication.com/simgad/3370652013409590728",
    "link": "",
-   "imagem": "/criativos/google-12.jpg"
-  },
-  {
-   "investimento": 1142.01,
-   "impressoes": 200999,
-   "cliques": 438,
-   "views": 0,
-   "engajamento": 335,
-   "ctr": 0.00218,
-   "cpm": 5.68,
-   "cpc": 2.61,
-   "id": "meta-13",
-   "nome": "Ad2 Empresarial",
-   "plataforma": "Meta",
-   "frente": "Faz Bem",
-   "estrategia": "Alcance",
-   "formato": "imagem",
-   "imagemOrigem": "https://external-fra3-1.xx.fbcdn.net/emg1/v/t13/7041175472045421599?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI_kOVoUf1eD9xvD3-Qc-Okh47ydo4V0ax1qt05G-atFuwtdYojT8Emda8yUx3465I9cZKlzu97wzQvfiwSz8Qoy7mPiLgzfQzW63jSM5BJ62Xm2G8VDCSmI6sinGJl0j7yAuvQ0Ew10Dph1JTgptB0&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-fra3-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ccb=18-1&_nc_gid=u1hjJq9POCQnmAqxvDAeYQ&edm=AEuWsiQEAAAA&_nc_zt=3&_nc_eui2=AeEYmTlbsr0cckis5H8rVU7AH23djjSD7xYfbd2ONIPvFqFNDk85Nk0edIcj52jyDICH9fbg8w3G5aq86GFuIfKW&_nc_tpa=Q5bMBQKtYNO8YUaQq50sjhQVZeM7h13XjcxrVCGI6NalhSK7nabWtUMQ2fcGpz53SacVBWv_xRUaIeAXBQ&oh=06_Q3_EATK-15wEqy_xVVZSJOVDjgIW9Y-0s_xagJ7Q2W4RQBRL&oe=6AC6DAC4",
-   "link": "https://www.instagram.com/p/Dcs3ryYApwk/",
-   "imagem": "/criativos/meta-13.jpg"
+   "imagem": "/criativos/google-13.jpg"
   },
   {
    "investimento": 1358.64,
@@ -2293,7 +2327,7 @@
    "frente": "Institucional AON",
    "estrategia": "Alcance",
    "formato": "video",
-   "imagemOrigem": "https://scontent-fra5-1.xx.fbcdn.net/v/t15.5256-10/741777616_1992201388091065_4642938077179192445_n.jpg?_nc_cat=100&ccb=1-7&_nc_eui2=AeF--F_5ka_dBRuSVmFm5ZWCVTpvaNOVe3xVOm9o05V7fB3M8DR98hfL7DE4lRTz8NA5k2rn-669EF8iyK9tYF5m&_nc_ohc=wTZIBdVLTJIQ7kNvwHUlTd4&_nc_oc=Ado50BYCkfXHexbwbn9FlS9ZRsBG8fVrGXMTw2Qi3_gfmpoApKqANF6stT3zHgaIqD8&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&edm=AEuWsiQEAAAA&_nc_gid=RpU8lsW4iuTFD7DMoZRLyQ&_nc_tpa=Q5bMBQLCUD19DPwStRnhVLaLg2rptK3thGUNIfaSIXwk_UdgZ7trymK6CThDF-MddHjoRofzWxiKUR5sVA&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AQOnghCM0YL6Nyv-qMDXlE-rY5bGuk2Oltv22FBVvltYvg&oe=6ACABA5C",
+   "imagemOrigem": "https://scontent-fra3-1.xx.fbcdn.net/v/t15.5256-10/741777616_1992201388091065_4642938077179192445_n.jpg?_nc_cat=100&_nc_map=urlgen_bucketless&ccb=1-7&_nc_eui2=AeF--F_5ka_dBRuSVmFm5ZWCVTpvaNOVe3xVOm9o05V7fB3M8DR98hfL7DE4lRTz8NA5k2rn-669EF8iyK9tYF5m&_nc_ohc=hXtmw7H56OgQ7kNvwHCJpHs&_nc_oc=AdrQsPrc0y2CiC29FzwUonuDWm7o6tCTdFuNfQxNXPhCPMpsKIboZ909cj7RyPtL4Mo&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&edm=AEuWsiQEAAAA&_nc_gid=xCtGvLdJbQ50H6F4G6fzZg&_nc_tpa=Q5bMBQLjDPmJ2lZRkgBTVQMcRn6qimgVf2D-ycnndbpv_cLowzK0z93540jpXuM4y-v1gvwcEnwjqTVDZQ&stp=c0.5000x0.5000f_dst-emg0_p1024x1024_q75_tt6&ur=a7ce7f&_nc_sid=58080a&oh=00_AQRpvVsEKeTA3tCkRD6IET8l6yWcJ7kSoyGt6ij4Q3RnPw&oe=6B00C7DC",
    "link": "https://www.instagram.com/p/DZ5qkaMAPPs/",
    "imagem": "/criativos/meta-14.jpg"
   },
@@ -2339,17 +2373,8 @@
  "avisos": [
   "Curativos: 308 linhas do CSV curativos-google.csv (fora da função do Supabase).",
   "44 linhas descartadas (sem data, Estratégia em branco ou uploads errados da coleta).",
-  "Investimento limitado ao contratado no ano todo: R$ 15.172,68 abaixo do realizado (não indicado na interface).",
+  "Investimento limitado ao contratado no ano todo: R$ 15.188,37 abaixo do realizado (não indicado na interface).",
   "Alcance fora do relatório: a fonte não traz alcance único.",
-  "Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot.",
-  "Miniatura não baixada, mantida a cópia local: AD3 Mais Planos de Saúde (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: AD1 Robótica (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: AD2 Centro Médico Ondina (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: Ad3 Vendas (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: Ad2 Vantagens (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: AD3 Planos de Saúde (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: Ad1 Institucional (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: AD2 My Day (HTTPError).",
-  "Miniatura não baixada, mantida a cópia local: Ad2 Empresarial (HTTPError)."
+  "Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot."
  ]
 }
