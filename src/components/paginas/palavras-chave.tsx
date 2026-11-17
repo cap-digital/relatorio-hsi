@@ -12,8 +12,6 @@ const INICIAL = 10;
 const MAXIMO = 15;
 /** No ranking por CTR, termos com menos impressões que isso ficam de fora (2 impr. e 1 clique = 50%). */
 const CTR_MIN_IMPRESSOES = 50;
-export const NOTA_PALAVRAS_CHAVE = "Sem custo por palavra-chave na fonte. Não inclui a campanha Curativos.";
-const NOTA_CTR = `CTR considera termos com ${CTR_MIN_IMPRESSOES}+ impressões.`;
 
 type Metrica = "cliques" | "impressoes" | "ctr";
 const METRICAS: { k: Metrica; label: string }[] = [
@@ -21,14 +19,6 @@ const METRICAS: { k: Metrica; label: string }[] = [
   { k: "impressoes", label: "Impressões" },
   { k: "ctr", label: "CTR" },
 ];
-/** Ressalva da frente cuja fonte de palavras-chave não cobre os cliques de Pesquisa (totais.completa = false). */
-const RESSALVA: Record<string, string> = {
-  "Faz Bem": "A fonte de palavras-chave do Faz Bem está incompleta em jan–mar; o ranking mostra os termos registrados.",
-};
-const ressalva = (dados: Dados, frente: string): string | null =>
-  dados.totais[frente]?.completa === false
-    ? (RESSALVA[frente] ?? `A fonte de palavras-chave de ${frente} está incompleta; o ranking mostra os termos registrados.`)
-    : null;
 
 /** Ranking pela métrica (maior em cima; empate → cliques, depois o termo). No CTR, só termos com 50+ impressões. */
 function ranking(lista: PalavraChave[], m: Metrica): PalavraChave[] {
@@ -93,20 +83,6 @@ function Resumo({ dados, frente }: { dados: Dados; frente: string }) {
   );
 }
 
-export function NotaPalavrasChave({ ressalvas = [], ctr = false, className }: { ressalvas?: string[]; ctr?: boolean; className?: string }) {
-  return (
-    <div className={cn("flex flex-col gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-text-3", className)}>
-      <p>
-        {NOTA_PALAVRAS_CHAVE}
-        {ctr && ` ${NOTA_CTR}`}
-      </p>
-      {ressalvas.map((r) => (
-        <p key={r}>{r}</p>
-      ))}
-    </div>
-  );
-}
-
 /** Tela: abas por frente e seletor de métrica (mesmo padrão do EntregaPublico); top 10 e "Ver todos" até 15. */
 export function PalavrasChave({ dados }: { dados: Dados }) {
   const frentes = FRENTES.filter((f) => dados.porFrente[f]?.length).map((f) => ({ k: f as string, label: f as string }));
@@ -135,7 +111,6 @@ export function PalavrasChave({ dados }: { dados: Dados }) {
       </div>
       <HBars key={`${frente}-${metrica}`} className="mt-6" items={itens(aberto ? lista : lista.slice(0, INICIAL), metrica)} />
       <BotaoVerTodos aberto={aberto} total={lista.length} inicial={INICIAL} onToggle={() => setAberto((v) => !v)} />
-      <NotaPalavrasChave className="mt-6" ctr ressalvas={[ressalva(dados, frente)].filter((r): r is string => !!r)} />
     </div>
   );
 }
@@ -157,7 +132,6 @@ export function PalavrasChavePdf({ dados }: { dados: Dados }) {
           />
         </div>
       ))}
-      <NotaPalavrasChave ressalvas={FRENTES.map((f) => ressalva(dados, f)).filter((r): r is string => !!r)} />
     </div>
   );
 }
