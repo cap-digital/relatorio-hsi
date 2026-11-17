@@ -16,8 +16,8 @@ Uso:
 
 Regras (nada estimado além do indicado):
   - Pipeline do dashboard em produção (descarta Estratégia em branco e uploads errados), com uma
-    diferença: aqui o investimento é limitado ao contratado no ANO TODO (no dashboard, só desde 01/07).
-    Só o investimento muda; as demais métricas ficam como entregues (ver contrato / aplicar_regras). "Investimento" já é o valor ao cliente (spend ÷ margem): nunca usar spend.
+    diferença: aqui o investimento de cada grupo de contrato é IGUAL ao contratado no ANO TODO, nos dois
+    sentidos (reduz se passou, aumenta se ficou abaixo). Só o investimento muda; as demais métricas ficam como entregues (ver contrato / aplicar_regras). "Investimento" já é o valor ao cliente (spend ÷ margem): nunca usar spend.
   - Sem alcance: a fonte só tem alcance por dia × anúncio × idade × gênero, não único.
   - Colunas "Gênero" e "Idade" vêm TROCADAS na planilha; aqui são corrigidas.
   - "#DIV/0!" e vazios em Investimento contam 0. Linhas sem data são descartadas.
@@ -88,9 +88,10 @@ UPLOADS_ERRADOS = [
     ("[PI 437] [HOSPITAL SANTA IZABEL] [TRÁFEGO]", None, "2026-10-01", "2026-10-31"),
 ]
 
-# (4) Investimento contratado (bruto). NESTE RELATÓRIO a trava vale para o ANO TODO (no dashboard, só desde
-#     01/07): o investimento de cada grupo nunca passa do contratado. Só o investimento é ajustado;
+# (4) Investimento contratado (bruto). NESTE RELATÓRIO vale para o ANO TODO: o investimento de cada grupo é
+#     IGUAL ao contratado, nos dois sentidos (linhas × contratado/realizado). Só o investimento é ajustado;
 #     impressões, cliques, views e engajamento ficam como entregues. Grupo sem contrato → investimento 0.
+#     Grupo com contrato e sem entrega (sem linhas ou realizado 0) não tem onde distribuir: é listado no terminal.
 MESES_ANO = [f"2026-{m:02d}" for m in range(1, 11)]
 AON = {  # Institucional AON, por mês (jan → out)
     ("Google", "Search"):               [3000] * 10,
@@ -120,6 +121,22 @@ def contratado_ano():
     checkup = sum(CHECKUP.values())
     faz_bem = sum(sum(pac.values()) for _, _, _, pac in FAZ_BEM)
     return aon + checkup + faz_bem + CURATIVOS
+
+
+def grupos_contratados():
+    """Todos os grupos com contrato > 0, nas mesmas chaves de contrato(r)."""
+    g = {}
+    for (plat, estr), valores in AON.items():
+        for mes, v in zip(MESES_ANO, valores):
+            if v:
+                g[("AON", mes, plat, estr)] = v
+    for (mes, plat, estr), v in CHECKUP.items():
+        g[("Checkup", mes, plat, estr)] = v
+    for per, _, _, pac in FAZ_BEM:
+        for (plat, estr), v in pac.items():
+            g[("Faz Bem", per, plat, estr)] = v
+    g[("Curativos",)] = CURATIVOS
+    return g
 
 
 def contrato(r):
@@ -177,7 +194,7 @@ def upload_errado(campanha, criativo, dia):
 
 
 def aplicar_regras(raw, avisos):
-    """(1) descarta Estratégia em branco → (2) uploads errados → (3) Display PI 438 → (4) trava no contratado."""
+    """(1) descarta Estratégia em branco → (2) uploads errados → (3) Display PI 438 → (4) investimento = contratado."""
     rows = []
     descartadas = 0
     for r in raw["consolidado"]:
@@ -197,24 +214,36 @@ def aplicar_regras(raw, avisos):
     # (3) Redistribuição do Display PI 438 em setembro: move valores entre dias DENTRO do mês,
     #     sem alterar totais mensais — não afeta nenhum número deste relatório agregado.
 
-    # (4) Trava no contratado, ano todo: grupos acima do contratado são reduzidos na mesma proporção.
+    # (4) Investimento igual ao contratado em todos os grupos, ano todo: cada grupo é escalado por contratado/realizado
+    #     (reduz se passou, aumenta se ficou abaixo). Grupo sem contrato → 0.
     grupos = defaultdict(list)
     meta_grupo = {}
     for r in rows:
         k, valor = contrato(r)
         grupos[k].append(r)
         meta_grupo[k] = valor
-    corte = 0.0
+    ajuste = 0.0  # contratado − realizado (positivo = aumentou)
+    sem_entrega = []
     for k, linhas in grupos.items():
         realizado = sum(num(r.get("Investimento")) for r in linhas)
-        if realizado > meta_grupo[k]:
-            fator = meta_grupo[k] / realizado if realizado else 0
-            for r in linhas:
-                r["Investimento"] = num(r.get("Investimento")) * fator
-            corte += realizado - meta_grupo[k]
-    brl = f"{corte:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    avisos.append(f"Investimento limitado ao contratado no ano todo: R$ {brl} abaixo do realizado (não indicado na interface).")
-    return rows, corte
+        contratado = meta_grupo[k]
+        if contratado and not realizado:
+            sem_entrega.append((k, contratado))
+            continue
+        fator = contratado / realizado if realizado else 0
+        for r in linhas:
+            r["Investimento"] = num(r.get("Investimento")) * fator
+        ajuste += contratado - realizado
+    sem_entrega += [(k, v) for k, v in grupos_contratados().items() if k not in grupos]
+    if sem_entrega:
+        print(f"ATENÇÃO: {len(sem_entrega)} grupo(s) com contrato e sem entrega para distribuir (ficam com R$ 0):")
+        for k, v in sorted(sem_entrega):
+            print(f"  - {' · '.join(k)}: contratado R$ {v:,.2f}")
+        avisos.append(f"{len(sem_entrega)} grupo(s) com contrato e sem entrega: " + "; ".join(" · ".join(k) for k, _ in sorted(sem_entrega)) + ".")
+    brl = f"{abs(ajuste):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    sentido = "acima" if ajuste >= 0 else "abaixo"
+    avisos.append(f"Investimento igual ao contratado em todos os grupos (ano todo): R$ {brl} {sentido} do realizado (não indicado na interface).")
+    return rows, ajuste
 
 
 def cortar(linhas, campo, ate):
@@ -240,8 +269,8 @@ def main(src, dst, baixar_imagens, curativos=None, ate=None):
             print(f"corte em {ate}: {k} linhas posteriores descartadas do CSV da Curativos")
         raw["consolidado"] = raw.get("consolidado", []) + extra
         avisos.append(f"Curativos: {len(extra)} linhas do CSV {os.path.basename(curativos)} (fora da função do Supabase).")
-    rows, corte = aplicar_regras(raw, avisos)
-    print(f"regras aplicadas · investimento limitado ao contratado: R$ {corte:,.2f} abaixo do realizado")
+    rows, ajuste = aplicar_regras(raw, avisos)
+    print(f"regras aplicadas · investimento igual ao contratado em todos os grupos: R$ {abs(ajuste):,.2f} {'acima' if ajuste >= 0 else 'abaixo'} do realizado")
     for r in rows:
         r["_plat"] = plataforma(r["Plataforma"])
         r["_dia"] = r["Data"][:10]  # T03:00Z = meia-noite em Salvador

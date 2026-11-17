@@ -6,13 +6,13 @@
  },
  "atualizadoEm": "2026-11-17T18:38:12.553Z",
  "totais": {
-  "investimento": 128595.14,
+  "investimento": 128750.0,
   "impressoes": 9663714,
   "cliques": 116855,
   "views": 1238511,
   "engajamento": 310913,
   "ctr": 0.01209,
-  "cpm": 13.31,
+  "cpm": 13.32,
   "cpc": 1.1,
   "campanhas": 38,
   "meses": 11,
@@ -20,13 +20,13 @@
  },
  "plataformas": [
   {
-   "investimento": 65645.71,
+   "investimento": 65750.0,
    "impressoes": 6763360,
    "cliques": 32968,
    "views": 1148815,
    "engajamento": 197359,
    "ctr": 0.00487,
-   "cpm": 9.71,
+   "cpm": 9.72,
    "cpc": 1.99,
    "plataforma": "Meta",
    "inicio": "2026-05-12",
@@ -34,13 +34,13 @@
    "campanhas": 18
   },
   {
-   "investimento": 62949.42,
+   "investimento": 63000.0,
    "impressoes": 2900354,
    "cliques": 83887,
    "views": 89696,
    "engajamento": 113554,
    "ctr": 0.02892,
-   "cpm": 21.7,
+   "cpm": 21.72,
    "cpc": 0.75,
    "plataforma": "Google",
    "inicio": "2025-12-02",
@@ -261,23 +261,23 @@
     "cpc": 3.47
    },
    "google": {
-    "investimento": 4479.78,
+    "investimento": 4500.0,
     "impressoes": 55069,
     "cliques": 9861,
     "views": 0,
     "engajamento": 0,
     "ctr": 0.17907,
-    "cpm": 81.35,
-    "cpc": 0.45
+    "cpm": 81.72,
+    "cpc": 0.46
    },
    "total": {
-    "investimento": 18229.78,
+    "investimento": 18250.0,
     "impressoes": 1413084,
     "cliques": 13826,
     "views": 96378,
     "engajamento": 12102,
     "ctr": 0.00978,
-    "cpm": 12.9,
+    "cpm": 12.92,
     "cpc": 1.32
    },
    "estrategiasAtivas": 5,
@@ -290,34 +290,34 @@
    "parcial": false,
    "anoAnterior": false,
    "meta": {
-    "investimento": 13145.71,
+    "investimento": 13250.0,
     "impressoes": 1563262,
     "cliques": 5726,
     "views": 466303,
     "engajamento": 35738,
     "ctr": 0.00366,
-    "cpm": 8.41,
-    "cpc": 2.3
+    "cpm": 8.48,
+    "cpc": 2.31
    },
    "google": {
-    "investimento": 5985.43,
+    "investimento": 6000.0,
     "impressoes": 81235,
     "cliques": 10322,
     "views": 14708,
     "engajamento": 18485,
     "ctr": 0.12706,
-    "cpm": 73.68,
+    "cpm": 73.86,
     "cpc": 0.58
    },
    "total": {
-    "investimento": 19131.14,
+    "investimento": 19250.0,
     "impressoes": 1644497,
     "cliques": 16048,
     "views": 481011,
     "engajamento": 54223,
     "ctr": 0.00976,
-    "cpm": 11.63,
-    "cpc": 1.19
+    "cpm": 11.71,
+    "cpc": 1.2
    },
    "estrategiasAtivas": 6,
    "campanhasAtivas": 9
@@ -339,24 +339,24 @@
     "cpc": 1.93
    },
    "google": {
-    "investimento": 5984.21,
+    "investimento": 6000.0,
     "impressoes": 82071,
     "cliques": 8524,
     "views": 20492,
     "engajamento": 25768,
     "ctr": 0.10386,
-    "cpm": 72.92,
+    "cpm": 73.11,
     "cpc": 0.7
    },
    "total": {
-    "investimento": 18234.21,
+    "investimento": 18250.0,
     "impressoes": 1266404,
     "cliques": 14887,
     "views": 246463,
     "engajamento": 70484,
     "ctr": 0.01176,
-    "cpm": 14.4,
-    "cpc": 1.22
+    "cpm": 14.41,
+    "cpc": 1.23
    },
    "estrategiasAtivas": 7,
    "campanhasAtivas": 12
@@ -481,13 +481,13 @@
  ],
  "frentes": [
   {
-   "investimento": 81145.71,
+   "investimento": 81250.0,
    "impressoes": 4539101,
    "cliques": 83581,
    "views": 761006,
    "engajamento": 182036,
    "ctr": 0.01841,
-   "cpm": 17.88,
+   "cpm": 17.9,
    "cpc": 0.97,
    "frente": "Institucional AON",
    "inicio": "2026-01-01",
@@ -505,14 +505,14 @@
      "cpc": 0.55
     },
     "Meta": {
-     "investimento": 51145.71,
+     "investimento": 51250.0,
      "impressoes": 4314785,
      "cliques": 28701,
      "views": 761006,
      "engajamento": 182036,
      "ctr": 0.00665,
-     "cpm": 11.85,
-     "cpc": 1.78
+     "cpm": 11.88,
+     "cpc": 1.79
     }
    },
    "estrategias": [
@@ -541,14 +541,14 @@
      "estrategia": "Alcance"
     },
     {
-     "investimento": 16895.71,
+     "investimento": 17000.0,
      "impressoes": 561443,
      "cliques": 9745,
      "views": 281089,
      "engajamento": 77952,
      "ctr": 0.01736,
-     "cpm": 30.09,
-     "cpc": 1.73,
+     "cpm": 30.28,
+     "cpc": 1.74,
      "plataforma": "Meta",
      "estrategia": "Engajamento"
     },
@@ -579,13 +579,13 @@
    ]
   },
   {
-   "investimento": 40449.42,
+   "investimento": 40500.0,
    "impressoes": 4706875,
    "cliques": 27855,
    "views": 208085,
    "engajamento": 121017,
    "ctr": 0.00592,
-   "cpm": 8.59,
+   "cpm": 8.6,
    "cpc": 1.45,
    "frente": "Faz Bem",
    "inicio": "2026-01-01",
@@ -593,13 +593,13 @@
    "campanhas": 20,
    "plataformas": {
     "Google": {
-     "investimento": 26949.42,
+     "investimento": 27000.0,
      "impressoes": 2544792,
      "cliques": 23716,
      "views": 89696,
      "engajamento": 113554,
      "ctr": 0.00932,
-     "cpm": 10.59,
+     "cpm": 10.61,
      "cpc": 1.14
     },
     "Meta": {
@@ -615,13 +615,13 @@
    },
    "estrategias": [
     {
-     "investimento": 16463.99,
+     "investimento": 16500.0,
      "impressoes": 2361014,
      "cliques": 22290,
      "views": 0,
      "engajamento": 0,
      "ctr": 0.00944,
-     "cpm": 6.97,
+     "cpm": 6.99,
      "cpc": 0.74,
      "plataforma": "Google",
      "estrategia": "Display"
@@ -639,14 +639,14 @@
      "estrategia": "Alcance"
     },
     {
-     "investimento": 7485.43,
+     "investimento": 7500.0,
      "impressoes": 164279,
      "cliques": 154,
      "views": 89696,
      "engajamento": 113554,
      "ctr": 0.00094,
-     "cpm": 45.57,
-     "cpc": 48.61,
+     "cpm": 45.65,
+     "cpc": 48.7,
      "plataforma": "Google",
      "estrategia": "YouTube In-Stream"
     },
@@ -793,14 +793,14 @@
    ]
   },
   {
-   "investimento": 16895.71,
+   "investimento": 17000.0,
    "impressoes": 561443,
    "cliques": 9745,
    "views": 281089,
    "engajamento": 77952,
    "ctr": 0.01736,
-   "cpm": 30.09,
-   "cpc": 1.73,
+   "cpm": 30.28,
+   "cpc": 1.74,
    "plataforma": "Meta",
    "estrategia": "Engajamento",
    "frentes": [
@@ -808,13 +808,13 @@
    ]
   },
   {
-   "investimento": 16463.99,
+   "investimento": 16500.0,
    "impressoes": 2361014,
    "cliques": 22290,
    "views": 0,
    "engajamento": 0,
    "ctr": 0.00944,
-   "cpm": 6.97,
+   "cpm": 6.99,
    "cpc": 0.74,
    "plataforma": "Google",
    "estrategia": "Display",
@@ -838,14 +838,14 @@
    ]
   },
   {
-   "investimento": 7485.43,
+   "investimento": 7500.0,
    "impressoes": 164279,
    "cliques": 154,
    "views": 89696,
    "engajamento": 113554,
    "ctr": 0.00094,
-   "cpm": 45.57,
-   "cpc": 48.61,
+   "cpm": 45.65,
+   "cpc": 48.7,
    "plataforma": "Google",
    "estrategia": "YouTube In-Stream",
    "frentes": [
@@ -1074,14 +1074,14 @@
     "campanhas": 2
    },
    {
-    "investimento": 1479.78,
+    "investimento": 1500.0,
     "impressoes": 31730,
     "cliques": 3271,
     "views": 0,
     "engajamento": 0,
     "ctr": 0.10309,
-    "cpm": 46.64,
-    "cpc": 0.45,
+    "cpm": 47.27,
+    "cpc": 0.46,
     "plataforma": "Google",
     "estrategia": "Display",
     "mes": "2026-05",
@@ -1194,14 +1194,14 @@
     "campanhas": 1
    },
    {
-    "investimento": 1485.43,
+    "investimento": 1500.0,
     "impressoes": 27541,
     "cliques": 30,
     "views": 14708,
     "engajamento": 18485,
     "ctr": 0.00109,
-    "cpm": 53.94,
-    "cpc": 49.51,
+    "cpm": 54.46,
+    "cpc": 50.0,
     "plataforma": "Google",
     "estrategia": "YouTube In-Stream",
     "mes": "2026-06",
@@ -1230,14 +1230,14 @@
     "campanhas": 3
    },
    {
-    "investimento": 5395.71,
+    "investimento": 5500.0,
     "impressoes": 175445,
     "cliques": 3704,
     "views": 48573,
     "engajamento": 18820,
     "ctr": 0.02111,
-    "cpm": 30.75,
-    "cpc": 1.46,
+    "cpm": 31.35,
+    "cpc": 1.48,
     "plataforma": "Meta",
     "estrategia": "Engajamento",
     "mes": "2026-06",
@@ -1264,14 +1264,14 @@
     "campanhas": 1
    },
    {
-    "investimento": 1484.21,
+    "investimento": 1500.0,
     "impressoes": 29799,
     "cliques": 3441,
     "views": 0,
     "engajamento": 0,
     "ctr": 0.11547,
-    "cpm": 49.81,
-    "cpc": 0.43,
+    "cpm": 50.34,
+    "cpc": 0.44,
     "plataforma": "Google",
     "estrategia": "Display",
     "mes": "2026-07",
@@ -1830,7 +1830,7 @@
     "genero": "female",
     "impressoes": 910892.0,
     "cliques": 1857.0,
-    "investimento": 7277.34,
+    "investimento": 7290.87,
     "engajamento": 13044.0
    },
    {
@@ -1838,7 +1838,7 @@
     "genero": "male",
     "impressoes": 807857.0,
     "cliques": 1698.0,
-    "investimento": 6601.32,
+    "investimento": 6611.25,
     "engajamento": 12086.0
    },
    {
@@ -1846,7 +1846,7 @@
     "genero": "unknown",
     "impressoes": 3724.0,
     "cliques": 8.0,
-    "investimento": 33.84,
+    "investimento": 33.91,
     "engajamento": 62.0
    },
    {
@@ -1854,7 +1854,7 @@
     "genero": "female",
     "impressoes": 786430.0,
     "cliques": 2397.0,
-    "investimento": 7514.53,
+    "investimento": 7529.57,
     "engajamento": 15595.0
    },
    {
@@ -1862,7 +1862,7 @@
     "genero": "male",
     "impressoes": 840733.0,
     "cliques": 2412.0,
-    "investimento": 7284.8,
+    "investimento": 7294.83,
     "engajamento": 12950.0
    },
    {
@@ -1870,7 +1870,7 @@
     "genero": "unknown",
     "impressoes": 3626.0,
     "cliques": 13.0,
-    "investimento": 37.62,
+    "investimento": 37.73,
     "engajamento": 59.0
    },
    {
@@ -1878,7 +1878,7 @@
     "genero": "female",
     "impressoes": 620161.0,
     "cliques": 3532.0,
-    "investimento": 6798.0,
+    "investimento": 6812.18,
     "engajamento": 22274.0
    },
    {
@@ -1886,7 +1886,7 @@
     "genero": "male",
     "impressoes": 737221.0,
     "cliques": 2615.0,
-    "investimento": 6415.2,
+    "investimento": 6424.05,
     "engajamento": 13198.0
    },
    {
@@ -1894,7 +1894,7 @@
     "genero": "unknown",
     "impressoes": 2181.0,
     "cliques": 19.0,
-    "investimento": 28.56,
+    "investimento": 28.63,
     "engajamento": 80.0
    },
    {
@@ -1902,7 +1902,7 @@
     "genero": "female",
     "impressoes": 599018.0,
     "cliques": 5752.0,
-    "investimento": 7232.9,
+    "investimento": 7242.88,
     "engajamento": 34372.0
    },
    {
@@ -1910,7 +1910,7 @@
     "genero": "male",
     "impressoes": 587512.0,
     "cliques": 2439.0,
-    "investimento": 5001.66,
+    "investimento": 5007.88,
     "engajamento": 11735.0
    },
    {
@@ -1918,7 +1918,7 @@
     "genero": "unknown",
     "impressoes": 1349.0,
     "cliques": 8.0,
-    "investimento": 14.57,
+    "investimento": 14.59,
     "engajamento": 50.0
    },
    {
@@ -1926,7 +1926,7 @@
     "genero": "female",
     "impressoes": 467790.0,
     "cliques": 7610.0,
-    "investimento": 7874.88,
+    "investimento": 7886.23,
     "engajamento": 46232.0
    },
    {
@@ -1934,7 +1934,7 @@
     "genero": "male",
     "impressoes": 337015.0,
     "cliques": 2115.0,
-    "investimento": 3207.13,
+    "investimento": 3212.0,
     "engajamento": 10082.0
    },
    {
@@ -1942,7 +1942,7 @@
     "genero": "unknown",
     "impressoes": 935.0,
     "cliques": 7.0,
-    "investimento": 10.3,
+    "investimento": 10.31,
     "engajamento": 47.0
    },
    {
@@ -2047,7 +2047,7 @@
   "youtube": {
    "impressoes": 164279,
    "views": 89696,
-   "investimento": 7485.43,
+   "investimento": 7500.0,
    "p25": 128289,
    "p50": 104949,
    "p75": 96516,
@@ -2085,14 +2085,14 @@
    "imagem": "/criativos/google-01.jpg"
   },
   {
-   "investimento": 7652.65,
+   "investimento": 7680.4,
    "impressoes": 909026,
    "cliques": 2429,
    "views": 0,
    "engajamento": 3924,
    "ctr": 0.00267,
-   "cpm": 8.42,
-   "cpc": 3.15,
+   "cpm": 8.45,
+   "cpc": 3.16,
    "id": "meta-02",
    "nome": "AD3 Mais Planos de Saúde",
    "plataforma": "Meta",
@@ -2104,14 +2104,14 @@
    "imagem": "/criativos/meta-02.jpg"
   },
   {
-   "investimento": 10523.4,
+   "investimento": 10562.84,
    "impressoes": 890168,
    "cliques": 2937,
    "views": 0,
    "engajamento": 7857,
    "ctr": 0.0033,
-   "cpm": 11.82,
-   "cpc": 3.58,
+   "cpm": 11.87,
+   "cpc": 3.6,
    "id": "meta-03",
    "nome": "AD1 Robótica",
    "plataforma": "Meta",
@@ -2237,14 +2237,14 @@
    "imagem": "/criativos/meta-09.jpg"
   },
   {
-   "investimento": 3289.34,
+   "investimento": 3301.7,
    "impressoes": 293539,
    "cliques": 1268,
    "views": 0,
    "engajamento": 2644,
    "ctr": 0.00432,
-   "cpm": 11.21,
-   "cpc": 2.59,
+   "cpm": 11.25,
+   "cpc": 2.6,
    "id": "meta-10",
    "nome": "AD2 My Day",
    "plataforma": "Meta",
@@ -2313,13 +2313,13 @@
    "imagem": "/criativos/google-13.jpg"
   },
   {
-   "investimento": 1358.64,
+   "investimento": 1361.07,
    "impressoes": 180280,
    "cliques": 314,
    "views": 168170,
    "engajamento": 7908,
    "ctr": 0.00174,
-   "cpm": 7.54,
+   "cpm": 7.55,
    "cpc": 4.33,
    "id": "meta-14",
    "nome": "AD6 Tratamento Oncológico",
@@ -2351,14 +2351,14 @@
    "imagem": "/criativos/google-15.jpg"
   },
   {
-   "investimento": 2846.0,
+   "investimento": 2858.9,
    "impressoes": 61079,
    "cliques": 62,
    "views": 33760,
    "engajamento": 42454,
    "ctr": 0.00102,
-   "cpm": 46.6,
-   "cpc": 45.9,
+   "cpm": 46.81,
+   "cpc": 46.11,
    "id": "google-16",
    "nome": "[AD] 01 - 01.06 - V2",
    "plataforma": "Google",
@@ -2373,7 +2373,7 @@
  "avisos": [
   "Curativos: 308 linhas do CSV curativos-google.csv (fora da função do Supabase).",
   "44 linhas descartadas (sem data, Estratégia em branco ou uploads errados da coleta).",
-  "Investimento limitado ao contratado no ano todo: R$ 15.188,37 abaixo do realizado (não indicado na interface).",
+  "Investimento igual ao contratado em todos os grupos (ano todo): R$ 15.033,51 abaixo do realizado (não indicado na interface).",
   "Alcance fora do relatório: a fonte não traz alcance único.",
   "Colunas Gênero/Idade da planilha vêm trocadas; corrigido no snapshot."
  ]

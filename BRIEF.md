@@ -19,7 +19,7 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 - **Sem alcance em lugar nenhum.** A fonte não tem alcance único.
 - **Investimento** é o campo `Investimento` da base: o valor ao cliente (spend ÷ margem). Nunca usar spend nem aplicar o "bruto ÷ 0,8785" do Jaques.
-- O snapshot já sai com as regras do dashboard em produção (descarte de Estratégia em branco e dos uploads errados da coleta) e com o **investimento limitado ao contratado no ano todo**. Só o investimento é limitado; impressões, cliques, views e engajamento ficam como entregues. A interface não indica o corte. Não reaplicar nada disso no front.
+- O snapshot já sai com as regras do dashboard em produção (descarte de Estratégia em branco e dos uploads errados da coleta) e com o **investimento igual ao contratado em todos os grupos, no ano todo**: cada grupo de contrato (AON por mês × plataforma × estratégia, Faz Bem por período × plataforma × estratégia, Checkup, Curativos) tem o investimento de todas as linhas multiplicado por contratado ÷ realizado, nos dois sentidos (reduz se passou, aumenta se ficou abaixo). Grupo sem contrato fica com R$ 0; grupo com contrato e sem entrega é listado no terminal pelo script. Só o investimento é ajustado; impressões, cliques, views e engajamento ficam como entregues. A interface não indica o ajuste. Não reaplicar nada disso no front.
 - O corte do relatório é 31/10/2026 (`--ate 2026-10-31`): outubro está fechado e nenhum mês é parcial. Novembro já está na base, mas fica fora. Se um corte futuro cair no meio de um mês, `meses[].parcial` liga a hachura e a legenda "Mês parcial" no gráfico mensal e no mosaico.
 - Engajamento:
   - `totais.engajamento` = Meta (engajamento do post) + YouTube (engajamentos).
@@ -33,17 +33,18 @@ Balanço de apresentação para a **diretoria do Hospital Santa Izabel**: o ano 
 
 | Métrica | Valor |
 |---|---|
-| Investimento | R$ 128,6 mil (Meta R$ 65,6 mil · Google R$ 63,0 mil) · contratado R$ 128,8 mil |
+| Investimento | R$ 128.750,00 = contratado (Meta R$ 65.750 · Google R$ 63.000) |
 | Impressões | 9,66 mi |
-| Cliques | 116,9 mil · CTR 1,21% · CPC R$ 1,10 · CPM R$ 13,31 |
+| Cliques | 116,9 mil · CTR 1,21% · CPC R$ 1,10 · CPM R$ 13,32 |
 | Views de vídeo | 1,24 mi |
 | Engajamentos | 311 mil |
 | Campanhas | 38 |
 
-- **Frentes:** Institucional AON R$ 81,1 mil · Faz Bem R$ 40,4 mil · Curativos R$ 6,0 mil · Checkup Torcedor R$ 1,0 mil.
+- **Frentes:** Institucional AON R$ 81.250 · Faz Bem R$ 40.500 · Curativos R$ 6.000 · Checkup Torcedor R$ 1.000 (cada uma igual ao contratado).
 - **Curativos:** R$ 6,0 mil · 131.246 impressões · 5.291 cliques (PI 355, Google Pesquisa, 02/12/2025 → 25/02/2026, contratado R$ 6.000).
 - **Busca Google:** 61,4 mil cliques · CTR 16,4% · CPC R$ 0,63 (inclui Curativos).
 - **Outubro (fechado):** R$ 8,0 mil · AON só Google Pesquisa R$ 3.000 · Faz Bem: Display R$ 1.500 · In-Stream R$ 1.500 · Meta Alcance R$ 1.500 · Meta Posts de oportunidade R$ 500.
+- **Grupos (amostra):** AON Meta Engajamento jun R$ 5.500 · Faz Bem P3 Display (mai) R$ 1.500 · P4 In-Stream (jun) R$ 1.500 · P5 Display (jul) R$ 1.500.
 - **Google:** de dezembro/2025 (Curativos) a outubro. **Meta:** entra em maio (12/05).
 - **Curativos e dez/25:** os dados vêm de um CSV à parte (`--curativos data/curativos-google.csv`), não da função do Supabase. Dez/25 entra em `meses` e `grade.meses` com `anoAnterior: true` e rótulo "dez/25"; o `periodo` do relatório continua 2026. Observação no rodapé e na seção da frente: "A campanha Curativos começou em dezembro de 2025; os números do relatório incluem esse mês."
 
